@@ -1,0 +1,50 @@
+/* General link color (for all links) */
+.custom-menu-item a {
+  color: inherit; /* Inherit the text color */
+}
+
+/* Active/Selected menu item */
+.ant-menu-item-selected.custom-menu-item,
+.custom-menu-item.ant-menu-item-active {
+  border-bottom: 2px solid rgb(24, 142, 24) !important; /* Green underline */
+}
+
+/* Ensure the text color is green when active/selected */
+.custom-menu-item.ant-menu-item-selected a,
+.custom-menu-item.ant-menu-item-active a {
+  color: rgb(24, 142, 24) !important; /* Make the text color green */
+}
+
+/* Remove the default blue border and change it to green */
+.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-horizontal > .ant-menu-submenu-title::after {
+  border-bottom: none !important; /* Remove blue border */
+}
+
+
+
+/* Normal Menu State */
+.menu-normal .custom-menu-item,
+.menu-normal .ant-menu-submenu-title {
+  color: black !important;
+  font-size: 15px; /* Larger font size */
+  font-weight: bold;
+}
+
+.menu-normal .custom-menu-item:hover,
+.menu-normal .custom-menu-item.ant-menu-item-selected {
+  color: black !important; /* Ensure selected and hovered text remains black */
+}
+
+/* Blurred Menu State */
+.menu-blur .custom-menu-item,
+.menu-blur .ant-menu-submenu-title {
+  color: white !important;
+  font-size: 15px; /* Larger font size */
+  font-weight: bold;
+}
+
+.menu-blur .custom-menu-item:hover,
+.menu-blur .custom-menu-item.ant-menu-item-selected {
+  color: white !important; /* Ensure selected and hovered text remains white */
+}

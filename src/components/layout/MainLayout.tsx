@@ -1,85 +1,143 @@
-import React from "react";
-import { Image, Layout, Menu, theme } from "antd";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Image, Layout, Menu } from "antd";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import "../../styles/custom.css"; // Import your custom CSS
 
 const { Header, Content, Footer } = Layout;
 
 const MainLayout: React.FC = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout className="h-screen">
       <Header
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 1,
-          width: "100%",
-          height: "12%",
-          display: "flex",
-          alignItems: "center",
-        }}
+        className={`sticky top-0 z-10 w-full h-16 flex items-center transition-all duration-300 ${
+          isScrolled
+            ? "bg-white bg-opacity-30 backdrop-blur-lg"
+            : "bg-white bg-opacity-100"
+        }`}
+        style={{ height: "12%" }}
       >
-        <div style={{ alignItems: "center", height: "100%" }}>
-          <Image
-            width={120}
-            src="/src/assets/logo.png" // Ensure the path is correct
-            alt="MeetSpace Logo"
-          />
+        <div className="h-full flex items-center">
+          <Image width={120} src="/src/assets/logo.png" alt="MeetSpace Logo" />
         </div>
         <Menu
-          theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          style={{ flex: 1, minWidth: 0 }}
+          selectedKeys={[location.pathname]}
+          className={`flex-grow min-w-0 bg-transparent custom-menu ${
+            isScrolled ? "menu-blur" : "menu-normal"
+          }`}
+          style={{
+            backgroundColor: "transparent",
+          }}
         >
-          <Menu.Item key="1">
+          <Menu.Item
+            key="/"
+            className={`custom-menu-item ${
+              location.pathname === "/" ? "ant-menu-item-selected" : ""
+            }`}
+          >
             <Link to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item
+            key="/about"
+            className={`custom-menu-item ${
+              location.pathname === "/about" ? "ant-menu-item-selected" : ""
+            }`}
+          >
             <Link to="/about">About Us</Link>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item
+            key="/service"
+            className={`custom-menu-item ${
+              location.pathname === "/service" ? "ant-menu-item-selected" : ""
+            }`}
+          >
             <Link to="/service">Service</Link>
           </Menu.Item>
-          <Menu.SubMenu key="4" title="Pages">
-            <Menu.Item key="41">
+          <Menu.SubMenu
+            key="pages"
+            title="Pages"
+            className="ant-menu-submenu-title"
+          >
+            <Menu.Item
+              key="/pricing"
+              className={`custom-menu-item ${
+                location.pathname === "/pricing" ? "ant-menu-item-selected" : ""
+              }`}
+            >
               <Link to="/pricing">Pricing</Link>
             </Menu.Item>
-            <Menu.Item key="42">
+            <Menu.Item
+              key="/team"
+              className={`custom-menu-item ${
+                location.pathname === "/team" ? "ant-menu-item-selected" : ""
+              }`}
+            >
               <Link to="/team">Team</Link>
             </Menu.Item>
-            <Menu.Item key="43">
+            <Menu.Item
+              key="/faq"
+              className={`custom-menu-item ${
+                location.pathname === "/faq" ? "ant-menu-item-selected" : ""
+              }`}
+            >
               <Link to="/faq">F&Q</Link>
             </Menu.Item>
-            <Menu.Item key="44">
+            <Menu.Item
+              key="/gallery"
+              className={`custom-menu-item ${
+                location.pathname === "/gallery" ? "ant-menu-item-selected" : ""
+              }`}
+            >
               <Link to="/gallery">Gallery</Link>
             </Menu.Item>
           </Menu.SubMenu>
-          <Menu.Item key="5">
+          <Menu.Item
+            key="/contact"
+            className={`custom-menu-item ${
+              location.pathname === "/contact" ? "ant-menu-item-selected" : ""
+            }`}
+          >
             <Link to="/contact">Contact Us</Link>
           </Menu.Item>
-          <Menu.Item key="6">
-            <Link to="/get-started">Get Started</Link>
-          </Menu.Item>
         </Menu>
+
+        <div className="ml-auto">
+          <Link
+            to="/get-started"
+            className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600"
+          >
+            Get Started
+          </Link>
+        </div>
       </Header>
-      <Content style={{ padding: "0 48px" }}>
-        <div
-          style={{
-            padding: 24,
-            minHeight: 380,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
+
+      <Content className="bg-transparent">
+        <div className="min-h-[380px] bg-white rounded-lg shadow-lg">
           <Outlet />
         </div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+
+      <Footer className="text-center bg-black bg-opacity-80 text-white py-4">
+        MeetSpace ©{new Date().getFullYear()} Created by Your Company Name
       </Footer>
     </Layout>
   );
