@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { ClockCircleFilled } from "@ant-design/icons"; // Importing clock icon from Ant Design
+
+import { Link } from "react-router-dom";
 
 const images = [
   "https://res.cloudinary.com/dwelabpll/image/upload/v1725185204/AdobeStock_629685629-1030x577_b9xod4.jpg",
@@ -38,14 +41,39 @@ const Carousel: React.FC = () => {
         className="w-full h-full bg-center bg-cover duration-500"
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
 
         {/* Overlay Card */}
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className="bg-black bg-opacity-60 text-white p-8 rounded-lg text-center">
-            <h2 className="text-3xl mb-4">SpaceHub Co-working Space</h2>
-            <p className="text-xl">THE SPACE FOR CREATIVITY</p>
+        <div className="absolute inset-0 flex flex-col justify-center items-start pl-32 space-y-6">
+          <div className="bg-black bg-opacity-5 text-white p-8 rounded-lg text-left backdrop-blur-md">
+            <h2 className="text-xl mb-4">
+              <span className="text-green-400 font-bold text-3xl">
+                MeetSpace
+              </span>{" "}
+              Co-working Space
+            </h2>
+            <p className="text-4xl">Build A Better Office Environment</p>
+            <p className="text-6xl">THE SPACE FOR Meetings</p>
+            {/* Opening Hours */}
+            <div className="flex items-center text-white space-x-4 pt-4">
+              <ClockCircleFilled className="text-3xl text-green-400" />
+              <span className="text-xl">Opening Hours: 10 AM - 6 PM</span>
+            </div>
           </div>
+
+          {/* Book Now Button */}
+          {/* <Button
+          // type="primary"
+          // size="large"
+          // className="bg-green-500 hover:bg-green-600 text-white font-bold text-2xl p-6"
+          > */}
+            <Link
+              to="/get-started"
+              className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600"
+            >
+             Reserve Now
+            </Link>
+          {/* </Button> */}
         </div>
       </div>
 

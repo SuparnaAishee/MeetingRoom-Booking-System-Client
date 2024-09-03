@@ -1,24 +1,24 @@
-/* General link color (for all links) */
+/* General link color */
 .custom-menu-item a {
-  color: inherit; /* Inherit the text color */
+  color: inherit; 
 }
 
 /* Active/Selected menu item */
 .ant-menu-item-selected.custom-menu-item,
 .custom-menu-item.ant-menu-item-active {
-  border-bottom: 2px solid rgb(24, 142, 24) !important; /* Green underline */
+  border-bottom: 2px solid rgb(24, 142, 24) !important;
 }
 
-/* Ensure the text color is green when active/selected */
+/*  text color is green when selected */
 .custom-menu-item.ant-menu-item-selected a,
 .custom-menu-item.ant-menu-item-active a {
-  color: rgb(24, 142, 24) !important; /* Make the text color green */
+  color: rgb(24, 142, 24) !important; 
 }
 
-/* Remove the default blue border and change it to green */
+/* Removing the default blue border and change it to green */
 .ant-menu-horizontal > .ant-menu-item::after,
 .ant-menu-horizontal > .ant-menu-submenu-title::after {
-  border-bottom: none !important; /* Remove blue border */
+  border-bottom: none !important; 
 }
 
 
@@ -27,24 +27,133 @@
 .menu-normal .custom-menu-item,
 .menu-normal .ant-menu-submenu-title {
   color: black !important;
-  font-size: 15px; /* Larger font size */
+  font-size: 15px; 
   font-weight: bold;
 }
 
 .menu-normal .custom-menu-item:hover,
 .menu-normal .custom-menu-item.ant-menu-item-selected {
-  color: black !important; /* Ensure selected and hovered text remains black */
+  color: black !important; 
 }
 
 /* Blurred Menu State */
 .menu-blur .custom-menu-item,
 .menu-blur .ant-menu-submenu-title {
   color: white !important;
-  font-size: 15px; /* Larger font size */
+  font-size: 15px; 
   font-weight: bold;
 }
 
 .menu-blur .custom-menu-item:hover,
 .menu-blur .custom-menu-item.ant-menu-item-selected {
-  color: white !important; /* Ensure selected and hovered text remains white */
+  color: white !important; 
+}
+
+/* Custom blur effect */
+.custom-blur {
+  backdrop-filter: blur(10px); 
+}
+
+/* Carousel.css */
+
+.custom-button {
+  background-color: #38a169 !important; 
+  border-color: #38a169 !important; 
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.custom-button:hover,
+.custom-button:focus {
+  background-color: #2f855a !important; 
+  border-color: #2f855a !important;
+  color: #fff !important;
+}
+.section-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.section-text {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.section-text h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.section-text p {
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+}
+
+.section-text .highlight {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.section-button {
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.section-button:hover {
+  background-color: #218838;
+}
+
+.section-image-container {
+  flex: 1;
+  position: relative;
+}
+
+.section-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-stats {
+  position: absolute;
+  bottom: -1rem;  
+  left: -2rem;    
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 200px;  
+  height: 150px;
+}
+
+.section-stats h3 {
+  color: #28a745;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.section-stats p {
+  color: #4a4a4a;
+  margin: 0;
+    text-align: center;
+}
+.layout-padding {
+  padding-left: 7rem;
+  padding-right: 7rem;
+  padding-top: 4rem;
 }
