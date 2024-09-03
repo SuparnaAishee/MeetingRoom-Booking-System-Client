@@ -21,7 +21,7 @@ const About: React.FC = () => {
           Pulvinar et nec facilisi neque dignissim eu.
         </p>
         <button className="text-white bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg">
-          Discover more →
+          Read more →
         </button>
       </div>
 

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ClockCircleFilled } from "@ant-design/icons"; // Importing clock icon from Ant Design
-
+import { ClockCircleFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import {
+  FacebookOutlined,
+  TwitterOutlined,
+  InstagramOutlined,
+  LinkedinOutlined,
+} from "@ant-design/icons"; // Importing social media icons
 
 const images = [
   "https://res.cloudinary.com/dwelabpll/image/upload/v1725185204/AdobeStock_629685629-1030x577_b9xod4.jpg",
@@ -27,7 +32,7 @@ const Carousel: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000); // Change slide every 3 seconds
+    }, 3000);
 
     return () => {
       clearInterval(interval);
@@ -62,19 +67,41 @@ const Carousel: React.FC = () => {
           </div>
 
           {/* Book Now Button */}
-          {/* <Button
-          // type="primary"
-          // size="large"
-          // className="bg-green-500 hover:bg-green-600 text-white font-bold text-2xl p-6"
-          > */}
-            <Link
-              to="/get-started"
-              className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600"
-            >
-             Reserve Now
-            </Link>
-          {/* </Button> */}
+          <Link
+            to="/get-started"
+            className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600"
+          >
+            Reserve Now
+          </Link>
         </div>
+      </div>
+
+      {/* Social Media Icons */}
+      <div className="absolute top-1/4 right-4 flex flex-col space-y-6 pr-16">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FacebookOutlined className="text-3xl text-white hover:text-green-400" />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <TwitterOutlined className="text-3xl text-white hover:text-green-400" />
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <InstagramOutlined className="text-3xl text-white hover:text-green-400" />
+        </a>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkedinOutlined className="text-3xl text-white hover:text-green-400" />
+        </a>
       </div>
 
       {/* Left Arrow */}
@@ -82,7 +109,7 @@ const Carousel: React.FC = () => {
         className="absolute top-1/2 left-4 transform -translate-y-1/2 p-3 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75"
         onClick={prevSlide}
       >
-        &#10094; {/* HTML Entity for Left Arrow */}
+        &#10094;
       </button>
 
       {/* Right Arrow */}
@@ -90,7 +117,7 @@ const Carousel: React.FC = () => {
         className="absolute top-1/2 right-4 transform -translate-y-1/2 p-3 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75"
         onClick={nextSlide}
       >
-        &#10095; {/* HTML Entity for Right Arrow */}
+        &#10095;
       </button>
 
       {/* Indicators */}
