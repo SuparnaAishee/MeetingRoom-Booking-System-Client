@@ -6,6 +6,9 @@ import {
   ClockCircleOutlined,
   CustomerServiceOutlined,
 } from "@ant-design/icons";
+import CountUp from "react-countup";
+
+
 
 const services = [
   {
@@ -42,38 +45,79 @@ const services = [
 
 const ServiceSection: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-semibold mb-12">Our Services</h2>
-        <Row gutter={[16, 16]} justify="center">
-          {services.map((service, index) => (
-            <Col xs={24} sm={12} md={12} lg={6} key={index}>
-              <Card
-                hoverable
-                className="shadow-md"
-                cover={
-                  <div className="flex justify-center items-center py-6">
-                    {service.icon}
-                  </div>
-                }
-                style={{
-                  borderRadius: "8px",
-                  borderColor: "#28a745",
-                  transition: "box-shadow 0.3s ease",
-                }}
-              >
-                <Card.Meta
-                  title={<h3 className="text-xl font-bold">{service.title}</h3>}
-                  description={
-                    <p className="text-gray-600">{service.description}</p>
+    <div>
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-12">Our Services</h2>
+          <Row gutter={[16, 16]} justify="center">
+            {services.map((service, index) => (
+              <Col xs={24} sm={12} md={12} lg={6} key={index}>
+                <Card
+                  hoverable
+                  className="shadow-md"
+                  cover={
+                    <div className="flex justify-center items-center py-6">
+                      {service.icon}
+                    </div>
                   }
-                />
-              </Card>
+                  style={{
+                    borderRadius: "8px",
+                    borderColor: "#28a745",
+                    transition: "box-shadow 0.3s ease",
+                  }}
+                >
+                  <Card.Meta
+                    title={
+                      <h3 className="text-xl font-bold">{service.title}</h3>
+                    }
+                    description={
+                      <p className="text-gray-600">{service.description}</p>
+                    }
+                  />
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </section>
+      <section className="bg-gray-200">
+        <div className="container mx-auto px-6">
+          <Row gutter={32} justify="center">
+            {/* Member Active */}
+            <Col xs={24} md={6} className="text-center">
+              <h2 className="text-green-600 font-bold text-4xl mt-2">
+                <CountUp start={0} end={2000} duration={2} suffix="+" />
+              </h2>
+              <p className="text-gray-600">Member Active</p>
             </Col>
-          ))}
-        </Row>
-      </div>
-    </section>
+
+            {/* Company Active */}
+            <Col xs={24} md={6} className="text-center">
+              <h2 className="text-green-600 font-bold text-4xl mt-2">
+                <CountUp start={0} end={411} duration={2} suffix="+" />
+              </h2>
+              <p className="text-gray-600">Company Active</p>
+            </Col>
+
+            {/* Private Room */}
+            <Col xs={24} md={6} className="text-center">
+              <h2 className="text-green-600 font-bold text-4xl mt-2">
+                <CountUp start={0} end={214} duration={2} suffix="+" />
+              </h2>
+              <p className="text-gray-600">Private Room</p>
+            </Col>
+
+            {/* Years Experience */}
+            <Col xs={24} md={6} className="text-center">
+              <h2 className="text-green-600 font-bold text-4xl mt-2">
+                <CountUp start={0} end={10} duration={2} suffix="+" />
+              </h2>
+              <p className="text-gray-600">Years Experience</p>
+            </Col>
+          </Row>
+        </div>
+      </section>
+    </div>
   );
 };
 
