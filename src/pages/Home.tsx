@@ -11,6 +11,11 @@ import {
 } from "@ant-design/icons";
 import WhyChooseUs from "./whyChooseUs";
 import CountUp from "react-countup";
+
+import CustomFooter from "../components/layout/Footer";
+import WorkSection from "./WorkSection";
+import TestimonialsSection from "./Testimonial";
+
 const featuredRooms = [
   {
     image:
@@ -63,22 +68,22 @@ const HomePage: React.FC = () => {
       <Carousel />
 
       {/* Content Section */}
-      <div className="flex items-center justify-between p-8 bg-white layout-padding">
+      <div className="flex items-center justify-between p-8 bg-white layout-padding space-x-6">
         {/* Text Content */}
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-6 ">
           <p className="text-green-600 font-semibold">WHO WE ARE</p>
           <h2 className="text-5xl font-bold">
-            Influence each other for the better.
+            Effortless Planning for Uninterrupted Progress.
           </h2>
           <p className="text-gray-600">
-            Nam elit posuere etiam blandit habitasse felis. Letius conubia
-            praesent dolor faucibus ad sociosqu facilisis. Volutpat porttitor
-            viverra nostra phasellus conubia.
+            We are dedicated to making your scheduling process as seamless as
+            possible. Our meeting booking system is designed to simplify the way
+            you connect, collaborate, and communicate.
           </p>
           <p className="text-gray-600">
-            Ultricies lacinia porttitor etiam consectetur parturient dictumst.
-            Quis mus eros bibendum velit eleifend tortor euismod nec
-            consectetur. Pulvinar et nec facilisi neque dignissim eu.
+            By eliminating the hassle of back-and-forth scheduling, we help you
+            focus on what truly matters—productive meetings and meaningful
+            connections.
           </p>
           <button className="text-white bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg">
             Read more →
@@ -268,6 +273,15 @@ const HomePage: React.FC = () => {
       </div>
       {/*why choose us*/}
       <WhyChooseUs />
+      <div >
+        {" "}
+        <WorkSection />
+      </div>
+      <div>
+        <TestimonialsSection/>
+      </div>
+
+      <CustomFooter />
     </div>
   );
 };

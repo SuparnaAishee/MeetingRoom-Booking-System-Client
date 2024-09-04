@@ -3,7 +3,9 @@ import { Image, Layout, Menu } from "antd";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import "../../styles/custom.css"; // Import your custom CSS
 
-const { Header, Content, Footer } = Layout;
+import { Footer } from "antd/es/layout/layout";
+
+const { Header, Content } = Layout;
 
 const MainLayout: React.FC = () => {
   const location = useLocation();
@@ -136,9 +138,10 @@ const MainLayout: React.FC = () => {
         </div>
       </Content>
 
-      <Footer className="text-center bg-black bg-opacity-80 text-white py-4">
+       <Footer className="text-center bg-black bg-opacity-80 text-white py-4">
         MeetSpace ©{new Date().getFullYear()} Created by Your Company Name
-      </Footer>
+      </Footer> 
+    
     </Layout>
   );
 };

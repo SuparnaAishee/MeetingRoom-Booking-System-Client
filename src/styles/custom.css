@@ -157,3 +157,40 @@
   padding-right: 7rem;
   padding-top: 4rem;
 }
+
+/*work section style*/
+.custom-section {
+  background-image: url("https://res.cloudinary.com/dwelabpll/image/upload/v1725448719/modern-office-interior-with-laptop-potted-plant-blurred-background-high-resolution_599292-5455_dv0auu.avif"); /* replace with your image path */
+  height: 500px; /* Adjust based on your preference */
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.custom-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  bottom: -8rem;
+}
+
+.highlighted-card {
+  background-color: #38A169; 
+  color: white;
+
+}
+
+.custom-card h4,
+.custom-card p {
+  margin: 0;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
+}
