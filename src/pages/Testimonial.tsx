@@ -43,7 +43,7 @@ const testimonials = [
 
 const TestimonialSection = () => {
   return (
-    <section className="pb-32 lg:pb-48 layout-padding">
+    <section className=" lg:pb-48  ">
       <div className="relative flex flex-col lg:flex-row items-center justify-between bg-gray-100 p-8 space-y-8 lg:space-y-0 layout-padding">
         {/* Left Side: Image */}
         <div className="relative w-full lg:w-1/2">
@@ -63,13 +63,13 @@ const TestimonialSection = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
             tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
           </p>
-          {/* <button className="bg-green-500 text-white px-6 py-3  rounded-lg hover:bg-green-600">
-            Discover All
-          </button> */}
+          <button className="bg-green-500 text-white px-6 py-3  rounded-lg hover:bg-green-600">
+           Explore Rooms
+          </button>
         </div>
 
         {/* Carousel overlapping both sides */}
-        <div className="absolute bottom-0 right-0 w-full lg:w-3/4 bg-green-400 shadow-lg p-6  lg:right-[15%]  lg:bottom-[-45%] ">
+        <div className="absolute bottom-0 right-0 w-full lg:w-3/4 bg-gray-100 shadow-lg p-6  lg:right-[5%]  lg:bottom-[-30%] ">
           <Carousel
             showThumbs={false}
             showStatus={false}

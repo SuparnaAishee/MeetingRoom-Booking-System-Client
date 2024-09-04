@@ -15,6 +15,7 @@ import CountUp from "react-countup";
 import CustomFooter from "../components/layout/Footer";
 import WorkSection from "./WorkSection";
 import TestimonialsSection from "./Testimonial";
+import BlogSection from "./Blog";
 
 const featuredRooms = [
   {
@@ -273,15 +274,19 @@ const HomePage: React.FC = () => {
       </div>
       {/*why choose us*/}
       <WhyChooseUs />
-      <div >
+      <div>
         {" "}
         <WorkSection />
       </div>
       <div>
-        <TestimonialsSection/>
+        <TestimonialsSection />
       </div>
-
-      <CustomFooter />
+      <div>
+        <BlogSection/>
+      </div>
+      <div>
+        <CustomFooter />
+      </div>
     </div>
   );
 };
