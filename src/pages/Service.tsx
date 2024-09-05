@@ -9,6 +9,8 @@ import {
 } from "@ant-design/icons";
 import CountUp from "react-countup";
 import CustomFooter from "../components/layout/Footer";
+import ChoosePlanSection from "./test";
+import PricingSection from "./test";
 
 
 
@@ -230,7 +232,9 @@ const ServiceSection: React.FC = () => {
           </section>
         </div>
       </section>
-      <section></section>
+      <section className="layout-padding">
+        <ChoosePlanSection/>
+      </section>
       <div>
         <CustomFooter />
       </div>

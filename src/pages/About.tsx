@@ -2,6 +2,9 @@ import React from "react";
 import "./../styles/custom.css"
 import WhyChooseUs from "./whyChooseUs";
 import TestimonialSection from "./Testimonial";
+import FAQSection from "./F&Q";
+import CustomFooter from "../components/layout/Footer";
+import BrandSection from "./Brand";
 
 const About: React.FC = () => {
   return (
@@ -71,6 +74,15 @@ const About: React.FC = () => {
       </div>
       <div>
         <TestimonialSection/>
+      </div>
+      <div>
+        <FAQSection/>
+      </div>
+      <div>
+        <BrandSection/>
+      </div>
+      <div>
+        <CustomFooter/>
       </div>
     </div>
   );
