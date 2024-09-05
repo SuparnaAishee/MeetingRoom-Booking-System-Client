@@ -3,7 +3,8 @@ import { Image, Layout, Menu } from "antd";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import "../../styles/custom.css"; // Import your custom CSS
 
-import { Footer } from "antd/es/layout/layout";
+
+
 
 
 
@@ -140,7 +141,6 @@ const MainLayout: React.FC = () => {
         </div>
       </Content>
 
-    
     </Layout>
   );
 };

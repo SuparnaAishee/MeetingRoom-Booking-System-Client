@@ -5,6 +5,7 @@ import {
   PhoneOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import CustomFooter from "../components/layout/Footer";
 const ContactUsBanner: React.FC = () => {
   return (
     <div className="relative h-96 ">
@@ -126,9 +127,9 @@ const ContactUsBanner: React.FC = () => {
         </div>
       </section>
       <section className="py-16 bg-white layout-padding">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 ">
           {/* Google Maps Section */}
-          <div className="w-full h-64">
+          <div className="w-full h-64 ">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3693.998569730702!2d91.80196751503656!3d22.356851985297377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd89d3a7c061f%3A0x10f68887659f0f77!2sChittagong!5e0!3m2!1sen!2sbd!4v1693923076437!5m2!1sen!2sbd"
               width="100%"
@@ -139,8 +140,12 @@ const ContactUsBanner: React.FC = () => {
           </div>
         </div>
       </section>
+      <div>
+        <CustomFooter/>
+      </div>
     </div>
   );
 };
 
 export default ContactUsBanner;
+

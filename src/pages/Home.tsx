@@ -284,9 +284,9 @@ const HomePage: React.FC = () => {
       <div>
         <BlogSection/>
       </div>
-      <div>
+      {/* <div>
         <CustomFooter />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -194,3 +194,10 @@
 .bg-center {
   background-position: center;
 }
+
+/*footer */
+.custom-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

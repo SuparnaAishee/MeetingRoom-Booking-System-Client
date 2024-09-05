@@ -23,7 +23,7 @@ const { Title, Text } = Typography;
 
 const CustomFooter = () => {
   return (
-    <Footer className="bg-gray-100 layout-padding">
+    <Footer className="bg-gray-100 layout-padding custom-footer ">
       <Row gutter={[32, 32]} justify="space-between">
         <Col xs={24} md={6}>
           <Image
