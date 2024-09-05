@@ -5,6 +5,8 @@ import "../../styles/custom.css"; // Import your custom CSS
 
 import { Footer } from "antd/es/layout/layout";
 
+
+
 const { Header, Content } = Layout;
 
 const MainLayout: React.FC = () => {
@@ -138,9 +140,6 @@ const MainLayout: React.FC = () => {
         </div>
       </Content>
 
-       <Footer className="text-center bg-black bg-opacity-80 text-white py-4">
-        MeetSpace ©{new Date().getFullYear()} Created by Your Company Name
-      </Footer> 
     
     </Layout>
   );
