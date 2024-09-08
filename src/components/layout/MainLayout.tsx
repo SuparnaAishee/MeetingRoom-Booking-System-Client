@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image, Layout, Menu } from "antd";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import "../../styles/custom.css"; // Import your custom CSS
+import ScrollToTop from "../ui/ScrollTop";
 
 
 
@@ -148,7 +149,7 @@ const MainLayout: React.FC = () => {
           <Outlet />
         </div>
       </Content>
-
+<ScrollToTop/>
     </Layout>
   );
 };

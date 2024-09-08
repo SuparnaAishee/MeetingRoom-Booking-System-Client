@@ -1,7 +1,6 @@
-// features/filtersSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface FiltersState {
+export interface FiltersState {
   search: string;
   capacity: [number, number] | undefined;
   priceRange: [number, number];
@@ -42,5 +41,4 @@ const filtersSlice = createSlice({
 
 export const { setSearch, setCapacity, setPriceRange, setSort, clearFilters } =
   filtersSlice.actions;
-
 export default filtersSlice.reducer;
