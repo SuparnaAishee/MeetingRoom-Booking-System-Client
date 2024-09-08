@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Card, Row, Col } from "antd";
-import { Link } from "react-router-dom"; // or next/link if using Next.js
+import {  Card, Row, Col } from "antd";
+ // or next/link if using Next.js
 import Carousel from "./carousel";
-import { UserOutlined } from "@ant-design/icons";
+// import { UserOutlined } from "@ant-design/icons";
 import {
   ClockCircleOutlined,
   CheckCircleOutlined,
@@ -16,53 +16,57 @@ import CustomFooter from "../components/layout/Footer";
 import WorkSection from "./WorkSection";
 import TestimonialsSection from "./Testimonial";
 import BlogSection from "./Blog";
+import FeaturedRooms from "./FeaturedRooms";
 
-const featuredRooms = [
-  {
-    image:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-    name: "Conference Room A",
-    capacity: "10 People",
-    price: "$100 per Slot",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-    name: "Board Room",
-    capacity: "15 People",
-    price: "$150 per Slot",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-    name: "Meeting Room",
-    capacity: "8 People",
-    price: "$80 per Slot",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-    name: "Training Room",
-    capacity: "20 People",
-    price: "$200 per Slot",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-    name: "Seminar Room",
-    capacity: "25 People",
-    price: "$250 per Slot",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-    name: "Project Room",
-    capacity: "12 People",
-    price: "$120 per Slot",
-  },
-];
+
+
+// const featuredRooms = [
+//   {
+//     image:
+//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
+//     name: "Conference Room A",
+//     capacity: "10 People",
+//     price: "$100 per Slot",
+//   },
+//   {
+//     image:
+//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
+//     name: "Board Room",
+//     capacity: "15 People",
+//     price: "$150 per Slot",
+//   },
+//   {
+//     image:
+//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
+//     name: "Meeting Room",
+//     capacity: "8 People",
+//     price: "$80 per Slot",
+//   },
+//   {
+//     image:
+//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
+//     name: "Training Room",
+//     capacity: "20 People",
+//     price: "$200 per Slot",
+//   },
+//   {
+//     image:
+//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
+//     name: "Seminar Room",
+//     capacity: "25 People",
+//     price: "$250 per Slot",
+//   },
+//   {
+//     image:
+//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
+//     name: "Project Room",
+//     capacity: "12 People",
+//     price: "$120 per Slot",
+//   },
+// ];
 
 const HomePage: React.FC = () => {
+ 
   return (
     <div className="relative h-screen ">
       {/* Hero Section with Carousel */}
@@ -208,70 +212,10 @@ const HomePage: React.FC = () => {
           </div>
         </section>
       </div>
-      {/* Featured Rooms Section */}
-      <div className="relative  ">
-        {/* Featured Rooms Section */}
-        <div className="p-8 bg-gray-100 layout-padding">
-          <h2 className="text-4xl font-bold text-center text-green-600 mb-8">
-            Featured Rooms
-          </h2>
-          <Row gutter={[16, 16]}>
-            {featuredRooms.map((room, index) => (
-              <Col xs={24} md={12} lg={8} key={index}>
-                <Card
-                  hoverable
-                  className="relative overflow-hidden rounded-lg shadow-lg h-64"
-                  cover={
-                    <div className="relative h-64">
-                      <img
-                        src={room.image}
-                        alt={room.name}
-                        className="w-full h-full object-cover"
-                        // style={{ objectFit: "cover" }} // Ensures the image fits within the card
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-50 p-4 flex flex-col justify-end">
-                        <div className="text-white mb-4">
-                          <h3 className="text-lg font-bold">{room.name}</h3>
-                          <p>{room.price}</p>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <Button
-                            type="default"
-                            icon={<UserOutlined />}
-                            className="bg-green-500 border-none text-white hover:bg-white hover:text-green-500 hover:border-green-500"
-                          >
-                            {room.capacity}
-                          </Button>
-                          <Button
-                            type="default"
-                            className="bg-black border-none text-white hover:bg-white hover:text-black hover:border-black"
-                          >
-                            See Details
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  }
-                />
-              </Col>
-            ))}
-          </Row>
-          <div className="text-center mt-8">
-            <Button
-              type="default"
-              size="large"
-              className="bg-green-500 border-none text-white hover:bg-white hover:text-green-500 hover:border-green-500"
-            >
-              <Link
-                to="/meeting-rooms"
-                className="text-black hover:text-green-500"
-              >
-                See More
-              </Link>
-            </Button>
-          </div>
-        </div>
+      <div>
+       <FeaturedRooms/>
       </div>
+
       {/*why choose us*/}
       <WhyChooseUs />
       <div>
@@ -282,7 +226,7 @@ const HomePage: React.FC = () => {
         <TestimonialsSection />
       </div>
       <div>
-        <BlogSection/>
+        <BlogSection />
       </div>
       <div>
         <CustomFooter />

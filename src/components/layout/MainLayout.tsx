@@ -77,6 +77,14 @@ const MainLayout: React.FC = () => {
           >
             <Link to="/service">Service</Link>
           </Menu.Item>
+          <Menu.Item
+            key="/rooms"
+            className={`custom-menu-item ${
+              location.pathname === "/rooms" ? "ant-menu-item-selected" : ""
+            }`}
+          >
+            <Link to="/rooms">Rooms</Link>
+          </Menu.Item>
           <Menu.SubMenu
             key="pages"
             title="Pages"
@@ -127,7 +135,7 @@ const MainLayout: React.FC = () => {
 
         <div className="ml-auto">
           <Link
-            to="/get-started"
+            to="/login"
             className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600"
           >
             Get Started
