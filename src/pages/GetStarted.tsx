@@ -1,159 +1,77 @@
-import { Tabs, Form, Input, Button, Checkbox, Row, Col, Typography } from 'antd';
-import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const { Title } = Typography;
+const LoginForm: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const LoginSignupForm = () => {
-  // Function to handle form submission
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleLoginSubmit = (values: any) => {
-    console.log('Login Form Values:', values);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSignupSubmit = (values: any) => {
-    console.log('Sign-Up Form Values:', values);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle login logic
   };
 
   return (
-    <Row justify="center" style={{ backgroundColor: '#f5f5f5', padding: '50px 0' }}> {/* gray-100 */}
-      <Col xs={24} sm={18} md={12} lg={10}>
-        <div className="form-container" style={{ padding: '30px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
-          <Title level={3} style={{ color: '#22c55e', textAlign: 'center' }}> {/* green-500 */}
-            Welcome! Please Login or Sign Up
-          </Title>
-          
-          {/* Tabs for Login and Sign Up */}
-          <Tabs defaultActiveKey="1" centered>
-            {/* Login Tab */}
-            <Tabs.TabPane tab="Login" key="1">
-              <Form
-                name="login"
-                initialValues={{ remember: true }}
-                onFinish={handleLoginSubmit}
-              >
-                {/* Username */}
-                <Form.Item
-                  name="username"
-                  rules={[{ required: true, message: 'Please enter your username!' }]}
-                >
-                  <Input
-                    prefix={<UserOutlined />}
-                    placeholder="Username"
-                  />
-                </Form.Item>
-
-                {/* Password */}
-                <Form.Item
-                  name="password"
-                  rules={[{ required: true, message: 'Please enter your password!' }]}
-                >
-                  <Input.Password
-                    prefix={<LockOutlined />}
-                    placeholder="Password"
-                  />
-                </Form.Item>
-
-                {/* Remember Me Checkbox */}
-                <Form.Item>
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
-                </Form.Item>
-
-                {/* Submit Button */}
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    style={{ width: '100%', backgroundColor: '#22c55e', borderColor: '#22c55e' }} 
-                  >
-                    Log In
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Tabs.TabPane>
-
-            {/* Sign-Up Tab */}
-            <Tabs.TabPane tab="Sign Up" key="2">
-              <Form
-                name="signup"
-                onFinish={handleSignupSubmit}
-              >
-                {/* Username */}
-                <Form.Item
-                  name="username"
-                  rules={[{ required: true, message: 'Please enter your username!' }]}
-                >
-                  <Input
-                    prefix={<UserOutlined />}
-                    placeholder="Username"
-                  />
-                </Form.Item>
-
-                {/* Email */}
-                <Form.Item
-                  name="email"
-                  rules={[{ required: true, message: 'Please enter your email!', type: 'email' }]}
-                >
-                  <Input
-                    prefix={<MailOutlined />}
-                    placeholder="Email"
-                  />
-                </Form.Item>
-
-                {/* Password */}
-                <Form.Item
-                  name="password"
-                  rules={[{ required: true, message: 'Please enter your password!' }]}
-                >
-                  <Input.Password
-                    prefix={<LockOutlined />}
-                    placeholder="Password"
-                  />
-                </Form.Item>
-
-                {/* Confirm Password */}
-                <Form.Item
-                  name="confirm"
-                  dependencies={['password']}
-                  hasFeedback
-                  rules={[
-                    { required: true, message: 'Please confirm your password!' },
-                    ({ getFieldValue }) => ({
-                      validator(_, value) {
-                        if (!value || getFieldValue('password') === value) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject(new Error('Passwords do not match!'));
-                      },
-                    }),
-                  ]}
-                >
-                  <Input.Password
-                    prefix={<LockOutlined />}
-                    placeholder="Confirm Password"
-                  />
-                </Form.Item>
-
-                {/* Submit Button */}
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    style={{ width: '100%', backgroundColor: '#22c55e', borderColor: '#22c55e' }} 
-                  >
-                    Sign Up
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Tabs.TabPane>
-          </Tabs>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="flex flex-wrap bg-white shadow-lg rounded-lg max-w-4xl">
+        {/* Left Image Section */}
+        <div className="w-full md:w-1/2 hidden md:block">
+          <img
+            src="https://res.cloudinary.com/dwelabpll/image/upload/v1725909611/Computer_login-bro_bbwaim.png"
+            alt="Login"
+            className="object-cover w-full h-full rounded-l-lg"
+          />
         </div>
-      </Col>
-    </Row>
+
+        {/* Right Form Section */}
+        <div className="w-full md:w-1/2 p-8">
+          <h2 className="text-2xl font-bold text-center text-gray-800">
+            Welcome Back
+          </h2>
+          <form onSubmit={handleSubmit} className="mt-6">
+            <div>
+              <label className="block text-gray-700">Email</label>
+              <input
+                type="email"
+                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-gray-700">Password</label>
+              <input
+                type="password"
+                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full px-4 py-2 bg-green-600 text-white text-2xl rounded-lg hover:bg-green-700 focus:outline-none focus:bg-green-700"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+          <div className="flex justify-between mt-4 text-sm text-gray-600">
+            <a href="#" className="hover:text-green-600">
+              Forgot Password?
+            </a>
+          </div>
+          <div className="mt-4 text-center text-sm text-gray-600">
+            Don’t have an account?{" "}
+            <Link to="/register" className="text-green-600 hover:underline">
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default LoginSignupForm;
-
+export default LoginForm;

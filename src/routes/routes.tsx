@@ -16,6 +16,7 @@ import RoomDetails from "../pages/RoomDetails";
 
 
 import BookNowPage from "../pages/user/BookingProcess";
+import RegisterForm from "../pages/Register";
 
 
 const router = createBrowserRouter([
@@ -67,7 +68,8 @@ const router = createBrowserRouter([
     //   { path: "team", element: <Team /> },
     //   { path: "faq", element: <FAQ /> },
     //   { path: "gallery", element: <Gallery /> },
-      { path: "login", element: <GetStarted /> },
+      { path: "login", element: <GetStarted  /> },
+      { path: "register", element: <RegisterForm/> },
     ],
   },
 ]);

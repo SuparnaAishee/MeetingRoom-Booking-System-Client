@@ -144,12 +144,12 @@ const MainLayout: React.FC = () => {
         </div>
       </Header>
 
-      <Content className="bg-transparent">
-        <div className="min-h-[380px]  bg-white ">
+      <Content className="bg-transparent  bg-white">
+        <div className="min-h-[380px]  bg-white shadow-none overfloq-hidden">
           <Outlet />
         </div>
       </Content>
-<ScrollToTop/>
+      <ScrollToTop />
     </Layout>
   );
 };

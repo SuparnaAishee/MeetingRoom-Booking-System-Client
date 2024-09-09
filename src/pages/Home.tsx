@@ -16,54 +16,10 @@ import CustomFooter from "../components/layout/Footer";
 import WorkSection from "./WorkSection";
 import TestimonialsSection from "./Testimonial";
 import BlogSection from "./Blog";
+
+
 import FeaturedRooms from "./FeaturedRooms";
 
-
-
-// const featuredRooms = [
-//   {
-//     image:
-//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-//     name: "Conference Room A",
-//     capacity: "10 People",
-//     price: "$100 per Slot",
-//   },
-//   {
-//     image:
-//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-//     name: "Board Room",
-//     capacity: "15 People",
-//     price: "$150 per Slot",
-//   },
-//   {
-//     image:
-//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-//     name: "Meeting Room",
-//     capacity: "8 People",
-//     price: "$80 per Slot",
-//   },
-//   {
-//     image:
-//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-//     name: "Training Room",
-//     capacity: "20 People",
-//     price: "$200 per Slot",
-//   },
-//   {
-//     image:
-//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-//     name: "Seminar Room",
-//     capacity: "25 People",
-//     price: "$250 per Slot",
-//   },
-//   {
-//     image:
-//       "https://res.cloudinary.com/dwelabpll/image/upload/v1725384969/Index_fkdzd5.jpg",
-//     name: "Project Room",
-//     capacity: "12 People",
-//     price: "$120 per Slot",
-//   },
-// ];
 
 const HomePage: React.FC = () => {
  
@@ -213,11 +169,13 @@ const HomePage: React.FC = () => {
         </section>
       </div>
       <div>
-       <FeaturedRooms/>
+   <FeaturedRooms/>
       </div>
 
       {/*why choose us*/}
+      <div className="pt-12 pb-20">
       <WhyChooseUs />
+      </div>
       <div>
         {" "}
         <WorkSection />
