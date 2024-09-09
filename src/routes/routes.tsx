@@ -14,6 +14,10 @@ import MainLayout from "../components/layout/MainLayout";
 import Rooms from "../pages/Rooms";
 import RoomDetails from "../pages/RoomDetails";
 
+
+import BookNowPage from "../pages/user/BookingProcess";
+
+
 const router = createBrowserRouter([
   //     {
   //         path:'/',
@@ -58,6 +62,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "rooms", element: <Rooms/> },
       { path: "rooms/:roomId", element: <RoomDetails/> },
+      { path: "book-now/:roomId", element: <BookNowPage /> },
     //   { path: "pricing", element: <Pricing /> },
     //   { path: "team", element: <Team /> },
     //   { path: "faq", element: <FAQ /> },

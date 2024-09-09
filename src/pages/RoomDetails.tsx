@@ -115,7 +115,10 @@ const RoomDetails: React.FC = () => {
         </div>
 
         {/* Book Now Button */}
-        <Button className="bg-green-500 text-white text-lg py-6 px-10">
+        <Button
+          className="bg-green-500 text-white text-lg py-6 px-10"
+          onClick={() => (window.location.href = `/book-now/${roomId}`)}
+        >
           Book Now
         </Button>
       </div>
@@ -124,3 +127,4 @@ const RoomDetails: React.FC = () => {
 };
 
 export default RoomDetails;
+

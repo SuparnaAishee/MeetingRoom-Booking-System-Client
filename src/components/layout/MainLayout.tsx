@@ -145,7 +145,7 @@ const MainLayout: React.FC = () => {
       </Header>
 
       <Content className="bg-transparent">
-        <div className="min-h-[380px] bg-white rounded-lg shadow-lg">
+        <div className="min-h-[380px]  bg-white ">
           <Outlet />
         </div>
       </Content>
