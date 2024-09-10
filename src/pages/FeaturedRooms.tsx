@@ -3,6 +3,7 @@ import { Row, Col, Card, Button } from "antd";
 import { Link } from "react-router-dom";
 import { useGetRoomsQuery } from "../redux/features/roomsApi";
 import { UserOutlined } from "@ant-design/icons";
+import AOS from "aos";
 
 interface Room {
   _id: string;
@@ -13,12 +14,18 @@ interface Room {
 }
 
 const FeaturedRooms: React.FC = () => {
-  const { data, error, isLoading } = useGetRoomsQuery({ limit: 6 }); // Limit query to 6 rooms
+  useEffect(() => {
+    AOS.init({
+      duration: 1200, 
+    });
+  }, []);
+
+  const { data, error, isLoading } = useGetRoomsQuery({ limit: 6 });
   const [roomsToDisplay, setRoomsToDisplay] = useState<Room[]>([]);
 
   useEffect(() => {
     if (data?.data?.rooms) {
-      setRoomsToDisplay(data.data.rooms.slice(0, 6)); // Ensure we only display the first 6 rooms
+      setRoomsToDisplay(data.data.rooms.slice(0, 6)); 
     }
   }, [data]);
 
@@ -27,7 +34,10 @@ const FeaturedRooms: React.FC = () => {
 
   return (
     <div className="p-8 bg-white layout-padding">
-      <h2 className="text-4xl font-bold text-center text-green-600 mb-8">
+      <h2
+        className="text-4xl font-bold text-center text-green-600 mb-8 "
+        data-aos="fade-up"
+      >
         Featured Rooms
       </h2>
 
@@ -39,6 +49,7 @@ const FeaturedRooms: React.FC = () => {
               <Card
                 hoverable
                 className="relative overflow-hidden rounded-lg shadow-lg h-64"
+                data-aos="fade-up"
                 cover={
                   <div className="relative h-64">
                     <img
@@ -88,7 +99,7 @@ const FeaturedRooms: React.FC = () => {
       </Row>
       <div className="text-center mt-8">
         <Link to="/rooms">
-          <Button className="bg-green-500 text-white py-6 px-6 text-lg">
+          <Button className="bg-green-500 text-white py-6 px-6 text-lg"data-aos="fade-up">
             See More
           </Button>
         </Link>

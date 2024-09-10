@@ -148,7 +148,6 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { UserOutlined } from "@ant-design/icons";
 import CustomFooter from "../components/layout/Footer";
 
-
 const { Option } = Select;
 
 interface Room {
@@ -161,7 +160,6 @@ interface Room {
 
 interface RoomsProps {
   limit?: number;
-  
 }
 
 const getErrorMessage = (
@@ -236,19 +234,19 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
 
   return (
     <div>
-      <div className="p-8 bg-white layout-padding">
-        <h2 className="text-4xl font-bold text-center text-green-600 mb-8">
+      <div className="p-4 sm:p-8 bg-white layout-padding">
+        <h2 className="text-2xl sm:text-4xl font-bold text-center text-green-600 mb-4 sm:mb-8">
           {limit ? "Featured Rooms" : "Room List For Bookings"}
         </h2>
 
         {/* Search, Filter, and Sort Controls */}
-        <div className="flex justify-between mb-4 gap-4">
+        <div className="flex flex-col sm:flex-row justify-between mb-4 gap-4">
           <Input.Search
             placeholder="Search rooms by name..."
             value={search}
             onChange={(e) => dispatch(setSearch(e.target.value))}
             onSearch={() => setPage(1)}
-            className="w-1/3 "
+            className="w-full sm:w-1/3"
           />
 
           <Select
@@ -259,9 +257,9 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
             onChange={(value) => {
               const selectedCapacity = value.split(" - ").map(Number);
               dispatch(setCapacity([selectedCapacity[0], selectedCapacity[1]]));
-              setPage(1); // Reset to first page when filtering
+              setPage(1); 
             }}
-            className="w-1/4 green-outline-select"
+            className="w-full sm:w-1/4 green-outline-select"
             allowClear
           >
             <Option value="5 - 20">5 - 20 Guests</Option>
@@ -281,9 +279,9 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
               dispatch(
                 setPriceRange([selectedPriceRange[0], selectedPriceRange[1]])
               );
-              setPage(1); // Reset to first page when filtering
+              setPage(1); 
             }}
-            className="w-1/3 green-outline-select"
+            className="w-full sm:w-1/3 green-outline-select"
             allowClear
           >
             <Option value="0 - 20">0 - 20 $</Option>
@@ -295,13 +293,13 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
           </Select>
 
           <Select
-            placeholder="Sort by" // Placeholder text for the Select component
-            value={sort || undefined} // Ensure the value is undefined when not selected
+            placeholder="Sort by"
+            value={sort || undefined} 
             onChange={(value) => {
               dispatch(setSort(value));
-              setPage(1); // Reset to first page when sorting
+              setPage(1); 
             }}
-            className="w-1/4 green-outline-select"
+            className="w-full sm:w-1/4 green-outline-select"
             allowClear
           >
             <Option value="priceAsc">Price: Low to High</Option>
@@ -309,7 +307,7 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
           </Select>
           <Button
             onClick={handleClearFilters}
-            className="bg-black text-white hover:bg-green-600 py-4 px-4 text-lg"
+            className="bg-black text-white hover:bg-green-600 py-2 px-4 text-base sm:text-lg"
           >
             Clear Filters
           </Button>
@@ -336,8 +334,10 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-50 p-4 flex flex-col justify-end">
                         <div className="text-white mb-4">
-                          <h3 className="text-2xl font-bold">{room.name}</h3>
-                          <p className="text-xl">
+                          <h3 className="text-xl sm:text-2xl font-bold">
+                            {room.name}
+                          </h3>
+                          <p className="text-lg sm:text-xl">
                             ${room.pricePerSlot} per slot
                           </p>
                         </div>
@@ -366,43 +366,34 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
             ))
           ) : (
             <Col span={24}>
-              <div className="text-center text-red-500 text-xl">
-                No rooms found matching the criteria.
+              <div className="text-center text-gray-500">
+                No rooms match your search criteria.
               </div>
             </Col>
           )}
         </Row>
 
-        {/* Pagination Controls */}
-        {!limit && (
-          <div className="flex justify-center mt-8">
+        {/* Pagination */}
+        {!limit && filteredRooms.length > defaultLimit && (
+          <div className="flex justify-center mt-6">
             <Button
-              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+              onClick={() => setPage((prevPage) => prevPage - 1)}
               disabled={page === 1}
-              className="bg-black text-white px-4 py-2 mr-2"
+              className="mx-2 bg-green-500 text-white hover:bg-green-700"
             >
               Previous
             </Button>
             <Button
-              onClick={() =>
-                setPage((prev) =>
-                  Math.min(
-                    prev + 1,
-                    Math.ceil(filteredRooms.length / defaultLimit)
-                  )
-                )
-              }
+              onClick={() => setPage((prevPage) => prevPage + 1)}
               disabled={page === Math.ceil(filteredRooms.length / defaultLimit)}
-              className="bg-black text-white px-4 py-2"
+              className="mx-2 bg-green-500 text-white hover:bg-green-700"
             >
               Next
             </Button>
           </div>
         )}
       </div>
-     <div>
-      <CustomFooter/>
-     </div>
+      {!limit && <CustomFooter />}
     </div>
   );
 };

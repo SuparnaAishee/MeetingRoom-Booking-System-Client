@@ -23,41 +23,33 @@ const { Title, Text } = Typography;
 
 const CustomFooter = () => {
   return (
-    <Footer className="bg-gray-100 layout-padding custom-footer ">
+    <Footer className="bg-gray-100 layout-padding custom-footer">
       <Row gutter={[32, 32]} justify="space-between">
-        <Col xs={24} md={6}>
+        <Col xs={24} sm={12} md={6}>
           <Image
             width={200}
             src="https://res.cloudinary.com/dwelabpll/image/upload/v1725429787/logo_agfhqe.png"
             alt="MeetSpace Logo"
           />
-          <div style={{ marginTop: "20px " }}>
+          <div style={{ marginTop: "20px" }}>
             <Space direction="vertical" size="middle">
               <Space>
-                <MailOutlined style={{ color: "#000", fontSize: "16px" }} />{" "}
-                {/* Black color for email icon */}
-                <Text style={{ color: "#000" }}>MeetSpace@Email.com</Text>{" "}
-                {/* Black color for email text */}
+                <MailOutlined style={{ color: "#000", fontSize: "16px" }} />
+                <Text style={{ color: "#000" }}>MeetSpace@Email.com</Text>
               </Space>
               <Space>
-                <PhoneOutlined style={{ color: "#000", fontSize: "16px" }} />{" "}
-                {/* Black color for phone icon */}
-                <Text style={{ color: "#000" }}>+44 123 456 789</Text>{" "}
-                {/* Black color for phone text */}
+                <PhoneOutlined style={{ color: "#000", fontSize: "16px" }} />
+                <Text style={{ color: "#000" }}>+44 123 456 789</Text>
               </Space>
             </Space>
           </div>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} sm={12} md={6}>
           <Title level={4} style={{ color: "#298a2d" }}>
-            {" "}
-            {/* Black color for Quick Links title */}
             Quick Links
           </Title>
           <Space direction="vertical">
             <a href="/" style={{ color: "#000" }}>
-              {" "}
-              {/* Black color for links */}
               Homepage
             </a>
             <a href="/about" style={{ color: "#000" }}>
@@ -71,39 +63,35 @@ const CustomFooter = () => {
             </a>
           </Space>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} sm={12} md={6}>
           <Title level={4} style={{ color: "#298a2d" }}>
-            {" "}
-            {/* Green color for Our Location title */}
             Our Location
           </Title>
           <Space direction="vertical">
-            <Text style={{ color: "#000" }}>Los Angeles</Text>{" "}
-            {/* Green color for location text */}
+            <Text style={{ color: "#000" }}>Los Angeles</Text>
             <Text style={{ color: "#000" }}>Amsterdam</Text>
             <Text style={{ color: "#000" }}>New York</Text>
             <Text style={{ color: "#000" }}>Bali</Text>
           </Space>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} sm={12} md={6}>
           <Title level={4} style={{ color: "#298a2d" }}>
-            {" "}
-            {/* Black color for Subscribe title */}
             Subscribe to Our Newsletter
           </Title>
           <Text style={{ color: "#000" }}>
-            {" "}
-            {/* Green color for the caption text */}
             Get Our Latest Updates & New Offers Sales Discounts
           </Text>
           <Input.Group compact style={{ marginTop: "10px" }}>
-            <Input style={{ width: "70%", height:"55px"}} placeholder="Email" />
+            <Input
+              style={{ width: "70%", height: "55px" }}
+              placeholder="Email"
+            />
             <Button
               type="primary"
               style={{
                 width: "30%",
-                height:"55px",
-                backgroundColor: "#4caf50", // Green color
+                height: "55px",
+                backgroundColor: "#4caf50",
                 borderColor: "#4caf50",
               }}
               onMouseEnter={(e) => {
@@ -123,8 +111,7 @@ const CustomFooter = () => {
           <div style={{ marginTop: "20px" }}>
             <Space size="large">
               <a href="https://facebook.com">
-                <FacebookFilled style={{ color: "#000", fontSize: "24px" }} />{" "}
-                {/* Black color for social icons */}
+                <FacebookFilled style={{ color: "#000", fontSize: "24px" }} />
               </a>
               <a href="https://twitter.com">
                 <TwitterCircleFilled

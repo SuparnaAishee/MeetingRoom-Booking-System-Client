@@ -1,13 +1,13 @@
 import { Layout, Row, Col, Typography, Card, Button } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
-
+import "../styles/custom.css"
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const ChoosePlanSection = () => {
   return (
     <Layout>
-      <Content className="py-16 bg-white">
+      <Content className="py-16 bg-white layout-padding">
         <div className="container mx-auto px-4">
           <Row gutter={[32, 32]} align="middle">
             {/* Left Side - Writings */}
@@ -57,9 +57,9 @@ const ChoosePlanSection = () => {
                     bordered
                     style={{
                       textAlign: "center",
-                      transform: "scale(1.1)", // Larger size
+                      transform: "scale(1.1)", 
                       transition: "transform 0.3s",
-                      backgroundColor: "#f5f5f5", // Gray background
+                      backgroundColor: "#f5f5f5", 
                     }}
                     hoverable
                   >
@@ -69,7 +69,7 @@ const ChoosePlanSection = () => {
                     <Button
                       style={{
                         marginTop: 16,
-                        backgroundColor: "#38A169", // Green background for button
+                        backgroundColor: "#38A169",
                         color: "#fff",
                       }}
                     >
@@ -85,10 +85,10 @@ const ChoosePlanSection = () => {
                     bordered
                     style={{
                       textAlign: "center",
-                      transform: "scale(1.3)", // Largest size
+                      transform: "scale(1.3)", 
                       transition: "transform 0.3s",
-                      backgroundColor: "#38A169", // Green background for card
-                      color: "#fff", // White text color
+                      backgroundColor: "#38A169", 
+                      color: "#fff",
                       boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.1)",
                       zIndex: 10,
                     }}
@@ -102,8 +102,8 @@ const ChoosePlanSection = () => {
                     <Button
                       style={{
                         marginTop: 16,
-                        backgroundColor: "#fff", // White background for button
-                        color: "#38A169", // Green text for button
+                        backgroundColor: "#fff", 
+                        color: "#38A169", 
                       }}
                     >
                       Choose Plan
@@ -118,9 +118,9 @@ const ChoosePlanSection = () => {
                     bordered
                     style={{
                       textAlign: "center",
-                      transform: "scale(1.1)", // Larger size
+                      transform: "scale(1.1)", 
                       transition: "transform 0.3s",
-                      backgroundColor: "#f5f5f5", // Gray background
+                      backgroundColor: "#f5f5f5",
                     }}
                     hoverable
                   >
@@ -130,7 +130,7 @@ const ChoosePlanSection = () => {
                     <Button
                       style={{
                         marginTop: 16,
-                        backgroundColor: "#38A169", // Green background for button
+                        backgroundColor: "#38A169", 
                         color: "#fff",
                       }}
                     >

@@ -31,14 +31,31 @@ const brandLogos = [
 
 const BrandSection: React.FC = () => {
   return (
-    <section className="brand-section">
-      <Row className="brand-slider" gutter={[16, 16]}>
-        {brandLogos.map((logo, index) => (
-          <Col key={index} className="brand-slide">
-            <img src={logo.src} alt={logo.alt} />
-          </Col>
-        ))}
-      </Row>
+    <section className="brand-section py-12">
+      <div className="container mx-auto px-6">
+        <Row
+          className="brand-slider justify-center"
+          gutter={[16, 16]}
+          justify="center"
+        >
+          {brandLogos.map((logo, index) => (
+            <Col
+              key={index}
+              xs={12}
+              sm={8}
+              md={6}
+              lg={4}
+              className="flex justify-center items-center"
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="brand-logo w-full max-w-xs object-contain"
+              />
+            </Col>
+          ))}
+        </Row>
+      </div>
     </section>
   );
 };

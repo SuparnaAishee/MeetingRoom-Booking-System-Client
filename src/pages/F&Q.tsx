@@ -1,7 +1,8 @@
+import React from "react";
 import { Layout, Collapse, Typography, Row, Col, Button } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
-import "../styles/custom.css"
+import { useNavigate } from "react-router-dom"; 
+import "../styles/custom.css";
 
 const { Content } = Layout;
 const { Panel } = Collapse;
@@ -12,21 +13,28 @@ const FAQSection = () => {
 
   // Function to handle button click
   const handleContactClick = () => {
-    navigate("/contact"); // Navigates to the contact page
+    navigate("/contact"); 
   };
 
   return (
     <Layout>
       <Content className="py-16 layout-padding bg-white">
         <div className="container mx-auto px-4">
-          <Row gutter={[32, 32]} align="middle">
+          <Row
+            gutter={[32, 32]} // Adds spacing between columns
+            align="middle"
+            justify="center"
+          >
             {/* Left Side: Caption + FAQ */}
-            <Col xs={24} md={12}>
+            <Col xs={24} md={12} className="order-2 md:order-1">
               {/* Caption */}
-              <Title level={2} style={{ color: "#38A169", textAlign: "left" }}>
+              <Title
+                level={2}
+                className="text-green-600 text-left text-3xl md:text-4xl"
+              >
                 Frequently Asked Questions
               </Title>
-              <Paragraph style={{ color: "#595959", marginBottom: "40px" }}>
+              <Paragraph className="text-gray-600 mb-10 text-base md:text-lg">
                 Get answers to the most common questions about our services,
                 policies, and more. If you can't find what you're looking for,
                 feel free to contact us!
@@ -39,7 +47,7 @@ const FAQSection = () => {
                 expandIcon={({ isActive }) => (
                   <CaretRightOutlined
                     rotate={isActive ? 90 : 0}
-                    style={{ color: "#38A169" }}
+                    className="text-green-600"
                   />
                 )}
                 className="site-collapse-custom-collapse"
@@ -56,7 +64,7 @@ const FAQSection = () => {
                     marginBottom: "16px",
                   }}
                 >
-                  <p style={{ color: "#595959" }}>
+                  <p className="text-gray-600">
                     Our return policy allows for returns within 30 days of
                     purchase. Please ensure the item is in its original
                     condition and packaging.
@@ -74,7 +82,7 @@ const FAQSection = () => {
                     marginBottom: "16px",
                   }}
                 >
-                  <p style={{ color: "#595959" }}>
+                  <p className="text-gray-600">
                     Shipping typically takes 5-7 business days for domestic
                     orders and 10-14 business days for international orders.
                   </p>
@@ -91,7 +99,7 @@ const FAQSection = () => {
                     marginBottom: "16px",
                   }}
                 >
-                  <p style={{ color: "#595959" }}>
+                  <p className="text-gray-600">
                     We accept major credit cards, PayPal, and other secure
                     payment methods.
                   </p>
@@ -108,7 +116,7 @@ const FAQSection = () => {
                     marginBottom: "16px",
                   }}
                 >
-                  <p style={{ color: "#595959" }}>
+                  <p className="text-gray-600">
                     Once your order is shipped, we will send you a tracking
                     number via email. You can use this number to track your
                     order online.
@@ -120,11 +128,7 @@ const FAQSection = () => {
               <Button
                 type="primary"
                 size="large"
-                style={{
-                  marginTop: "40px",
-                  backgroundColor:" #38A169",
-                  borderColor: "#52c41a",
-                }}
+                className="mt-10 bg-green-600 border-green-500"
                 onClick={handleContactClick}
               >
                 Contact Us
@@ -132,7 +136,7 @@ const FAQSection = () => {
             </Col>
 
             {/* Right Side: Image */}
-            <Col xs={24} md={12}>
+            <Col xs={24} md={12} className="order-1 md:order-2">
               <img
                 src="https://res.cloudinary.com/dwelabpll/image/upload/v1725478984/istockphoto-1337995272-612x612_fizg4d.jpg"
                 alt="FAQ Image"

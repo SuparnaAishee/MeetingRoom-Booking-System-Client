@@ -165,8 +165,8 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetAvailableSlotsQuery } from "../../redux/features/slotsApi";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; // Import Calendar styles
-import "../../styles/custom.css"; // Import custom styles
+import "react-calendar/dist/Calendar.css"; 
+import "../../styles/custom.css"; 
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { SerializedError } from "@reduxjs/toolkit";
 
@@ -175,7 +175,6 @@ interface Slot {
   startTime: string;
   endTime: string;
   isBooked: boolean;
- 
 }
 
 interface AvailableSlotsResponse {
@@ -223,7 +222,7 @@ const BookingPage: React.FC = () => {
   // Function to handle day click
   const handleDayClick = (date: Date) => {
     setSelectedDate(date);
-    setSelectedSlots([]); // Reset slot selection when date changes
+    setSelectedSlots([]);
   };
 
   // Function to handle slot selection
@@ -243,24 +242,24 @@ const BookingPage: React.FC = () => {
   };
 
   return (
-    <div className="pl-24 pr-24 bg-gray-100 min-h-screen">
-      <div className="booking-page p-6 ">
-        <h1 className="text-3xl pt-12 text-center text-green-500 font-bold">
+    <div className="px-4 md:px-24 flex-grow minn-h-screen layout-padding">
+      <div className="booking-page p-4">
+        <h1 className="text-3xl text-center text-green-500 font-bold">
           Book Now
         </h1>
         <p className="text-center font-bold text-lg pb-2">
           Select Date To Check The Available Slots
         </p>
 
-        <div className="flex justify-center items-center mb-6 pt-2">
+        <div className="flex flex-col md:flex-row justify-center items-center mb-6  ">
           <div className="calendar-container">
             <Calendar onClickDay={handleDayClick} value={selectedDate} />
           </div>
-          <div className="ml-6 mb-4">
+          <div className="ml-0 md:ml-6 mt-4 ">
             <img
               src="https://res.cloudinary.com/dwelabpll/image/upload/v1725890780/1686761825938_abqi7t.jpg"
               alt="Booking illustration"
-              className="object-cover max-w-[480px] rounded"
+              className="object-cover max-w-[480px] w-full rounded"
             />
           </div>
         </div>
@@ -295,9 +294,9 @@ const BookingPage: React.FC = () => {
           <p>No available slots.</p>
         )}
 
-        <div className="actions mt-6 flex justify-between">
+        <div className="actions mt-6 flex flex-col md:flex-row md:justify-between gap-4 w-full">
           <button
-            className={`py-2 px-4 rounded ${
+            className={`py-2 px-4 rounded w-full md:w-auto ${
               selectedSlots.length > 0
                 ? "bg-green-500 text-white"
                 : "bg-gray-400 text-gray-200 cursor-not-allowed"
@@ -308,7 +307,7 @@ const BookingPage: React.FC = () => {
             Checkout
           </button>
           <button
-            className="bg-black text-white py-2 px-4 rounded"
+            className="bg-black text-white py-2 px-4 rounded w-full md:w-auto"
             onClick={() => navigate(-1)}
           >
             Back to Details
@@ -320,4 +319,3 @@ const BookingPage: React.FC = () => {
 };
 
 export default BookingPage;
-

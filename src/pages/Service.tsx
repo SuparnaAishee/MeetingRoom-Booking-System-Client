@@ -4,16 +4,11 @@ import {
   CalendarOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
-
   PhoneOutlined,
 } from "@ant-design/icons";
 import CountUp from "react-countup";
 import CustomFooter from "../components/layout/Footer";
-import ChoosePlanSection from "./test";
-
-
-
-
+import ChoosePlanSection from "./Plan";
 
 const ServiceSection: React.FC = () => {
   return (
@@ -24,6 +19,7 @@ const ServiceSection: React.FC = () => {
           <img
             src="https://res.cloudinary.com/dwelabpll/image/upload/v1725553163/960x0_pzdhid.webp"
             className="w-full h-full object-cover"
+            alt="Background"
           />
 
           {/* Black Transparent Shade */}
@@ -38,29 +34,33 @@ const ServiceSection: React.FC = () => {
               <span className="mx-2">&gt;</span>
               <span>Services</span>
             </nav>
-            <h1 className="text-5xl font-bold">Book Our Services</h1>
+            <h1 className="text-3xl md:text-5xl font-bold">
+              Book Our Services
+            </h1>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white layout-padding">
+      <section className="py-8 md:py-16 bg-white layout-padding">
         <div className="container mx-auto px-4 flex flex-wrap items-center">
           {/* Left Image Section */}
-          <div className="w-full md:w-1/2 relative">
+          <div className="w-full md:w-1/2 relative mb-8 md:mb-0">
             <img
               src="https://res.cloudinary.com/dwelabpll/image/upload/v1725547892/group-people-are-standing-room-with-man-woman_662214-598288_t7mp7z.jpg"
               alt="Team working"
               className="w-full h-auto rounded-lg"
             />
             <div className="absolute bottom-0 left-0 bg-white p-6 shadow-lg rounded-lg transform -translate-y-1/3">
-              <h3 className="text-4xl font-bold text-green-600">10+</h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-green-600">
+                10+
+              </h3>
               <p className="text-lg text-gray-700">Years Experience</p>
             </div>
-            <div className="absolute bottom-0 right-0 transform translate-y-1/3 translate-x-1/4 pl-32">
+            <div className="absolute bottom-0 right-0 transform translate-y-1/3 translate-x-1/4 pl-32 hidden md:block">
               <img
                 src="https://res.cloudinary.com/dwelabpll/image/upload/v1725547946/Nolan-6-Ways-Office-Plants-Benefit-Your-Business_bkg8ca.jpg"
                 alt="Team working"
-                className="w-1/2 h-auto rounded-lg "
+                className="w-1/2 h-auto rounded-lg"
               />
             </div>
           </div>
@@ -68,7 +68,7 @@ const ServiceSection: React.FC = () => {
           {/* Right Text Section */}
           <div className="w-full md:w-1/2 md:pl-12">
             <h4 className="text-green-600 font-semibold mb-2">ABOUT SERVICE</h4>
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Better results come when you work together.
             </h2>
             <p className="text-gray-600 mb-6">
@@ -130,8 +130,8 @@ const ServiceSection: React.FC = () => {
       <section>
         {/* Service Section */}
         <div>
-          <div className="pb-20 bg-gray-200 layout-padding ">
-            <h2 className="text-4xl font-bold text-center text-green-600 mb-8">
+          <div className="pb-20 bg-gray-200 layout-padding">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-green-600 mb-8">
               Our Services
             </h2>
             <Row gutter={[16, 16]}>
@@ -198,7 +198,7 @@ const ServiceSection: React.FC = () => {
               <Row gutter={32} justify="center">
                 {/* Member Active */}
                 <Col xs={24} md={6} className="text-center">
-                  <h2 className="text-amber-400 font-bold text-4xl mt-2">
+                  <h2 className="text-amber-400 font-bold text-3xl md:text-4xl mt-2">
                     <CountUp start={0} end={2000} duration={2} suffix="+" />
                   </h2>
                   <p className="text-gray-600">Member Active</p>
@@ -206,7 +206,7 @@ const ServiceSection: React.FC = () => {
 
                 {/* Company Active */}
                 <Col xs={24} md={6} className="text-center">
-                  <h2 className="text-amber-400 font-bold text-4xl mt-2">
+                  <h2 className="text-amber-400 font-bold text-3xl md:text-4xl mt-2">
                     <CountUp start={0} end={411} duration={2} suffix="+" />
                   </h2>
                   <p className="text-gray-600">Company Active</p>
@@ -214,30 +214,26 @@ const ServiceSection: React.FC = () => {
 
                 {/* Private Room */}
                 <Col xs={24} md={6} className="text-center">
-                  <h2 className="text-amber-400 font-bold text-4xl mt-2">
-                    <CountUp start={0} end={214} duration={2} suffix="+" />
+                  <h2 className="text-amber-400 font-bold text-3xl md:text-4xl mt-2">
+                    <CountUp start={0} end={200} duration={2} suffix="+" />
                   </h2>
                   <p className="text-gray-600">Private Room</p>
                 </Col>
 
-                {/* Years Experience */}
+                {/* Get In Touch */}
                 <Col xs={24} md={6} className="text-center">
-                  <h2 className="text-amber-400 font-bold text-4xl mt-2">
-                    <CountUp start={0} end={10} duration={2} suffix="+" />
+                  <h2 className="text-amber-400 font-bold text-3xl md:text-4xl mt-2">
+                    <CountUp start={0} end={200} duration={2} suffix="+" />
                   </h2>
-                  <p className="text-gray-600">Years Experience</p>
+                  <p className="text-gray-600">Get In Touch</p>
                 </Col>
               </Row>
             </div>
           </section>
         </div>
       </section>
-      <section className="layout-padding">
-        <ChoosePlanSection/>
-      </section>
-      <div>
-        <CustomFooter />
-      </div>
+      <ChoosePlanSection />
+      <CustomFooter />
     </div>
   );
 };

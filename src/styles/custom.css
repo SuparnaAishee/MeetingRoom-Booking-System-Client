@@ -152,18 +152,51 @@
   margin: 0;
     text-align: center;
 }
-.layout-padding {
-  padding-left: 7rem;
-  padding-right: 7rem;
-  padding-top: 4rem;
-}
+
 
 /*work section style*/
 .custom-section {
   background-image: url("https://res.cloudinary.com/dwelabpll/image/upload/v1725448719/modern-office-interior-with-laptop-potted-plant-blurred-background-high-resolution_599292-5455_dv0auu.avif"); /* replace with your image path */
   height: 500px; /* Adjust based on your preference */
 }
+.custom-img{
+  width: 100px;
+ 
+}
+@media (max-width: 640px) {
+  .contents {
+    display: none; /* Hide content on small screens */
+  }
+  .custom-card {
+  width: 80%; /* Reduce card width on small screens */
+  margin: 10px auto; /* Center cards with margin */
+  margin-bottom: 20px; /* Add gap between each card */
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+   
+  }
 
+  .custom-img {
+    width: 60px; /* Reduce image size on mobile */
+  }
+
+  .custom-card h5 {
+    font-size: 1.2rem; /* Adjust title size */
+    
+  }
+
+  .custom-p {
+    font-size: 10px; /* Adjust paragraph size */
+    line-height: 1.2; /* Adjust line height for better spacing */
+  }
+}
 .overlay {
   background: rgba(0, 0, 0, 0.7);
 }
@@ -175,6 +208,8 @@
   text-align: center;
   bottom: -8rem;
 }
+
+
 
 .highlighted-card {
   background-color: #38A169; 
@@ -194,6 +229,31 @@
 .bg-center {
   background-position: center;
 }
+
+
+@media (min-width: 641px) {
+  .custom-card {
+    height: 300px; /* Adjust height for larger screens */
+  }
+}
+/* Responsive for extra small mobile screens */
+@media (max-width: 480px) {
+  .step-card {
+    height: 220px; /* Let the card height adjust to its content */
+    margin-top: 0; /* Ensure no negative margins */
+    padding: 2px; /* Reduce padding */
+  }
+  .steps-card {
+    height: 200px; /* Let the card height adjust to its content */
+   
+    margin-top: 0; /* Ensure no negative margins */
+    padding: 2px; /* Reduce padding */
+  }
+
+
+ 
+}
+
 
 /*footer */
 .custom-footer {
@@ -276,10 +336,18 @@
 .booking-page {
   padding: 20px;
 }
-
 .calendar-container {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Default margin for larger screens */
+  margin-top: 40px;
 }
+
+@media (max-width: 640px) { /* Tailwind's small screen breakpoint */
+  .calendar-container {
+  max-width: 300px; /* Smaller max width for mobile screens */
+    width: 100%; /* Ensure it takes full width within its container */
+  }
+}
+
 
 .slots-container {
   margin-top: 20px;
@@ -332,4 +400,45 @@
 .checkout-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+.min-h-screen {
+  minn-height: 100vh; /* Ensure it takes the full viewport height */
+}
+
+/* Apply layout-padding on larger screens */
+@media (min-width: 768px) { /* Adjust the min-width if needed */
+  .layout-padding {
+  padding-left: 7rem;
+  padding-right: 7rem;
+  padding-top: 4rem;
+}
+}
+
+/* On smaller screens, the padding will be removed */
+@media (max-width: 767px) {
+  .layout-padding {
+    padding-right: 2rem !important; /* Ensure padding is completely removed */
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* On smaller screens, the padding will be removed */
+@media (max-width: 767px) {
+  .book-btn {
+     font-size: 0.875rem; /* Smaller font size */
+    padding: 0.5rem 1rem;
+     width: 100%; /* Make button full width */
+    box-sizing: border-box;  /* Smaller padding */ /* Ensure padding is completely removed */
+  }
+}
+
+@media (max-width: 767px) {
+  .book-btn {
+    font-size: 0.875rem; /* Smaller font size */
+    padding: 0.5rem 1rem;
+    width: 100%; /* Make button full width */
+    box-sizing: border-box;
+  }
 }

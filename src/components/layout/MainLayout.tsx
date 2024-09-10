@@ -4,11 +4,6 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import "../../styles/custom.css"; // Import your custom CSS
 import ScrollToTop from "../ui/ScrollTop";
 
-
-
-
-
-
 const { Header, Content } = Layout;
 
 const MainLayout: React.FC = () => {
@@ -134,18 +129,18 @@ const MainLayout: React.FC = () => {
           </Menu.Item>
         </Menu>
 
-        <div className="ml-auto">
+            <div className="ml-auto flex items-center">
           <Link
             to="/login"
-            className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600"
+            className="bg-green-500 text-white px-4 py-2 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition duration-300"
           >
-            Get Started
+           Login
           </Link>
-        </div>
+          </div>
       </Header>
 
       <Content className="bg-transparent  bg-white">
-        <div className="min-h-[380px]  bg-white shadow-none overfloq-hidden">
+        <div className="min-h-[380px]  bg-white shadow-none ">
           <Outlet />
         </div>
       </Content>

@@ -1,6 +1,12 @@
-import React from "react";
+import Aos from "aos";
+import React, { useEffect } from "react";
 
 const BlogSection = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1200,
+    });
+  }, []);
   const blogPosts = [
     {
       day: "10",
@@ -33,7 +39,7 @@ const BlogSection = () => {
 
   return (
     <section className="py-16 bg-white layout-padding">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4"data-aos="fade-down">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold">
             Discover Our Working Spaces Content & News.

@@ -13,6 +13,7 @@
     "@ant-design/icons": "^5.4.0",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.20.3",
+    "aos": "^2.3.4",
     "dayjs": "^1.11.13",
     "react": "^18.3.1",
     "react-calendar": "^5.0.0",
@@ -25,6 +26,7 @@
     "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",

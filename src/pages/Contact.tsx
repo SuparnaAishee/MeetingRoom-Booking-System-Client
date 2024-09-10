@@ -119,7 +119,7 @@ const ContactUsBanner: React.FC = () => {
                   type="submit"
                   className="w-1/4 bg-green-600 text-white py-4 rounded-md hover:bg-green-600 transition duration-300"
                 >
-                  Send Message
+                  Send 
                 </button>
               </form>
             </div>
