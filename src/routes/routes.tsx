@@ -1,77 +1,167 @@
-import { createBrowserRouter } from "react-router-dom";
+// import { createBrowserRouter } from "react-router-dom";
 
+// // import Login from "../pages/Login";
+// // import Register from "../pages/Register";
+// import About from "../pages/About";
+// import Service from "../pages/Service";
+
+// // import AdminLayout from "../components/layout/AdminLayout";
+// // import { adminPaths } from "./admin.routes";
+// import Home from "../pages/Home";
+// import Contact from "../pages/Contact";
+
+// import MainLayout from "../components/layout/MainLayout";
+// import Rooms from "../pages/Rooms";
+// import RoomDetails from "../pages/RoomDetails";
+
+
+// import BookNowPage from "../pages/user/BookingProcess";
+// import RegisterForm from "../pages/Register";
+// import MyBookings from "../pages/user/MyBookings";
+// import Checkout from "../pages/user/Checkout";
+// import CreateRoom from "../pages/admin/RoomManagement/CreateRoom";
+// import RoomList from "../pages/admin/RoomManagement/RoomList";
+// import CreateSlot from "../pages/admin/SlotManagement/CreateSlot";
+// import SlotList from "../pages/admin/SlotManagement/SlotList";
 // import Login from "../pages/Login";
-// import Register from "../pages/Register";
+
+
+// const router = createBrowserRouter([
+ 
+
+//   {
+//     path: "/",
+//     element: <MainLayout />,
+//     children: [
+//       { path: "", element: <Home /> },
+//       { path: "about", element: <About /> },
+//       { path: "service", element: <Service /> },
+//       { path: "contact", element: <Contact /> },
+//       { path: "rooms", element: <Rooms /> },
+//       { path: "rooms/:roomId", element: <RoomDetails /> },
+//       { path: "book-now/:roomId", element: <BookNowPage /> },
+//       { path: "my-bookings", element: <MyBookings /> },
+//       { path: "checkout", element: <Checkout /> },
+    
+//     ],
+//   },
+//   {
+//     path: "dashboard",
+//     element: <MainLayout />,
+//     children: [
+//       {
+//         path: "create-room",
+//         element: <CreateRoom />,
+//       },
+//       {
+//         path: "all-room",
+//         element: <RoomList />,
+//       },
+//       {
+//         path: "create-slot",
+//         element: <CreateSlot />,
+//       },
+//       {
+//         path: "all-slot",
+//         element: <SlotList />,
+//       },
+//     ],
+//   },
+//   { path: "login", element: <Login /> },
+//   { path: "signup", element: <RegisterForm /> },
+// ]);
+
+// export default router;
+
+
+
+import { createBrowserRouter } from "react-router-dom";
 import About from "../pages/About";
 import Service from "../pages/Service";
-
-// import AdminLayout from "../components/layout/AdminLayout";
-// import { adminPaths } from "./admin.routes";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
-import GetStarted from "../pages/GetStarted";
 import MainLayout from "../components/layout/MainLayout";
 import Rooms from "../pages/Rooms";
 import RoomDetails from "../pages/RoomDetails";
-
-
 import BookNowPage from "../pages/user/BookingProcess";
 import RegisterForm from "../pages/Register";
+import MyBookings from "../pages/user/MyBookings";
+import Checkout from "../pages/user/Checkout";
+import CreateRoom from "../pages/admin/RoomManagement/CreateRoom";
+import RoomList from "../pages/admin/RoomManagement/RoomList";
+import CreateSlot from "../pages/admin/SlotManagement/CreateSlot";
+import SlotList from "../pages/admin/SlotManagement/SlotList";
+import Login from "../pages/Login";
 
+// Import ProtectedRoute component
+import ProtectedRoute from "../components/ProtectedRoute";
 
+// Define your router configuration
 const router = createBrowserRouter([
-  //     {
-  //         path:'/',
-  //         element:<App/>,
-  //         children:[
-  //             {
-  //                 path:'about',
-  //                 element:<About/>
-
-  //             },
-  //             {
-  //                 path:'service',
-  //                 element:<Service/>
-
-  //             },
-  //         ]
-  //     },
-  //     {
-  //     path:'/admin',
-  //     element:<AdminLayout/>,
-  //     children:adminPaths
-  //     },
-  //     {
-  //         path:'/login',
-  //         element:<Login/>
-  //     },
-  //     {
-  //         path:'/register',
-  //         element:<Register/>,
-  //     },
-  // ])
-
-  // export default router;
-
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { path: "", element: <Home/> },
+      { path: "", element: <Home /> },
       { path: "about", element: <About /> },
       { path: "service", element: <Service /> },
       { path: "contact", element: <Contact /> },
-      { path: "rooms", element: <Rooms/> },
-      { path: "rooms/:roomId", element: <RoomDetails/> },
-      { path: "book-now/:roomId", element: <BookNowPage /> },
-    //   { path: "pricing", element: <Pricing /> },
-    //   { path: "team", element: <Team /> },
-    //   { path: "faq", element: <FAQ /> },
-    //   { path: "gallery", element: <Gallery /> },
-      { path: "login", element: <GetStarted  /> },
-      { path: "register", element: <RegisterForm/> },
+      { path: "rooms", element: <Rooms /> },
+      { path: "rooms/:roomId", element: <RoomDetails /> },
+      {
+        path: "book-now/:roomId",
+        element: (
+          <ProtectedRoute role="user">
+            <BookNowPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "my-bookings",
+        element: (
+          <ProtectedRoute role="user">
+            <MyBookings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "checkout",
+        element: (
+          <ProtectedRoute role="user">
+            <Checkout />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
+  {
+    path: "dashboard",
+    element: (
+      <ProtectedRoute role="admin">
+        <MainLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "create-room",
+        element: <CreateRoom />,
+      },
+      {
+        path: "all-room",
+        element: <RoomList />,
+      },
+      {
+        path: "create-slot",
+        element: <CreateSlot />,
+      },
+      {
+        path: "all-slot",
+        element: <SlotList />,
+      },
+    ],
+  },
+  { path: "login", element: <Login /> },
+  { path: "signup", element: <RegisterForm /> },
 ]);
 
 export default router;

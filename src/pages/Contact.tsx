@@ -44,8 +44,9 @@ const ContactUsBanner: React.FC = () => {
                 GET IN TOUCH
               </h1>
               <p className="text-gray-600 mb-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                If you have any questions, feedback, or need assistance with
+                booking our services, please don't hesitate to reach out. Our
+                team is here to help you every step of the way.
               </p>
               {/* Contact Cards */}
               <div className="space-y-4">
@@ -59,7 +60,7 @@ const ContactUsBanner: React.FC = () => {
                       Office Location
                     </h4>
                     <p className="text-gray-600">
-                      Jl. Raya Campuhan No.66, Gianyar, Bali, Indonesia
+                     Chittagong,Bangladesh
                     </p>
                   </div>
                 </div>
@@ -73,7 +74,7 @@ const ContactUsBanner: React.FC = () => {
                     <h4 className="text-lg font-bold text-gray-700">
                       Office Contact
                     </h4>
-                    <p className="text-gray-600">+62 7705 2056</p>
+                    <p className="text-gray-600">+09654378098</p>
                   </div>
                 </div>
 
@@ -86,7 +87,7 @@ const ContactUsBanner: React.FC = () => {
                     <h4 className="text-lg font-bold text-gray-700">
                       Office Email
                     </h4>
-                    <p className="text-gray-600">mail@domain.com</p>
+                    <p className="text-gray-600">meetspace@email.com</p>
                   </div>
                 </div>
               </div>
@@ -119,7 +120,7 @@ const ContactUsBanner: React.FC = () => {
                   type="submit"
                   className="w-1/4 bg-green-600 text-white py-4 rounded-md hover:bg-green-600 transition duration-300"
                 >
-                  Send 
+                  Send
                 </button>
               </form>
             </div>
@@ -141,7 +142,7 @@ const ContactUsBanner: React.FC = () => {
         </div>
       </section>
       <div>
-        <CustomFooter/>
+        <CustomFooter />
       </div>
     </div>
   );

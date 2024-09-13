@@ -1,40 +1,23 @@
+import MainLayout from "../components/layout/MainLayout";
 import BookingProcess from "../pages/user/BookingProcess";
-import Checkout from "../pages/user/Checkout";
+
 import MyBookings from "../pages/user/MyBookings";
-import RoomDetails from "../pages/user/RoomDetails";
-import UserDashboard from "../pages/user/UserDashboard";
+
 
 export const userPaths = [
   {
     path: "dashboard",
-    element: <UserDashboard />,
+    element: <MainLayout />,
   },
+ 
   {
     path: "my-bookings",
-    element: (
-     
-        <MyBookings />
-      
-    ),
+    element: <MyBookings />,
   },
-  {
-    path: "room-details/:roomId",
-    element: <RoomDetails />,
-  },
+  
   {
     path: "booking-form/:roomId",
-    element: (
-      
-        <BookingProcess />
-     
-    ),
+    element: <BookingProcess />,
   },
-  {
-    path: "checkout",
-    element: (
-     
-        <Checkout />
-      
-    ),
-  },
+  
 ];

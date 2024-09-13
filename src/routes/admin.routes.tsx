@@ -1,14 +1,14 @@
 
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import BookingList from "../pages/admin/BookingManagement/BookingList";
-import CreateAdmin from "../pages/admin/CreateAdmin";
+
 import CreateRoom from "../pages/admin/RoomManagement/CreateRoom";
 import RoomList from "../pages/admin/RoomManagement/RoomList";
 import CreateSlot from "../pages/admin/SlotManagement/CreateSlot";
 import SlotList from "../pages/admin/SlotManagement/SlotList";
 
 
-export const adminPaths2 = [
+export const adminPaths = [
   {
     path: "dashboard",
     element: <AdminDashboard />,
@@ -50,40 +50,3 @@ export const adminPaths2 = [
   }
 ];
 
-
-
-export const adminPaths = [
-  {
-    path: "dashboard",
-    element: <AdminDashboard />,
-  },
-  {
-    path: "create-admin",
-    element: <CreateAdmin />,
-  },
-  {
-    path: "dashboard",
-    element: <AdminDashboard />,
-  },
-  {
-    path: "booking-list",
-    element: <BookingList />,
-  },
-  {
-    path: "create-room",
-    element: <CreateRoom />,
-  },
-  {
-    path: "room-list",
-    element: <RoomList />,
-  },
-  {
-    path: "create-slot",
-    element: <CreateSlot />,
-  },
-  {
-    path: "slot-list",
-    element: <SlotList />,
-  }
-  
-];

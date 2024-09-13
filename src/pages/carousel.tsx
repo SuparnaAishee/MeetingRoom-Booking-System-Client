@@ -211,7 +211,7 @@ const Carousel: React.FC = () => {
 
           {/* Book Now Button */}
           <Link
-            to="/get-started"
+            to="/rooms"
             className="bg-green-500 text-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-lg font-semibold hover:bg-green-600"
           >
             Reserve Now

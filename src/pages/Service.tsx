@@ -72,8 +72,11 @@ const ServiceSection: React.FC = () => {
               Better results come when you work together.
             </h2>
             <p className="text-gray-600 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              Our service is designed to enhance your experience. We believe
+              that when people come together, they can achieve remarkable
+              results. From seamless meeting room bookings to exceptional
+              customer support, we're dedicated to making your experience as
+              smooth as possible.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="text-center">
@@ -95,8 +98,8 @@ const ServiceSection: React.FC = () => {
                 </div>
                 <h3 className="font-bold text-lg">Strategic Office</h3>
                 <p className="text-gray-600">
-                  Sem efficitur libero primis sit praesent mollis potenti porta
-                  aenean semper.
+                  Our strategic office is designed to provide you with the
+                  perfect environment .
                 </p>
               </div>
               <div className="text-center">
@@ -118,8 +121,8 @@ const ServiceSection: React.FC = () => {
                 </div>
                 <h3 className="font-bold text-lg">Flexible Hour</h3>
                 <p className="text-gray-600">
-                  Sem efficitur libero primis sit praesent mollis potenti porta
-                  aenean semper.
+                  Enjoy the convenience of flexible hours tailored to fit your
+                  schedule.
                 </p>
               </div>
             </div>
@@ -149,20 +152,7 @@ const ServiceSection: React.FC = () => {
                   />
                 </Card>
               </Col>
-              <Col xs={24} md={12} lg={6}>
-                <Card
-                  hoverable
-                  className="text-center"
-                  cover={
-                    <CheckCircleOutlined className="text-green-600 text-5xl my-4" />
-                  }
-                >
-                  <Card.Meta
-                    title="Instant Booking Confirmation"
-                    description="Get immediate confirmation for your bookings with no waiting time."
-                  />
-                </Card>
-              </Col>
+
               <Col xs={24} md={12} lg={6}>
                 <Card
                   hoverable
@@ -174,6 +164,20 @@ const ServiceSection: React.FC = () => {
                   <Card.Meta
                     title="Flexible Scheduling"
                     description="Adjust your bookings easily to fit your changing schedule."
+                  />
+                </Card>
+              </Col>
+              <Col xs={24} md={12} lg={6}>
+                <Card
+                  hoverable
+                  className="text-center"
+                  cover={
+                    <CheckCircleOutlined className="text-green-600 text-5xl my-4" />
+                  }
+                >
+                  <Card.Meta
+                    title="Instant Booking Confirmation"
+                    description="Get immediate confirmation for your bookings with no waiting time."
                   />
                 </Card>
               </Col>

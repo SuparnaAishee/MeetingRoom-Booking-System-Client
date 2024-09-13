@@ -51,9 +51,11 @@ const WhyChooseUs = () => {
             <h3 className="text-green-600 font-bold text-4xl mt-2">
               GIVING YOU THE BEST SERVICES
             </h3>
-            <p className="text-gray-600 mt-4">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa.
+            <p className="text-gray-600 mt-4 w-2/3">
+              We prioritize your needs and aim to deliver exceptional services
+              tailored to your requirements. Our dedicated team works tirelessly
+              to ensure that every experience with us is nothing short of
+              excellent.
             </p>
           </div>
 
@@ -106,8 +108,8 @@ const WhyChooseUs = () => {
               Secure Transactions
             </h4>
             <p className="text-gray-600 mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
+              Our platform ensures secure transactions. We adhere to industry
+              standards for data protection and privacy.
             </p>
           </div>
 
@@ -117,8 +119,8 @@ const WhyChooseUs = () => {
             </div>
             <h4 className="text-green-700 font-bold text-lg">Active Members</h4>
             <p className="text-gray-600 mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
+              Join a vibrant community of professionals who leverage our meeting
+              spaces for collaboration and networking.
             </p>
           </div>
 
@@ -130,8 +132,8 @@ const WhyChooseUs = () => {
               Best Connection
             </h4>
             <p className="text-gray-600 mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
+              Enjoy high-speed internet connectivity in all our meeting rooms
+              which run smoothly without interruptions.
             </p>
           </div>
         </div>

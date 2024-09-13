@@ -1,0 +1,71 @@
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  width: 16rem; /* 64 = 16rem in Tailwind CSS */
+  background-color: #dcf5e4; /* Sidebar background */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  top: 5.5rem; /* Adjusted to provide more gap from the navbar */
+  height: calc(100% - 5rem); /* Sidebar height minus the navbar height */
+  color: #ffffff; /* Default text color */
+}
+
+.custom-sidebar-menu {
+  background-color: transparent;
+  border: none;
+}
+
+.custom-sidebar-menu .ant-menu-item {
+  background-color: #ffffff; /* White background for menu items */
+  margin: 8px 0;
+  transition: background-color 0.3s ease;
+  border-radius: 8px; /* Slight rounding to mimic card-like appearance */
+}
+
+.custom-sidebar-menu .ant-menu-item a {
+  color: #038433; /* Green text for menu links */
+  font-weight: 500; /* Make text a bit bolder */
+}
+
+.custom-sidebar-menu .ant-menu-item:hover a {
+  color: #023e2a; /* Darker green text on hover */
+}
+
+.custom-sidebar-menu .ant-menu-item:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+.sidebar h2 {
+  color: #000000; /* Black color for title */
+  font-weight: bold;
+  font-size:larger;
+}
+
+.custom-sidebar-menu .ant-menu-item-selected {
+  background-color: #22c55e !important; /* Green background when selected */
+  color: #ffffff !important; /* White text when selected */
+  border-radius: 8px;
+}
+
+.custom-sidebar-menu .ant-menu-item-selected a {
+  color: #ffffff !important; /* White text when selected */
+}
+
+.roomtable{
+    padding-left: 16rem;
+}
+
+/* custom.css */
+.ant-input {
+  border-color: #d1d5db; /* Default border color */
+}
+
+.ant-input:focus {
+  border-color: #3ebf43 !important; /* Green border on focus */
+  box-shadow: 0 0 0 2px rgba(84, 182, 87, 0.182); /* Optional green outline */
+}
+
+.ant-input:hover {
+  border-color: #3ebf43 !important; /* Green border on hover */
+  box-shadow: none; /* Remove blue outline on hover */
+}

@@ -125,35 +125,35 @@ const testimonials = [
   {
     name: "Mr. John Doe",
     role: "CLIENT",
-    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    testimonial: " The facilities were top-notch, Highly recommend!",
     imgSrc:
       "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
   },
   {
     name: "Ms. Jane Smith",
     role: "CLIENT",
-    testimonial: "Ut elit tellus, luctus nec ullamcorper mattis.",
+    testimonial: " Clean, well-equipped, and provided a great environment",
     imgSrc:
       "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
   },
   {
     name: "Mr. Michael Lee",
     role: "CLIENT",
-    testimonial: "Pulvinar dapibus leo lorem ipsum dolor sit amet.",
+    testimonial: "Our experience was fantastic! Staff were incredibly helpful",
     imgSrc:
       "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
   },
   {
     name: "Mrs. Emma Watson",
     role: "CLIENT",
-    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    testimonial: "The meeting room was spacious and comfortable",
     imgSrc:
       "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
   },
   {
-    name: "Mr. Chris Evans",
+    name: "Jessica Anne M",
     role: "CLIENT",
-    testimonial: "Ut elit tellus, luctus nec ullamcorper mattis.",
+    testimonial: "The booking process was simple and efficient.Impressive!",
     imgSrc:
       "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
   },
@@ -202,11 +202,12 @@ const TestimonialSection = () => {
           data-aos="fade-up"
         >
           <h2 className="text-3xl lg:text-4xl font-bold">
-            Discover What Our Members Have To Say About Their Experience.
+            Discover What Our Clients Have To Say About Their Experience.
           </h2>
           <p className="text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-            tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            Our clients consistently praise our commitment to quality and service. 
+            From the friendly staff to the well-equipped meeting rooms, we strive to create an environment that fosters productivity and collaboration. 
+            Join the growing list of satisfied clients who trust us for their meeting needs.
           </p>
           <button className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">
             Explore Rooms

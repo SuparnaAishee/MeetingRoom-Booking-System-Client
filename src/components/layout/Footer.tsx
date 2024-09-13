@@ -55,11 +55,11 @@ const CustomFooter = () => {
             <a href="/about" style={{ color: "#000" }}>
               About Us
             </a>
-            <a href="/services" style={{ color: "#000" }}>
+            <a href="/service" style={{ color: "#000" }}>
               Our Services
             </a>
-            <a href="/branch" style={{ color: "#000" }}>
-              Our Branch
+            <a href="/rooms" style={{ color: "#000" }}>
+              Our Rooms
             </a>
           </Space>
         </Col>
@@ -68,10 +68,10 @@ const CustomFooter = () => {
             Our Location
           </Title>
           <Space direction="vertical">
-            <Text style={{ color: "#000" }}>Los Angeles</Text>
+            <Text style={{ color: "#000" }}>Bangladesh</Text>
             <Text style={{ color: "#000" }}>Amsterdam</Text>
             <Text style={{ color: "#000" }}>New York</Text>
-            <Text style={{ color: "#000" }}>Bali</Text>
+            <Text style={{ color: "#000" }}>Germany</Text>
           </Space>
         </Col>
         <Col xs={24} sm={12} md={6}>

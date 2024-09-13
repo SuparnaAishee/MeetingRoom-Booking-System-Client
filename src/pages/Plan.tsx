@@ -1,6 +1,7 @@
 import { Layout, Row, Col, Typography, Card, Button } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
 import "../styles/custom.css"
+import { Link } from "react-router-dom";
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
@@ -19,13 +20,15 @@ const ChoosePlanSection = () => {
                 CHOOSE YOUR PLAN
               </Title>
               <Title level={1} className="mb-4">
-                Find the perfect plan for your business.
+                Discover the ideal plan for your business needs.
               </Title>
-              <Text className="mb-4 d-block">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              <Text className="mb-4 d-block ">
+                Whether you're hosting a small team meeting or a large
+                conference, we have flexible plans to accommodate every event.
+                Choose a plan that best suits your requirements.
               </Text>
-              <Text className="mb-4 d-block">
+              <br />
+              <Text className="mb-4 d-block pt-2">
                 <CheckOutlined style={{ color: "#52c41a" }} /> Affordable prices
                 <br />
                 <CheckOutlined style={{ color: "#52c41a" }} /> Flexibility and
@@ -36,6 +39,7 @@ const ChoosePlanSection = () => {
                 <br />
               </Text>
               {/* Book Now Button */}
+              <Link to="/rooms">
               <Button
                 style={{
                   backgroundColor: "#38A169",
@@ -45,6 +49,7 @@ const ChoosePlanSection = () => {
               >
                 Book Now
               </Button>
+              </Link>
             </Col>
 
             {/* Right Side - Plans */}
@@ -57,9 +62,9 @@ const ChoosePlanSection = () => {
                     bordered
                     style={{
                       textAlign: "center",
-                      transform: "scale(1.1)", 
+                      transform: "scale(1.1)",
                       transition: "transform 0.3s",
-                      backgroundColor: "#f5f5f5", 
+                      backgroundColor: "#f5f5f5",
                     }}
                     hoverable
                   >
@@ -85,9 +90,9 @@ const ChoosePlanSection = () => {
                     bordered
                     style={{
                       textAlign: "center",
-                      transform: "scale(1.3)", 
+                      transform: "scale(1.3)",
                       transition: "transform 0.3s",
-                      backgroundColor: "#38A169", 
+                      backgroundColor: "#38A169",
                       color: "#fff",
                       boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.1)",
                       zIndex: 10,
@@ -102,8 +107,8 @@ const ChoosePlanSection = () => {
                     <Button
                       style={{
                         marginTop: 16,
-                        backgroundColor: "#fff", 
-                        color: "#38A169", 
+                        backgroundColor: "#fff",
+                        color: "#38A169",
                       }}
                     >
                       Choose Plan
@@ -118,7 +123,7 @@ const ChoosePlanSection = () => {
                     bordered
                     style={{
                       textAlign: "center",
-                      transform: "scale(1.1)", 
+                      transform: "scale(1.1)",
                       transition: "transform 0.3s",
                       backgroundColor: "#f5f5f5",
                     }}
@@ -130,7 +135,7 @@ const ChoosePlanSection = () => {
                     <Button
                       style={{
                         marginTop: 16,
-                        backgroundColor: "#38A169", 
+                        backgroundColor: "#38A169",
                         color: "#fff",
                       }}
                     >

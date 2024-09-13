@@ -64,7 +64,7 @@ const WorkSection = () => {
                         Select A Room
                       </Title>
                       <p className=" contents">
-                        Lorem ipsum dolor sit amet, consectetur
+                        Choose the perfect meeting room for your needs.
                       </p>
                     </Card>
                   </div>
@@ -92,9 +92,11 @@ const WorkSection = () => {
                           marginTop: "5px",
                         }}
                       >
-                        Choose Date&Time
+                        Choose Date
                       </Title>
-                      <p>Lorem ipsum dolor sit amet, consectetur</p>
+                      <p className="contents">
+                        Select your preferred date and time for the booking.
+                      </p>
                     </Card>
                   </div>
                 </Col>
@@ -128,7 +130,8 @@ const WorkSection = () => {
                         Confirm Booking
                       </Title>
                       <p className=" contents">
-                        Lorem ipsum dolor sit amet, consectetur
+                        Review your details and confirm your reservation for a
+                        seamless experience.
                       </p>
                     </Card>
                   </div>
@@ -160,7 +163,8 @@ const WorkSection = () => {
                         Receive Confirmation
                       </Title>
                       <p className=" contents">
-                        Lorem ipsum dolor sit amet, consectetur
+                        A confirmation will be sent to you shortly about
+                        booking.
                       </p>
                     </Card>
                   </div>

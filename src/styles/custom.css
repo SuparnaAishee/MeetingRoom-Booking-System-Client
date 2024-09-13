@@ -442,3 +442,19 @@
     box-sizing: border-box;
   }
 }
+/*drawer*/
+.q-custom-menu .ant-menu-item {
+  color: #157a3a; /* Tailwind's green-500 */
+  font-weight: bold;
+}
+
+.q-custom-menu .ant-menu-item:hover {
+  background-color: #22c55e !important; /* Green background on hover */
+  color: white !important; /* White text on hover */
+}
+
+.q-custom-menu .ant-menu-item-active, 
+.q-custom-menu .ant-menu-item-selected {
+  background-color: #22c55e !important; /* Green background when active */
+  color: white !important; /* White text when active */
+}
