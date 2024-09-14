@@ -69,3 +69,61 @@
   border-color: #3ebf43 !important; /* Green border on hover */
   box-shadow: none; /* Remove blue outline on hover */
 }
+/* Override Ant Design's focus color for input fields, date pickers, time pickers, etc. */
+.ant-input:focus, .ant-input-focused,
+.ant-picker-focused,
+.ant-picker:focus,
+.ant-time-picker-focused,
+.ant-switch-checked:focus,
+.ant-btn-primary:focus,
+.ant-btn-primary:active {
+  border-color: #10b981 !important; /* Green border */
+  box-shadow: none !important; /* Remove blue focus ring */
+}
+
+.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+  border-color: #10b981 !important;
+  box-shadow: none !important;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: #10b981 !important; /* Ensure hover border remains green */
+}
+
+.ant-picker:hover {
+  border-color: #10b981 !important;
+}
+
+/* Remove focus ring on DatePicker and TimePicker */
+.ant-picker-focused, .ant-picker:focus, .ant-picker:hover {
+  box-shadow: none !important;
+}
+
+/* For Switch focus ring removal */
+.ant-switch-checked {
+  background-color: #10b981 !important;
+}
+.ant-switch-checked:focus {
+  box-shadow: none !important;
+}
+
+/* Remove focus ring on buttons */
+.ant-btn-primary:focus, .ant-btn-primary:active {
+  box-shadow: none !important;
+}
+/* Override Ant Design's OK button in DatePicker and TimePicker */
+.ant-picker-ok button {
+  background-color: #10b981 !important; /* Green background */
+  border-color: #10b981 !important; /* Green border */
+  color: white !important; /* White text */
+}
+
+.ant-picker-ok button:hover {
+  background-color: #0f9b7a !important; /* Darker green on hover */
+  border-color: #0f9b7a !important;
+}
+
+/* Remove the blue focus shadow on the OK button */
+.ant-picker-ok button:focus {
+  box-shadow: none !important;
+}
