@@ -46,8 +46,17 @@ import { bookingApi } from "../redux/booking/bookingApi";
 import { availabilityApi } from "../redux/features/slotsApi"; // Import availabilityApi
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import authReducer,{AuthState} from "../redux/auth/authSlice"
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
-import {persistReducer,persistStore} from "redux-persist"
 import storage from "redux-persist/lib/storage"
 const persistConfig={
   key:"auth",
@@ -67,7 +76,11 @@ export const store = configureStore({
     [availabilityApi.reducerPath]: availabilityApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
       .concat(roomsApi.middleware)
       .concat(baseApi.middleware)
       .concat(bookingApi.middleware)

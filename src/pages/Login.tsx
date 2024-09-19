@@ -126,61 +126,69 @@
 //     </div>
 //   );
 // };
-
-// export default LoginForm;
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../redux/auth/authApi";
 import { useDispatch, useSelector } from "react-redux";
-import { setCredentials, logout } from "../redux/auth/authSlice"; // Import the logout action
-import { verifyToken } from "../utils/verifyToken"; // Import verifyToken
-import { TUser } from "../redux/auth/authType"; // Import TUser type
-import { toast } from "sonner"; // Import toast from sonner
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"; // Import AntD icons
+import { setCredentials, logout } from "../redux/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
+import { TUser } from "../redux/auth/authType";
+import { toast } from "sonner";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth); // Get authentication state
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [loginUser, { isLoading, error }] = useLoginUserMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const data = await loginUser({ email, password }).unwrap();
-      const { token, data: userData } = data;
+      const {
+        token,
+        refreshToken,
+        data: userData,
+      } = await loginUser({ email, password }).unwrap();
 
       // Decode the token and get user info
       const decodedToken = verifyToken(token);
       console.log("Decoded Token:", decodedToken);
 
-      // Create user object from response
       const user: TUser = {
         email: userData.email,
         role: userData.role,
-        name: userData.name || "", // Optional fields
+        name: userData.name || "",
         address: userData.address || "",
         phone: userData.phone || "",
-        id: "",
+        _id: userData._id,
+        bookings: undefined,
+        data: undefined
       };
 
-      // Store the user and token in Redux store
-      dispatch(setCredentials({ user, token }));
+      // Store the user and tokens in Redux store
+      dispatch(setCredentials({ user, token, refreshToken }));
 
-      toast.success("Login successful!"); // Show success toast
+      // Save tokens to localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("refreshToken", refreshToken); // Store refresh token
+
+      toast.success("Login successful!");
       navigate("/");
     } catch (err) {
-      toast.error(error?.data?.message || "Login failed"); // Show error toast
+      toast.error(error?.data?.message || "Login failed");
     }
   };
 
   const handleLogout = () => {
-    dispatch(logout()); // Dispatch the logout action
-    toast.success("Logout successful!"); // Show success toast on logout
+    dispatch(logout());
+    localStorage.removeItem("token"); // Clear token on logout
+    localStorage.removeItem("refreshToken"); // Clear refresh token on logout
+    toast.success("Logout successful!");
   };
 
   return (
@@ -230,7 +238,6 @@ const LoginForm: React.FC = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                {/* Password visibility toggle */}
                 <div
                   className="absolute inset-y-0 right-0 pt-8 pr-3 flex items-center cursor-pointer"
                   onClick={() => setShowPassword(!showPassword)}

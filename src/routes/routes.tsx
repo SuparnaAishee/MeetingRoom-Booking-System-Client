@@ -86,7 +86,7 @@ import RoomDetails from "../pages/RoomDetails";
 import BookNowPage from "../pages/user/BookingProcess";
 import RegisterForm from "../pages/Register";
 import MyBookings from "../pages/user/MyBookings";
-import Checkout from "../pages/user/Checkout";
+
 import CreateRoom from "../pages/admin/RoomManagement/CreateRoom";
 import RoomList from "../pages/admin/RoomManagement/RoomList";
 import CreateSlot from "../pages/admin/SlotManagement/CreateSlot";
@@ -95,6 +95,8 @@ import Login from "../pages/Login";
 
 // Import ProtectedRoute component
 import ProtectedRoute from "../components/ProtectedRoute";
+import CheckoutPage from "../pages/user/Checkout";
+import BookingList from "../pages/admin/BookingManagement/BookingList";
 
 // Define your router configuration
 const router = createBrowserRouter([
@@ -128,7 +130,7 @@ const router = createBrowserRouter([
         path: "checkout",
         element: (
           <ProtectedRoute role="user">
-            <Checkout />
+            <CheckoutPage />
           </ProtectedRoute>
         ),
       },
@@ -157,6 +159,10 @@ const router = createBrowserRouter([
       {
         path: "all-slot",
         element: <SlotList />,
+      },
+      {
+        path: "all-Bookings",
+        element: <BookingList />,
       },
     ],
   },

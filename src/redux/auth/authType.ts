@@ -2,7 +2,12 @@
 
 // Define the structure of a user object
 export interface TUser {
-  id: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  bookings: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+  
+  _id: string;
  
   email: string;
   role: string;

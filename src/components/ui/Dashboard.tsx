@@ -15,13 +15,13 @@ const Dashboard: React.FC = () => {
           style={{ height: "100%", borderRight: 0 }}
         >
           <Menu.Item key="1">
-            <Link to="/dashboard/slots">All Slots</Link>
+            <Link to="/dashboard/all-slots">All Slots</Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/dashboard/rooms">All Rooms</Link>
+            <Link to="/dashboard/all-rooms">All Rooms</Link>
           </Menu.Item>
           <Menu.Item key="3">
-            <Link to="/dashboard/bookings">All Bookings</Link>
+            <Link to="/dashboard/all-Bookings">All Bookings</Link>
           </Menu.Item>
         </Menu>
       </Sider>

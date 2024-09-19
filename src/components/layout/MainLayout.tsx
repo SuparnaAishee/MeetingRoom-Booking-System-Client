@@ -283,6 +283,15 @@ const MainLayout: React.FC = () => {
           <Menu.Item key="/contact" className={`custom-menu-item`}>
             <Link to="/contact">Contact Us</Link>
           </Menu.Item>
+
+          {/* Show My Bookings for all authenticated users */}
+          {isAuthenticated && user?.role === "user" && (
+            <Menu.Item key="/my-bookings" className={`custom-menu-item`}>
+              <Link to="/my-bookings">My Bookings</Link>
+            </Menu.Item>
+          )}
+
+          {/* Show Dashboard only for admins */}
           {isAuthenticated && user?.role === "admin" && (
             <Menu.Item
               key="/dashboard"
@@ -329,12 +338,6 @@ const MainLayout: React.FC = () => {
         bodyStyle={{ backgroundColor: "#f3f4f6" }}
         width={300} // Responsive width
         className="custom-drawer"
-        drawerStyle={{
-          // Add responsive styling for mobile
-          "@media (max-width: 768px)": {
-            width: "100%", // Make drawer full width on mobile
-          },
-        }}
       >
         <Menu mode="vertical" className="q-custom-menu">
           <Menu.Item key="/dashboard/all-room">
@@ -344,7 +347,7 @@ const MainLayout: React.FC = () => {
             <Link to="/dashboard/all-slot">All Slot</Link>
           </Menu.Item>
           <Menu.Item key="/dashboard/all-bookings">
-            <Link to="/dashboard/users">All Bookings</Link>
+            <Link to="/dashboard/all-bookings">All Bookings</Link>
           </Menu.Item>
         </Menu>
       </Drawer>
