@@ -27,12 +27,12 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative h-screen">
-      {/* Hero Section with Carousel */}
+     
       <Carousel />
 
-      {/* Content Section */}
+    
       <div className="flex flex-col md:flex-row items-center justify-between p-4 md:p-8 bg-white layout-padding space-y-6 md:space-y-0 md:space-x-6">
-        {/* Text Content */}
+        
         <div
           data-aos="fade-up"
           className="flex-1 space-y-4 md:space-y-6 text-center md:text-left "
@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        {/* Image and Stats */}
+        
         <div className="flex-1 relative">
           <img
             src="https://res.cloudinary.com/dwelabpll/image/upload/v1725375841/meetingRoom_mc6iii.webp"
@@ -82,7 +82,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Service Section */}
+     
       <div>
         <div className="pb-20 bg-gray-200 layout-padding ">
           <h2 className="text-4xl font-bold text-center text-green-600 mb-8">
@@ -193,7 +193,7 @@ const HomePage: React.FC = () => {
         <FeaturedRooms />
       </div>
 
-      {/* Why Choose Us */}
+      
       <div className="pt-12 pb-20">
         <WhyChooseUs />
       </div>

@@ -241,7 +241,7 @@ import {
   useGetAllBookingsQuery,
   useDeleteBookingMutation,
   useUpdateBookingMutation,
-} from "../../../redux/booking/bookingApi"; // Adjust the import path
+} from "../../../redux/booking/bookingApi"; 
 
 export interface Slot {
   endTime: string;
@@ -274,20 +274,20 @@ const BookingTable: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [form] = Form.useForm();
-  const [isUpdating, setIsUpdating] = useState(false); // Add loading state
+  const [isUpdating, setIsUpdating] = useState(false); 
 
   // Fetching bookings data
   const { data, isLoading, isError } = useGetAllBookingsQuery({
     page: currentPage,
   });
 
-  // Setting up the delete and update booking mutations
+
   const [deleteBooking] = useDeleteBookingMutation();
   const [updateBooking] = useUpdateBookingMutation();
 
   const totalPages = data?.data?.totalPages || 1;
 
-  // Handle delete booking
+ 
   const handleDelete = async (bookingId: string) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -313,7 +313,6 @@ const BookingTable: React.FC = () => {
     }
   };
 
-  // Handle edit booking - open modal
   const handleEdit = (booking: Booking) => {
     setSelectedBooking(booking);
     form.setFieldsValue({
@@ -323,37 +322,36 @@ const BookingTable: React.FC = () => {
     setIsModalVisible(true);
   };
 
-  // Handle modal submit - form submission to update the booking
   const handleUpdate = async () => {
     try {
-      setIsUpdating(true); // Set loading state to true
+      setIsUpdating(true); 
       const values = await form.validateFields();
 
-      // Create the updated booking object
+     
       const updatedBooking = {
         ...selectedBooking,
         isConfirmed: values.status === "Confirmed",
       };
 
-      // Send the update request to the backend
+    
       if (selectedBooking) {
         await updateBooking({
           bookingId: selectedBooking._id,
           updatedBooking,
         }).unwrap();
 
-        // Close the modal and show success toast
+        
         setIsModalVisible(false);
         message.success("Booking updated successfully");
       }
     } catch (error) {
       message.error("Error updating booking");
     } finally {
-      setIsUpdating(false); // Set loading state to false
+      setIsUpdating(false); 
     }
   };
 
-  // Pagination controls
+  
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);

@@ -170,12 +170,12 @@ const LoginForm: React.FC = () => {
         data: undefined
       };
 
-      // Store the user and tokens in Redux store
+      // user and tokens in Redux store
       dispatch(setCredentials({ user, token, refreshToken }));
 
-      // Save tokens to localStorage
+      // tokens save to localStorage
       localStorage.setItem("token", token);
-      localStorage.setItem("refreshToken", refreshToken); // Store refresh token
+      localStorage.setItem("refreshToken", refreshToken); 
 
       toast.success("Login successful!");
       navigate("/");

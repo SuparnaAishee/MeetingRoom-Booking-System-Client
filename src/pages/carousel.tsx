@@ -200,7 +200,7 @@ const Carousel: React.FC = () => {
               Build A Better Office Environment
             </p>
             <p className="text-2xl lg:text-6xl">THE SPACE FOR Meetings</p>
-            {/* Opening Hours */}
+            
             <div className="flex items-center text-white space-x-2 lg:space-x-4 pt-2 lg:pt-4">
               <ClockCircleFilled className="text-xl lg:text-3xl text-green-400" />
               <span className="text-sm lg:text-xl">
@@ -209,7 +209,7 @@ const Carousel: React.FC = () => {
             </div>
           </div>
 
-          {/* Book Now Button */}
+         
           <Link
             to="/rooms"
             className="bg-green-500 text-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-lg font-semibold hover:bg-green-600"

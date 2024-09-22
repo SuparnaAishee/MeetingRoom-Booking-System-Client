@@ -9,7 +9,7 @@ import CustomFooter from "../components/layout/Footer";
 const ContactUsBanner: React.FC = () => {
   return (
     <div className="relative h-96 ">
-      {/* Background Image */}
+      
       <img
         src="https://res.cloudinary.com/dwelabpll/image/upload/v1725481171/call-center-operators-headsets-working-260nw-1860625378_gdzwgt.webp"
         alt="Contact Us Banner"
@@ -19,7 +19,7 @@ const ContactUsBanner: React.FC = () => {
       {/* Black Transparent Shade */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      {/* Text Content */}
+    
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
         <nav className="text-sm mb-4">
           <a href="/" className="hover:underline">
@@ -33,10 +33,10 @@ const ContactUsBanner: React.FC = () => {
       <section className="py-16 bg-white layout-padding">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap lg:flex-nowrap justify-between">
-            {/* Left Column: Contact Details */}
+           
             <div className="w-full lg:w-1/2 lg:mr-8">
               {" "}
-              {/* Added margin-right for spacing */}
+              
               <h3 className="text-yellow-500 text-xl font-bold mb-2">
                 Contact Us
               </h3>
@@ -48,9 +48,9 @@ const ContactUsBanner: React.FC = () => {
                 booking our services, please don't hesitate to reach out. Our
                 team is here to help you every step of the way.
               </p>
-              {/* Contact Cards */}
+              
               <div className="space-y-4">
-                {/* Office Location */}
+              
                 <div className="flex items-center bg-white shadow-lg p-4 rounded-lg">
                   <div className="bg-yellow-500 p-4 rounded-md">
                     <EnvironmentOutlined className="text-white text-2xl" />
@@ -65,7 +65,7 @@ const ContactUsBanner: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Office Contact */}
+                
                 <div className="flex items-center bg-white shadow-lg p-4 rounded-lg">
                   <div className="bg-green-600 p-4 rounded-md">
                     <PhoneOutlined className="text-white text-2xl" />
@@ -78,7 +78,7 @@ const ContactUsBanner: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Office Email */}
+                
                 <div className="flex items-center bg-white shadow-lg p-4 rounded-lg">
                   <div className="bg-green-600 p-4 rounded-md">
                     <MailOutlined className="text-white text-2xl" />
@@ -93,7 +93,7 @@ const ContactUsBanner: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Contact Form */}
+           
             <div className="w-full lg:w-1/2">
               <form className="bg-gray-100 shadow-lg rounded-lg p-8 space-y-6">
                 <input

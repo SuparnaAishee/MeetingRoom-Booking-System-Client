@@ -30,13 +30,13 @@ const WorkSection = () => {
               </p>
             </div>
 
-            {/* Bottom Cards */}
+          
             <div className="bottom-cards mt-4 ">
               {" "}
-              {/* Reduced margin-top */}
+            
               <Row gutter={[16, 16]} justify="center" align="middle">
                 {" "}
-                {/* Reduced gutter */}
+               
                 <Col xs={24} sm={12} md={6}>
                   <div className="step-card">
                     <Card

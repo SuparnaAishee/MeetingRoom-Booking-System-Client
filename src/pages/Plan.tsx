@@ -11,7 +11,7 @@ const ChoosePlanSection = () => {
       <Content className="py-16 bg-white layout-padding">
         <div className="container mx-auto px-4">
           <Row gutter={[32, 32]} align="middle">
-            {/* Left Side - Writings */}
+           
             <Col xs={24} md={12}>
               <Title
                 level={3}
@@ -38,7 +38,7 @@ const ChoosePlanSection = () => {
                 support
                 <br />
               </Text>
-              {/* Book Now Button */}
+             
               <Link to="/rooms">
               <Button
                 style={{
@@ -52,10 +52,10 @@ const ChoosePlanSection = () => {
               </Link>
             </Col>
 
-            {/* Right Side - Plans */}
+            
             <Col xs={24} md={12}>
               <Row gutter={[16, 16]} justify="center">
-                {/* First Card - Larger */}
+          
                 <Col xs={24} sm={8}>
                   <Card
                     title="Basic Plan"
@@ -83,7 +83,7 @@ const ChoosePlanSection = () => {
                   </Card>
                 </Col>
 
-                {/* Middle Card - Largest */}
+             
                 <Col xs={24} sm={8}>
                   <Card
                     title="Pro Plan"
@@ -116,7 +116,7 @@ const ChoosePlanSection = () => {
                   </Card>
                 </Col>
 
-                {/* Third Card - Larger */}
+              
                 <Col xs={24} sm={8}>
                   <Card
                     title="Enterprise Plan"

@@ -12,8 +12,7 @@ const UserDashboard: React.FC = () => {
         <li>
           <Link to="/user/room-details/1">Room Details</Link>
         </li>{" "}
-        {/* Example room ID */}
-        {/* Add more links as needed */}
+       
       </ul>
     </div>
   );

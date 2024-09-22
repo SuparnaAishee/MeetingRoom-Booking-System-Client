@@ -28,7 +28,7 @@ const RoomDetails: React.FC = () => {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 layout-padding flex flex-col lg:flex-row lg:space-x-12">
-      {/* Left Side - Images */}
+    
       <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start">
         <div className="mb-4 lg:mb-6 w-full">
           <img
@@ -62,7 +62,6 @@ const RoomDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Side - Room Details */}
       <div className="w-full lg:w-1/2">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-green-500">
           {room?.name || "No Room Name"}
@@ -108,7 +107,7 @@ const RoomDetails: React.FC = () => {
           </p>
         </div>
 
-        {/* Special Offer */}
+        
         <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-md">
           <p className="text-lg font-semibold">
             Special Offer: Book now and get{" "}
@@ -119,7 +118,7 @@ const RoomDetails: React.FC = () => {
           </p>
         </div>
 
-        {/* Book Now Button */}
+       
         <Button
           className="bg-green-500 text-white text-lg py-3 px-6 lg:py-6 lg:px-8 "
           onClick={() => (window.location.href = `/book-now/${roomId}`)}

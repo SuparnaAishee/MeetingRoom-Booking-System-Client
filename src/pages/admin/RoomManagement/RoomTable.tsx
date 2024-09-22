@@ -363,18 +363,379 @@
 // };
 
 // export default RoomTable;
-import React, { Key, useState } from "react";
-import { Modal, Button, Input } from "antd";
+// import React, { useState } from "react";
+// import { Modal, Button, Input } from "antd";
+// import { DeleteFilled, EditFilled } from "@ant-design/icons";
+// import Swal from "sweetalert2";
+// import {
+//   useGetRoomsQuery,
+//   useDeleteRoomMutation,
+//   useUpdateRoomMutation,
+//   useAddRoomMutation,
+// } from "../../../redux/features/roomsApi"; // Adjust the import path based on your project structure
+
+// export interface Room {
+//   isDeleted: boolean;
+//   id: string | null | undefined;
+//   floorNo: number;
+//   roomNo: number;
+//   _id: string;
+//   name: string;
+//   capacity: number;
+//   pricePerSlot: number;
+//   image: string[];
+//   amenities: string[];
+// }
+
+// const RoomTable: React.FC = () => {
+//   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+//   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+//   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+//   const [editedRoom, setEditedRoom] = useState<Partial<Room> | null>(null);
+//   const [newRoom, setNewRoom] = useState<Partial<Room>>({
+//     floorNo: 0,
+//     roomNo: 0,
+//     name: "",
+//     capacity: 0,
+//     pricePerSlot: 0,
+//     image: [""],
+//     amenities: [""],
+//   });
+//   const [currentPage, setCurrentPage] = useState(1);
+
+//   const { data, isLoading, isError } = useGetRoomsQuery({ page: currentPage });
+//   const [deleteRoom] = useDeleteRoomMutation(); // Mutation for deleting a room
+//   const [updateRoom] = useUpdateRoomMutation(); // Mutation for updating a room
+//   const [addRoom] = useAddRoomMutation(); // Mutation for adding a room
+
+//   const rooms = data?.data?.rooms || [];
+//   const totalPages = data?.data?.totalPages || 1;
+
+//   const showEditModal = (room: Room) => {
+//     setSelectedRoom(room);
+//     setEditedRoom({ ...room });
+//     setIsEditModalVisible(true);
+//   };
+
+//   const showAddModal = () => {
+//     setNewRoom({
+//       floorNo: 0,
+//       roomNo: 0,
+//       name: "",
+//       capacity: 0,
+//       pricePerSlot: 0,
+//       image: [""],
+//       amenities: [""],
+//     });
+//     setIsAddModalVisible(true);
+//   };
+
+//   const handleEditOk = async () => {
+//     if (editedRoom && editedRoom._id) {
+//       try {
+//         await updateRoom(editedRoom).unwrap();
+//         setIsEditModalVisible(false);
+//         Swal.fire("Updated!", "The room has been updated.", "success");
+//       } catch (error) {
+//         Swal.fire("Error!", "There was a problem updating the room.", "error");
+//         console.error("Update operation failed:", error);
+//       }
+//     }
+//   };
+
+//   const handleEditCancel = () => {
+//     setIsEditModalVisible(false);
+//   };
+
+//   const handleAddOk = async () => {
+//     try {
+//       await addRoom(newRoom).unwrap();
+//       setIsAddModalVisible(false);
+//       Swal.fire("Added!", "The room has been added.", "success");
+//     } catch (error) {
+//       Swal.fire("Error!", "There was a problem adding the room.", "error");
+//       console.error("Add operation failed:", error);
+//     }
+//   };
+
+//   const handleAddCancel = () => {
+//     setIsAddModalVisible(false);
+//   };
+
+//   const handleNextPage = () => {
+//     if (currentPage < totalPages) {
+//       setCurrentPage((prevPage) => prevPage + 1);
+//     }
+//   };
+
+//   const handlePrevPage = () => {
+//     if (currentPage > 1) {
+//       setCurrentPage((prevPage) => prevPage - 1);
+//     }
+//   };
+
+//   const handleEditInputChange = (
+    
+//     e: React.ChangeEvent<HTMLInputElement>,
+//     field: keyof Room
+//   ) => {
+//     if (editedRoom) {
+//       setEditedRoom({
+//         ...editedRoom,
+//         [field]:
+//           field === "image" || field === "amenities"
+//             ? e.target.value.split(",").map((item) => item.trim())
+//             : e.target.value,
+//       });
+//     }
+//   };
+
+//   const handleAddInputChange = (
+//     e: React.ChangeEvent<HTMLInputElement>,
+//     field: keyof Room
+//   ) => {
+//     setNewRoom({
+//       ...newRoom,
+//       [field]:
+//         field === "image" || field === "amenities"
+//           ? e.target.value.split(",").map((item) => item.trim())
+//           : e.target.value,
+//     });
+//   };
+
+//   const handleDelete = async (roomId: string) => {
+//     if (!/^[0-9a-fA-F]{24}$/.test(roomId)) {
+//       console.error("Invalid ID format:", roomId);
+//       Swal.fire("Error!", "Invalid Room ID format.", "error");
+//       return;
+//     }
+
+//     const result = await Swal.fire({
+//       title: "Are you sure?",
+//       text: "You won't be able to revert this!",
+//       icon: "warning",
+//       showCancelButton: true,
+//       confirmButtonColor: "#3085d6",
+//       cancelButtonColor: "#d33",
+//       confirmButtonText: "Yes, delete it!",
+//     });
+
+//     if (result.isConfirmed) {
+//       try {
+//         await deleteRoom(roomId).unwrap();
+//         Swal.fire("Deleted!", "The room has been deleted.", "success");
+//       } catch (error) {
+//         console.error("Delete operation failed:", error);
+//         Swal.fire("Error!", "There was a problem deleting the room.", "error");
+//       }
+//     }
+//   };
+
+//   if (isLoading) return <div>Loading...</div>;
+//   if (isError) return <div>Error loading rooms.</div>;
+
+//   return (
+//     <div className="p-4">
+//       <div className="flex justify-between mb-4">
+//         <h2 className="text-xl text-green-600 font-bold">Rooms List</h2>
+//         <button
+//           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+//           onClick={showAddModal}
+//         >
+//           Add Room
+//         </button>
+//       </div>
+
+//       <table className="min-w-full bg-white shadow-md rounded-lg">
+//         <thead>
+//           <tr>
+//             <th className="py-2 px-4 border-b text-left">Name</th>
+//             <th className="py-2 px-4 border-b text-left">Image</th>
+//             <th className="py-2 px-4 border-b text-left">Floor</th>
+//             <th className="py-2 px-4 border-b text-left">Room No</th>
+//             <th className="py-2 px-4 border-b text-left">Capacity</th>
+//             <th className="py-2 px-4 border-b text-left">isDeleted</th>
+//             <th className="py-2 px-4 border-b text-left">Price</th>
+//             <th className="py-2 px-4 border-b text-left">Action</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {rooms.map((room: Room) => (
+//             <tr key={room._id}>
+//               <td className="py-2 px-4 border-b">{room.name}</td>
+//               <td className="py-2 px-4 border-b">
+//                 <img
+//                   src={
+//                     room.image.length > 0
+//                       ? room.image[0]
+//                       : "default-image-url.jpg"
+//                   }
+//                   alt={room.name}
+//                   className="w-16 h-16 rounded-lg object-cover"
+//                 />
+//               </td>
+//               <td className="py-2 px-4 border-b">{room.floorNo}</td>
+//               <td className="py-2 px-4 border-b">{room.roomNo}</td>
+//               <td className="py-2 px-4 border-b">{room.capacity}</td>
+//               <td className="py-2 px-4 border-b">
+//                 {room.isDeleted ? "true" : "false"}
+//               </td>
+//               <td className="py-2 px-4 border-b">${room.pricePerSlot}</td>
+//               <td className="py-2 px-4 border-b space-x-4">
+//                 <button
+//                   className="text-green-500"
+//                   onClick={() => showEditModal(room)}
+//                 >
+//                   <EditFilled className="text-xl" />
+//                 </button>
+//                 <button
+//                   className="text-red-500"
+//                   onClick={() => handleDelete(room._id)}
+//                 >
+//                   <DeleteFilled className="text-xl" />
+//                 </button>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+
+//       {/* Pagination Controls */}
+//       <div className="flex justify-center mt-4">
+//         <button
+//           className={`px-4 py-2 bg-gray-200 border rounded-l-lg ${
+//             currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+//           }`}
+//           onClick={handlePrevPage}
+//           disabled={currentPage === 1}
+//         >
+//           Previous
+//         </button>
+//         <button
+//           className={`px-4 py-2 bg-gray-200 border rounded-r-lg ${
+//             currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+//           }`}
+//           onClick={handleNextPage}
+//           disabled={currentPage === totalPages}
+//         >
+//           Next
+//         </button>
+//       </div>
+
+//       {/* Edit Room Modal */}
+//       <Modal
+//         title="Edit Room"
+//         visible={isEditModalVisible}
+//         onOk={handleEditOk}
+//         onCancel={handleEditCancel}
+//       >
+//         <Input
+//           placeholder="Name"
+//           value={editedRoom?.name || ""}
+//           onChange={(e) => handleEditInputChange(e, "name")}
+//         />
+//         <Input
+//           placeholder="Floor No"
+//           value={editedRoom?.floorNo || 0}
+//           type="number"
+//           onChange={(e) => handleEditInputChange(e, "floorNo")}
+//         />
+//         <Input
+//           placeholder="Room No"
+//           value={editedRoom?.roomNo || 0}
+//           type="number"
+//           onChange={(e) => handleEditInputChange(e, "roomNo")}
+//         />
+//         <Input
+//           placeholder="Capacity"
+//           value={editedRoom?.capacity || 0}
+//           type="number"
+//           onChange={(e) => handleEditInputChange(e, "capacity")}
+//         />
+//         <Input
+//           placeholder="Price per Slot"
+//           value={editedRoom?.pricePerSlot || 0}
+//           type="number"
+//           onChange={(e) => handleEditInputChange(e, "pricePerSlot")}
+//         />
+//         <Input
+//           placeholder="Images (comma separated URLs)"
+//           value={editedRoom?.image?.join(", ") || ""}
+//           onChange={(e) => handleEditInputChange(e, "image")}
+//         />
+//         <Input
+//           placeholder="Amenities (comma separated)"
+//           value={editedRoom?.amenities?.join(", ") || ""}
+//           onChange={(e) => handleEditInputChange(e, "amenities")}
+//         />
+//       </Modal>
+
+//       {/* Add Room Modal */}
+//       <Modal
+//         title="Add Room"
+//         visible={isAddModalVisible}
+//         onOk={handleAddOk}
+//         onCancel={handleAddCancel}
+//       >
+//         <Input
+//           placeholder="Name"
+//           value={newRoom?.name || ""}
+//           onChange={(e) => handleAddInputChange(e, "name")}
+//         />
+//         <Input
+//           placeholder="Floor No"
+//           value={newRoom?.floorNo || 0}
+//           type="number"
+//           onChange={(e) => handleAddInputChange(e, "floorNo")}
+//         />
+//         <Input
+//           placeholder="Room No"
+//           value={newRoom?.roomNo || 0}
+//           type="number"
+//           onChange={(e) => handleAddInputChange(e, "roomNo")}
+//         />
+//         <Input
+//           placeholder="Capacity"
+//           value={newRoom?.capacity || 0}
+//           type="number"
+//           onChange={(e) => handleAddInputChange(e, "capacity")}
+//         />
+//         <Input
+//           placeholder="Price per Slot"
+//           value={newRoom?.pricePerSlot || 0}
+//           type="number"
+//           onChange={(e) => handleAddInputChange(e, "pricePerSlot")}
+//         />
+//         <Input
+//           placeholder="Images (comma separated URLs)"
+//           value={newRoom?.image?.join(", ") || ""}
+//           onChange={(e) => handleAddInputChange(e, "image")}
+//         />
+//         <Input
+//           placeholder="Amenities (comma separated)"
+//           value={newRoom?.amenities?.join(", ") || ""}
+//           onChange={(e) => handleAddInputChange(e, "amenities")}
+//         />
+//       </Modal>
+//     </div>
+//   );
+// };
+
+// export default RoomTable;
+import React, { useState } from "react";
+import { Modal, Input, Form } from "antd";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import Swal from "sweetalert2";
 import {
   useGetRoomsQuery,
   useDeleteRoomMutation,
   useUpdateRoomMutation,
   useAddRoomMutation,
-} from "../../../redux/features/roomsApi"; // Adjust the import path based on your project structure
+} from "../../../redux/features/roomsApi";
 
 export interface Room {
-  id: Key | null | undefined;
+  isDeleted: boolean;
+  id: string | null | undefined;
   floorNo: number;
   roomNo: number;
   _id: string;
@@ -389,12 +750,10 @@ const RoomTable: React.FC = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-  const [editedRoom, setEditedRoom] = useState<Room | null>(null);
-  const [newRoom, setNewRoom] = useState<Room>({
-    id: null,
+  const [editedRoom, setEditedRoom] = useState<Partial<Room> | null>(null);
+  const [newRoom, setNewRoom] = useState<Partial<Room>>({
     floorNo: 0,
     roomNo: 0,
-    _id: "",
     name: "",
     capacity: 0,
     pricePerSlot: 0,
@@ -403,27 +762,24 @@ const RoomTable: React.FC = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetching room data using RTK Query
   const { data, isLoading, isError } = useGetRoomsQuery({ page: currentPage });
-  const [deleteRoom] = useDeleteRoomMutation(); // Mutation for deleting a room
-  const [updateRoom] = useUpdateRoomMutation(); // Mutation for updating a room
-  const [addRoom] = useAddRoomMutation(); // Mutation for adding a room
+  const [deleteRoom] = useDeleteRoomMutation();
+  const [updateRoom] = useUpdateRoomMutation();
+  const [addRoom] = useAddRoomMutation();
 
   const rooms = data?.data?.rooms || [];
   const totalPages = data?.data?.totalPages || 1;
 
   const showEditModal = (room: Room) => {
     setSelectedRoom(room);
-    setEditedRoom(room);
+    setEditedRoom({ ...room });
     setIsEditModalVisible(true);
   };
 
   const showAddModal = () => {
     setNewRoom({
-      id: null,
       floorNo: 0,
       roomNo: 0,
-      _id: "",
       name: "",
       capacity: 0,
       pricePerSlot: 0,
@@ -434,10 +790,15 @@ const RoomTable: React.FC = () => {
   };
 
   const handleEditOk = async () => {
-    if (editedRoom) {
-      await updateRoom(editedRoom);
-      setIsEditModalVisible(false);
-      // Optionally refetch data here or update local state
+    if (editedRoom && editedRoom._id) {
+      try {
+        await updateRoom({ roomId: editedRoom._id, ...editedRoom }).unwrap();
+        setIsEditModalVisible(false);
+        Swal.fire("Updated!", "The room has been updated.", "success");
+      } catch (error) {
+        Swal.fire("Error!", "There was a problem updating the room.", "error");
+        console.error("Update operation failed:", error);
+      }
     }
   };
 
@@ -446,9 +807,14 @@ const RoomTable: React.FC = () => {
   };
 
   const handleAddOk = async () => {
-    await addRoom(newRoom);
-    setIsAddModalVisible(false);
-    // Optionally refetch data here or update local state
+    try {
+      await addRoom(newRoom).unwrap();
+      setIsAddModalVisible(false);
+      Swal.fire("Added!", "The room has been added.", "success");
+    } catch (error) {
+      Swal.fire("Error!", "There was a problem adding the room.", "error");
+      console.error("Add operation failed:", error);
+    }
   };
 
   const handleAddCancel = () => {
@@ -471,33 +837,70 @@ const RoomTable: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     field: keyof Room
   ) => {
-    if (editedRoom) {
-      setEditedRoom({
-        ...editedRoom,
-        [field]:
-          field === "image" || field === "amenities"
-            ? e.target.value.split(",").map((item) => item.trim())
-            : e.target.value,
-      });
-    }
+    const value =
+      field === "image" || field === "amenities"
+        ? e.target.value.split(",").map((item) => item.trim())
+        : e.target.value;
+
+    setEditedRoom({
+      ...editedRoom,
+      [field]:
+        field === "floorNo" ||
+        field === "roomNo" ||
+        field === "capacity" ||
+        field === "pricePerSlot"
+          ? Number(value)
+          : value,
+    });
   };
 
   const handleAddInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     field: keyof Room
   ) => {
+    const value =
+      field === "image" || field === "amenities"
+        ? e.target.value.split(",").map((item) => item.trim())
+        : e.target.value;
+
     setNewRoom({
       ...newRoom,
       [field]:
-        field === "image" || field === "amenities"
-          ? e.target.value.split(",").map((item) => item.trim())
-          : e.target.value,
+        field === "floorNo" ||
+        field === "roomNo" ||
+        field === "capacity" ||
+        field === "pricePerSlot"
+          ? Number(value)
+          : value,
     });
   };
 
   const handleDelete = async (roomId: string) => {
-    await deleteRoom({ id: roomId });
-    // Optionally refetch data here or update local state
+    if (!/^[0-9a-fA-F]{24}$/.test(roomId)) {
+      console.error("Invalid ID format:", roomId);
+      Swal.fire("Error!", "Invalid Room ID format.", "error");
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteRoom(roomId).unwrap();
+        Swal.fire("Deleted!", "The room has been deleted.", "success");
+      } catch (error) {
+        console.error("Delete operation failed:", error);
+        Swal.fire("Error!", "There was a problem deleting the room.", "error");
+      }
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -523,6 +926,7 @@ const RoomTable: React.FC = () => {
             <th className="py-2 px-4 border-b text-left">Floor</th>
             <th className="py-2 px-4 border-b text-left">Room No</th>
             <th className="py-2 px-4 border-b text-left">Capacity</th>
+            <th className="py-2 px-4 border-b text-left">isDeleted</th>
             <th className="py-2 px-4 border-b text-left">Price</th>
             <th className="py-2 px-4 border-b text-left">Action</th>
           </tr>
@@ -545,19 +949,22 @@ const RoomTable: React.FC = () => {
               <td className="py-2 px-4 border-b">{room.floorNo}</td>
               <td className="py-2 px-4 border-b">{room.roomNo}</td>
               <td className="py-2 px-4 border-b">{room.capacity}</td>
+              <td className="py-2 px-4 border-b">
+                {room.isDeleted ? "true" : "false"}
+              </td>
               <td className="py-2 px-4 border-b">${room.pricePerSlot}</td>
-              <td className="py-2 px-4 border-b space-x-4">
+              <td className="py-2 px-4 border-b">
                 <button
-                  className="text-green-500"
+                  className="text-blue-500 hover:text-blue-700 mr-2"
                   onClick={() => showEditModal(room)}
                 >
-                  <EditFilled className="text-xl" />
+                  <EditFilled />
                 </button>
                 <button
-                  className="text-red-500"
+                  className="text-red-500 hover:text-red-700"
                   onClick={() => handleDelete(room._id)}
                 >
-                  <DeleteFilled className="text-xl" />
+                  <DeleteFilled />
                 </button>
               </td>
             </tr>
@@ -565,24 +972,16 @@ const RoomTable: React.FC = () => {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-between mt-4">
         <button
-          className={`px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400 ${
-            currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
           onClick={handlePrevPage}
           disabled={currentPage === 1}
         >
           Previous
         </button>
-        <span className="ml-4 mr-4 mt-2">
-          Page {currentPage} of {totalPages}
-        </span>
         <button
-          className={`px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400 ${
-            currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
@@ -590,158 +989,116 @@ const RoomTable: React.FC = () => {
         </button>
       </div>
 
-      {/* Edit Room Modal */}
-      {editedRoom && (
-        <Modal
-          title={
-            <h2 className="text-green-600 text-center text-xl font-semibold">
-              Update Room
-            </h2>
-          }
-          visible={isEditModalVisible}
-          onOk={handleEditOk}
-          onCancel={handleEditCancel}
-          footer={[
-            <div className="flex justify-center mt-4 space-x-4" key="footer">
-              <Button
-                key="cancel"
-                onClick={handleEditCancel}
-                className="bg-gray-300 hover:bg-gray-400 text-black"
-              >
-                Cancel
-              </Button>
-              <Button
-                key="submit"
-                onClick={handleEditOk}
-                className="bg-green-500 hover:bg-green-600 text-white"
-              >
-                Update
-              </Button>
-            </div>,
-          ]}
-        >
-          <Input
-            value={editedRoom.name}
-            placeholder="Room Name"
-            onChange={(e) => handleEditInputChange(e, "name")}
-          />
-          <Input
-            type="number"
-            value={editedRoom.floorNo}
-            placeholder="Floor Number"
-            onChange={(e) => handleEditInputChange(e, "floorNo")}
-            className="mt-2"
-          />
-          <Input
-            type="number"
-            value={editedRoom.roomNo}
-            placeholder="Room Number"
-            onChange={(e) => handleEditInputChange(e, "roomNo")}
-            className="mt-2"
-          />
-          <Input
-            type="number"
-            value={editedRoom.capacity}
-            placeholder="Capacity"
-            onChange={(e) => handleEditInputChange(e, "capacity")}
-            className="mt-2"
-          />
-          <Input
-            type="number"
-            value={editedRoom.pricePerSlot}
-            placeholder="Price Per Slot"
-            onChange={(e) => handleEditInputChange(e, "pricePerSlot")}
-            className="mt-2"
-          />
-          <Input
-            value={editedRoom.image.join(",")}
-            placeholder="Image URLs (comma separated)"
-            onChange={(e) => handleEditInputChange(e, "image")}
-            className="mt-2"
-          />
-          <Input
-            value={editedRoom.amenities.join(",")}
-            placeholder="Amenities (comma separated)"
-            onChange={(e) => handleEditInputChange(e, "amenities")}
-            className="mt-2"
-          />
-        </Modal>
-      )}
-
-      {/* Add Room Modal */}
       <Modal
-        title={
-          <h2 className="text-green-600 text-center text-xl font-semibold">
-            Add New Room
-          </h2>
-        }
+        title="Edit Room"
+        visible={isEditModalVisible}
+        onOk={handleEditOk}
+        onCancel={handleEditCancel}
+      >
+        <Form>
+          <Form.Item label="Room Name">
+            <Input
+              value={editedRoom?.name}
+              onChange={(e) => handleEditInputChange(e, "name")}
+            />
+          </Form.Item>
+          <Form.Item label="Floor No">
+            <Input
+              type="number"
+              value={editedRoom?.floorNo}
+              onChange={(e) => handleEditInputChange(e, "floorNo")}
+            />
+          </Form.Item>
+          <Form.Item label="Room No">
+            <Input
+              type="number"
+              value={editedRoom?.roomNo}
+              onChange={(e) => handleEditInputChange(e, "roomNo")}
+            />
+          </Form.Item>
+          <Form.Item label="Capacity">
+            <Input
+              type="number"
+              value={editedRoom?.capacity}
+              onChange={(e) => handleEditInputChange(e, "capacity")}
+            />
+          </Form.Item>
+          <Form.Item label="Price Per Slot">
+            <Input
+              type="number"
+              value={editedRoom?.pricePerSlot}
+              onChange={(e) => handleEditInputChange(e, "pricePerSlot")}
+            />
+          </Form.Item>
+          <Form.Item label="Image URLs (comma-separated)">
+            <Input
+              value={editedRoom?.image.join(", ")}
+              onChange={(e) => handleEditInputChange(e, "image")}
+            />
+          </Form.Item>
+          <Form.Item label="Amenities (comma-separated)">
+            <Input
+              value={editedRoom?.amenities.join(", ")}
+              onChange={(e) => handleEditInputChange(e, "amenities")}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        title="Add Room"
         visible={isAddModalVisible}
         onOk={handleAddOk}
         onCancel={handleAddCancel}
-        footer={[
-          <div className="flex justify-center mt-4 space-x-4" key="footer">
-            <Button
-              key="cancel"
-              onClick={handleAddCancel}
-              className="bg-gray-300 hover:bg-gray-400 text-black"
-            >
-              Cancel
-            </Button>
-            <Button
-              key="submit"
-              onClick={handleAddOk}
-              className="bg-green-500 hover:bg-green-600 text-white"
-            >
-              Add Room
-            </Button>
-          </div>,
-        ]}
       >
-        <Input
-          value={newRoom.name}
-          placeholder="Room Name"
-          onChange={(e) => handleAddInputChange(e, "name")}
-        />
-        <Input
-          type="number"
-          value={newRoom.floorNo}
-          placeholder="Floor Number"
-          onChange={(e) => handleAddInputChange(e, "floorNo")}
-          className="mt-2"
-        />
-        <Input
-          type="number"
-          value={newRoom.roomNo}
-          placeholder="Room Number"
-          onChange={(e) => handleAddInputChange(e, "roomNo")}
-          className="mt-2"
-        />
-        <Input
-          type="number"
-          value={newRoom.capacity}
-          placeholder="Capacity"
-          onChange={(e) => handleAddInputChange(e, "capacity")}
-          className="mt-2"
-        />
-        <Input
-          type="number"
-          value={newRoom.pricePerSlot}
-          placeholder="Price Per Slot"
-          onChange={(e) => handleAddInputChange(e, "pricePerSlot")}
-          className="mt-2"
-        />
-        <Input
-          value={newRoom.image.join(",")}
-          placeholder="Image URLs (comma separated)"
-          onChange={(e) => handleAddInputChange(e, "image")}
-          className="mt-2"
-        />
-        <Input
-          value={newRoom.amenities.join(",")}
-          placeholder="Amenities (comma separated)"
-          onChange={(e) => handleAddInputChange(e, "amenities")}
-          className="mt-2"
-        />
+        <Form>
+          <Form.Item label="Room Name">
+            <Input
+              value={newRoom.name}
+              onChange={(e) => handleAddInputChange(e, "name")}
+            />
+          </Form.Item>
+          <Form.Item label="Floor No">
+            <Input
+              type="number"
+              value={newRoom.floorNo}
+              onChange={(e) => handleAddInputChange(e, "floorNo")}
+            />
+          </Form.Item>
+          <Form.Item label="Room No">
+            <Input
+              type="number"
+              value={newRoom.roomNo}
+              onChange={(e) => handleAddInputChange(e, "roomNo")}
+            />
+          </Form.Item>
+          <Form.Item label="Capacity">
+            <Input
+              type="number"
+              value={newRoom.capacity}
+              onChange={(e) => handleAddInputChange(e, "capacity")}
+            />
+          </Form.Item>
+          <Form.Item label="Price Per Slot">
+            <Input
+              type="number"
+              value={newRoom.pricePerSlot}
+              onChange={(e) => handleAddInputChange(e, "pricePerSlot")}
+            />
+          </Form.Item>
+          <Form.Item label="Image URLs (comma-separated)">
+            <Input
+              value={newRoom.image.join(", ")}
+              onChange={(e) => handleAddInputChange(e, "image")}
+            />
+          </Form.Item>
+          <Form.Item label="Amenities (comma-separated)">
+            <Input
+              value={newRoom.amenities.join(", ")}
+              onChange={(e) => handleAddInputChange(e, "amenities")}
+            />
+          </Form.Item>
+        </Form>
       </Modal>
     </div>
   );

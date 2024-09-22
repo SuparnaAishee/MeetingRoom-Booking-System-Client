@@ -2,7 +2,7 @@ import { useGetMyBookingsQuery } from "../../redux/booking/bookingApi";
 
 const MyBooking = () => {
   const { data, isLoading } = useGetMyBookingsQuery(undefined, {
-    pollingInterval: 5000, // Adjust polling interval as needed (5 seconds here)
+    pollingInterval: 5000, 
   });
 
   if (isLoading) {
@@ -85,6 +85,7 @@ const MyBooking = () => {
                   <p className="text-black">
                     Time:{" "}
                     {booking.slots
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       .map((slot: any) => `${slot.startTime} - ${slot.endTime}`)
                       .join(", ")}
                   </p>

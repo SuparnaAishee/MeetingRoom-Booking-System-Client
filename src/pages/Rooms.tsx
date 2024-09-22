@@ -313,7 +313,7 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
           </Button>
         </div>
 
-        {/* Rooms List */}
+        
         <Row gutter={[16, 16]}>
           {roomsToDisplay.length > 0 ? (
             roomsToDisplay.map((room: Room) => (
@@ -373,7 +373,7 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
           )}
         </Row>
 
-        {/* Pagination */}
+        
         {!limit && filteredRooms.length > defaultLimit && (
           <div className="flex justify-center mt-6">
             <Button

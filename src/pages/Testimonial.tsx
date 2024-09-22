@@ -196,7 +196,7 @@ const TestimonialSection = () => {
           />
         </div>
 
-        {/* Right Side: Writings */}
+
         <div
           className="w-full lg:w-1/2 space-y-6 text-left lg:pl-12"
           data-aos="fade-up"
@@ -214,7 +214,6 @@ const TestimonialSection = () => {
           </button>
         </div>
 
-        {/* Carousel overlapping both sides */}
         <div
           className="absolute bottom-0 right-0 w-full lg:w-3/4 bg-gray-100 shadow-lg p-6 lg:right-[5%] lg:bottom-[-30%] testimonial-custom"
           data-aos="fade-up"

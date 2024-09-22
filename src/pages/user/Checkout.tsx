@@ -58,7 +58,7 @@ const CheckoutPage: React.FC = () => {
   const location = useLocation();
   const { roomId, selectedSlotIds, selectedSlotTimes, selectedDate } = location.state || {};
 
-  // Fetch room details
+
   const {
     data: roomResponse,
     error: roomError,
@@ -98,24 +98,24 @@ const CheckoutPage: React.FC = () => {
 const handleCheckout = async () => {
   console.log("Checkout button clicked");
 
-  // Log all the fields to ensure they're being captured
+  
   console.log("roomId:", roomId);
   console.log("selectedSlotIds:", selectedSlotIds);
   console.log("selectedDate:", selectedDate);
   console.log("userId:", userData?._id);
 
-  // Prepare booking payload with actual values
+
   const bookingPayload = {
-    date: selectedDate, // No default, just use the actual value
-    slots: selectedSlotIds, // No default, actual selected slots
-    room: roomId, // Actual roomId
-    user: userData?._id, // Actual userId from logged in user
+    date: selectedDate, 
+    slots: selectedSlotIds, 
+    room: roomId, 
+    user: userData?._id, 
   };
 
-  console.log("Booking Payload: ", bookingPayload); // Log payload before sending
+  console.log("Booking Payload: ", bookingPayload); 
 
   try {
-    // Make the API call to create the booking, even if fields are missing
+    
     await createBooking(bookingPayload).unwrap();
     alert("Booking successful!");
   } catch (err) {
@@ -247,25 +247,16 @@ const handleCheckout = async () => {
             />
             Cash on Delivery
           </label>
+       
           <label className="text-black text-lg">
             <input
               type="radio"
-              value="card"
-              checked={paymentMethod === "card"}
+              value="amrpay"
+              checked={paymentMethod === "amrpay"}
               onChange={handlePaymentMethodChange}
               className="mr-2"
             />
-            Credit/Debit Card
-          </label>
-          <label className="text-black text-lg">
-            <input
-              type="radio"
-              value="paypal"
-              checked={paymentMethod === "paypal"}
-              onChange={handlePaymentMethodChange}
-              className="mr-2"
-            />
-            PayPal
+           Online Payment
           </label>
         </div>
       </div>
@@ -280,7 +271,6 @@ const handleCheckout = async () => {
         {bookingLoading ? "Processing..." : "Confirm Booking"}
       </button>
 
-      {/* Error Message Display */}
       {bookingError && (
         <p className="text-red-500 mt-4 text-center">{bookingError.message}</p>
       )}

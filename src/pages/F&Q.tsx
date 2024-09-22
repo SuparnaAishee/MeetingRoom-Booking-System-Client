@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Layout, Collapse, Typography, Row, Col, Button } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"; 
@@ -11,7 +11,6 @@ const { Title, Paragraph } = Typography;
 const FAQSection = () => {
   const navigate = useNavigate();
 
-  // Function to handle button click
   const handleContactClick = () => {
     navigate("/contact"); 
   };
@@ -21,13 +20,13 @@ const FAQSection = () => {
       <Content className="py-16 layout-padding bg-white">
         <div className="container mx-auto px-4">
           <Row
-            gutter={[32, 32]} // Adds spacing between columns
+            gutter={[32, 32]} 
             align="middle"
             justify="center"
           >
-            {/* Left Side: Caption + FAQ */}
+           
             <Col xs={24} md={12} className="order-2 md:order-1">
-              {/* Caption */}
+             
               <Title
                 level={2}
                 className="text-green-600 text-left text-3xl md:text-4xl"
@@ -40,7 +39,7 @@ const FAQSection = () => {
                 feel free to contact us!
               </Paragraph>
 
-              {/* FAQ Collapse Section */}
+             
               <Collapse
                 accordion
                 bordered={false}
@@ -124,7 +123,7 @@ const FAQSection = () => {
                 </Panel>
               </Collapse>
 
-              {/* Contact Us Button */}
+             
               <Button
                 type="primary"
                 size="large"
@@ -135,7 +134,7 @@ const FAQSection = () => {
               </Button>
             </Col>
 
-            {/* Right Side: Image */}
+           
             <Col xs={24} md={12} className="order-1 md:order-2">
               <img
                 src="https://res.cloudinary.com/dwelabpll/image/upload/v1725478984/istockphoto-1337995272-612x612_fizg4d.jpg"

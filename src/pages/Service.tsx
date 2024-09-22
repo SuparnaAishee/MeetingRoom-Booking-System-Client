@@ -15,7 +15,7 @@ const ServiceSection: React.FC = () => {
     <div>
       <section>
         <div className="relative h-96 ">
-          {/* Background Image */}
+         
           <img
             src="https://res.cloudinary.com/dwelabpll/image/upload/v1725553163/960x0_pzdhid.webp"
             className="w-full h-full object-cover"
@@ -25,7 +25,7 @@ const ServiceSection: React.FC = () => {
           {/* Black Transparent Shade */}
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-          {/* Text Content */}
+          
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
             <nav className="text-sm mb-4">
               <a href="/" className="hover:underline">
