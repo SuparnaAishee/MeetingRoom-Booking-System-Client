@@ -288,70 +288,149 @@ const BookingTable: React.FC = () => {
   const totalPages = data?.data?.totalPages || 1;
 
  
+  // const handleDelete = async (bookingId: string) => {
+  //   const result = await Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You will not be able to recover this booking!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#22C55E",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   });
+
+  //   if (result.isConfirmed) {
+  //     try {
+  //       await deleteBooking(bookingId).unwrap();
+  //       Swal.fire("Deleted!", "Your booking has been deleted.", "success");
+  //     } catch (error) {
+  //       Swal.fire(
+  //         "Error!",
+  //         "There was an error deleting the booking.",
+  //         "error"
+  //       );
+  //     }
+  //   }
+  // };
   const handleDelete = async (bookingId: string) => {
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "You will not be able to recover this booking!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#22C55E",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#22C55E", // Green color for confirmation
+      cancelButtonColor: "#d33", // Red color for cancel
       confirmButtonText: "Yes, delete it!",
     });
 
     if (result.isConfirmed) {
       try {
         await deleteBooking(bookingId).unwrap();
-        Swal.fire("Deleted!", "Your booking has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your booking has been deleted.",
+          icon: "success",
+          confirmButtonColor: "#22C55E", // Green color for success modal
+        });
       } catch (error) {
-        Swal.fire(
-          "Error!",
-          "There was an error deleting the booking.",
-          "error"
-        );
+        Swal.fire({
+          title: "Error!",
+          text: "There was an error deleting the booking.",
+          icon: "error",
+          confirmButtonColor: "#d33", // Red color for error modal
+        });
       }
     }
   };
+
+
+  // const handleEdit = (booking: Booking) => {
+  //   setSelectedBooking(booking);
+  //   form.setFieldsValue({
+  //     customerName: booking.user.name,
+  //     status: booking.isConfirmed ? "Confirmed" : "canceled",
+  //   });
+  //   setIsModalVisible(true);
+  // };
+
+  // const handleUpdate = async () => {
+  //   try {
+  //     setIsUpdating(true); 
+  //     const values = await form.validateFields();
+
+     
+  //     const updatedBooking = {
+  //       ...selectedBooking,
+  //       isConfirmed: values.status === "Confirmed",
+  //     };
+
+    
+  //     if (selectedBooking) {
+  //       await updateBooking({
+  //         bookingId: selectedBooking._id,
+  //         updatedBooking,
+  //       }).unwrap();
+
+        
+  //       setIsModalVisible(false);
+  //       message.success("Booking updated successfully");
+  //     }
+  //   } catch (error) {
+  //     message.error("Error updating booking");
+  //   } finally {
+  //     setIsUpdating(false); 
+  //   }
+  // };
 
   const handleEdit = (booking: Booking) => {
     setSelectedBooking(booking);
     form.setFieldsValue({
       customerName: booking.user.name,
-      status: booking.isConfirmed ? "Confirmed" : "canceled",
+      status: booking.isConfirmed ? "Confirmed" : "Canceled", // Adjust case for "Canceled"
     });
-    setIsModalVisible(true);
+    setIsModalVisible(true); // Open the modal for editing
   };
 
   const handleUpdate = async () => {
     try {
-      setIsUpdating(true); 
-      const values = await form.validateFields();
+      setIsUpdating(true); // Start loading state for the update process
+      const values = await form.validateFields(); // Validate form fields
 
-     
       const updatedBooking = {
-        ...selectedBooking,
-        isConfirmed: values.status === "Confirmed",
+        ...selectedBooking, // Spread the selected booking
+        isConfirmed: values.status === "Confirmed", // Update the confirmation status
       };
 
-    
       if (selectedBooking) {
+        // Ensure selectedBooking is not null
         await updateBooking({
-          bookingId: selectedBooking._id,
-          updatedBooking,
+          bookingId: selectedBooking._id, // Send booking ID
+          updatedBooking, // Send updated booking data
         }).unwrap();
 
-        
-        setIsModalVisible(false);
-        message.success("Booking updated successfully");
+        setIsModalVisible(false); // Close modal after success
+
+        // Show success message using Swal
+        Swal.fire({
+          title: "Success!",
+          text: "Booking updated successfully.",
+          icon: "success",
+          confirmButtonColor: "#22C55E", // Green color for the confirm button
+        });
       }
     } catch (error) {
-      message.error("Error updating booking");
+      // Show error message using Swal
+      Swal.fire({
+        title: "Error!",
+        text: "There was an error updating the booking.",
+        icon: "error",
+        confirmButtonColor: "#d33", // Red color for error
+      });
     } finally {
-      setIsUpdating(false); 
+      setIsUpdating(false); // Reset loading state after completion
     }
   };
 
-  
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);

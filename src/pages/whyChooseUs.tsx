@@ -60,7 +60,7 @@ const WhyChooseUs = () => {
           </div>
 
           {/* Right Side - Progress Bars */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 pt-12">
             <div className="mb-8" data-aos="fade-down">
               <div className="flex items-center justify-between mb-4">
                 <p className="text-gray-700 font-semibold">Hospitality</p>
@@ -70,6 +70,9 @@ const WhyChooseUs = () => {
                   className="w-3/4"
                   showInfo={false}
                 />
+                <span className="ml-2 text-gray-700 font-semibold">
+                  {isInView ? "80%" : "0%"}
+                </span>
               </div>
               <div className="flex items-center justify-between mb-4">
                 <p className="text-gray-700 font-semibold">Coworker</p>
@@ -79,6 +82,9 @@ const WhyChooseUs = () => {
                   className="w-3/4"
                   showInfo={false}
                 />
+                <span className="ml-2 text-gray-700 font-semibold">
+                  {isInView ? "75%" : "0%"}
+                </span>
               </div>
               <div className="flex items-center justify-between mb-4">
                 <p className="text-gray-700 font-semibold">Service</p>
@@ -88,6 +94,9 @@ const WhyChooseUs = () => {
                   className="w-3/4"
                   showInfo={false}
                 />
+                <span className="ml-2 text-gray-700 font-semibold">
+                  {isInView ? "70%" : "0%"}
+                </span>
               </div>
             </div>
           </div>

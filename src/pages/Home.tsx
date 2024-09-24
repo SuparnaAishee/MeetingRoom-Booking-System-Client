@@ -43,12 +43,12 @@ const HomePage: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-bold">
             Effortless Planning for Uninterrupted Progress.
           </h2>
-          <p className="text-gray-600 text-sm md:text-base">
+          <p className="text-gray-600 text-sm md:text-base w-4/5">
             We are dedicated to making your scheduling process as seamless as
             possible. Our meeting booking system is designed to simplify the way
             you connect, collaborate, and communicate.
           </p>
-          <p className="text-gray-600 text-sm md:text-base">
+          <p className="text-gray-600 text-sm md:text-base pb-8 w-4/5">
             By eliminating the hassle of back-and-forth scheduling, we help you
             focus on what truly matters—productive meetings and meaningful
             connections.

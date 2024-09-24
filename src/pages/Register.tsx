@@ -118,7 +118,7 @@ const RegisterForm: React.FC = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [eyeVisible, setEyeVisible] = useState(false); 
+  const [eyeVisible, setEyeVisible] = useState(false); // Controls the visibility of the password
   const navigate = useNavigate();
   const [signupUser, { isLoading, error }] = useSignupUserMutation();
 
@@ -132,7 +132,7 @@ const RegisterForm: React.FC = () => {
         address,
         password,
       }).unwrap();
-      navigate("/login"); 
+      navigate("/login");
     } catch (err) {
       console.error("Failed to register:", err);
     }
@@ -194,11 +194,9 @@ const RegisterForm: React.FC = () => {
               />
             </div>
             <div className="mt-4 relative">
-              {" "}
-              
               <label className="block text-gray-700">Password</label>
               <input
-                type={eyeVisible ? "text" : "password"} 
+                type={eyeVisible ? "text" : "password"} // Toggle between "text" and "password" input types
                 className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -206,12 +204,12 @@ const RegisterForm: React.FC = () => {
               />
               <span
                 className="absolute inset-y-0 right-0 pt-8 pr-3 flex items-center cursor-pointer"
-                onClick={() => setEyeVisible(!eyeVisible)}
+                onClick={() => setEyeVisible(!eyeVisible)} // Toggle visibility on icon click
               >
-                {password ? (
-                  <EyeInvisibleOutlined className="text-xl text-gray-500" />
+                {eyeVisible ? (
+                  <EyeOutlined className="text-xl text-gray-500" /> // Show "Eye" when password is visible (not crossed)
                 ) : (
-                  <EyeOutlined className="text-xl text-gray-500" />
+                  <EyeInvisibleOutlined className="text-xl text-gray-500" /> // Show "EyeInvisible" when password is hidden (crossed)
                 )}
               </span>
             </div>

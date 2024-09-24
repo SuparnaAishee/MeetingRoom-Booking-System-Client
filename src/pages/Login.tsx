@@ -142,7 +142,7 @@ const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state: any) => state.auth);
   const [loginUser, { isLoading, error }] = useLoginUserMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -167,15 +167,15 @@ const LoginForm: React.FC = () => {
         phone: userData.phone || "",
         _id: userData._id,
         bookings: undefined,
-        data: undefined
+        data: undefined,
       };
 
-      // user and tokens in Redux store
+      // Save user and tokens in Redux store
       dispatch(setCredentials({ user, token, refreshToken }));
 
-      // tokens save to localStorage
+      // Save tokens to localStorage
       localStorage.setItem("token", token);
-      localStorage.setItem("refreshToken", refreshToken); 
+      localStorage.setItem("refreshToken", refreshToken);
 
       toast.success("Login successful!");
       navigate("/");
@@ -228,10 +228,11 @@ const LoginForm: React.FC = () => {
                   required
                 />
               </div>
+
               <div className="mt-4 relative">
                 <label className="block text-gray-700">Password</label>
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? "text" : "password"} // Toggle between "text" and "password" input types
                   className="w-full px-3 sm:px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
                   placeholder="Enter your password"
                   value={password}
@@ -243,9 +244,9 @@ const LoginForm: React.FC = () => {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeInvisibleOutlined className="text-xl text-gray-500" />
+                    <EyeOutlined className="text-xl text-gray-500" /> // Show "Eye" icon when password is visible
                   ) : (
-                    <EyeOutlined className="text-xl text-gray-500" />
+                    <EyeInvisibleOutlined className="text-xl text-gray-500" /> // Show "Eye with slash" icon when password is hidden
                   )}
                 </div>
               </div>

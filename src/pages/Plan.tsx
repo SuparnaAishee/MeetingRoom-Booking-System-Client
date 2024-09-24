@@ -2,17 +2,23 @@ import { Layout, Row, Col, Typography, Card, Button } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
 import "../styles/custom.css"
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import Aos from "aos";
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const ChoosePlanSection = () => {
+   useEffect(() => {
+     Aos.init({
+       duration: 1200,
+     });
+   }, []);
   return (
     <Layout>
       <Content className="py-16 bg-white layout-padding">
         <div className="container mx-auto px-4">
           <Row gutter={[32, 32]} align="middle">
-           
-            <Col xs={24} md={12}>
+            <Col data-aos="fade-up" xs={24} md={12}>
               <Title
                 level={3}
                 style={{ color: "#38A169", marginBottom: "24px" }}
@@ -28,7 +34,7 @@ const ChoosePlanSection = () => {
                 Choose a plan that best suits your requirements.
               </Text>
               <br />
-              <Text className="mb-4 d-block pt-2">
+              <Text className="mb-4 d-block pt-4">
                 <CheckOutlined style={{ color: "#52c41a" }} /> Affordable prices
                 <br />
                 <CheckOutlined style={{ color: "#52c41a" }} /> Flexibility and
@@ -38,25 +44,24 @@ const ChoosePlanSection = () => {
                 support
                 <br />
               </Text>
-             
+
               <Link to="/rooms">
-              <Button
-                style={{
-                  backgroundColor: "#38A169",
-                  color: "#fff",
-                  marginTop: "24px",
-                }}
-              >
-                Book Now
-              </Button>
+                <Button
+                  data-aos="zoom-in-up"
+                  style={{
+                    backgroundColor: "#38A169",
+                    color: "#fff",
+                    marginTop: "24px",
+                  }}
+                >
+                  Book Now
+                </Button>
               </Link>
             </Col>
 
-            
             <Col xs={24} md={12}>
               <Row gutter={[16, 16]} justify="center">
-          
-                <Col xs={24} sm={8}>
+                <Col data-aos="zoom-out" xs={24} sm={8}>
                   <Card
                     title="Basic Plan"
                     bordered
@@ -83,10 +88,9 @@ const ChoosePlanSection = () => {
                   </Card>
                 </Col>
 
-             
                 <Col xs={24} sm={8}>
                   <Card
-                    title="Pro Plan"
+                    title={<span style={{ color: "#fff" }}>Pro Plan</span>}
                     bordered
                     style={{
                       textAlign: "center",
@@ -100,11 +104,12 @@ const ChoosePlanSection = () => {
                     hoverable
                   >
                     <Title level={3} style={{ color: "#fff" }}>
-                      $29.99/month
+                      $29.19/month
                     </Title>
                     <Text style={{ color: "#fff" }}>Best for small teams.</Text>
                     <br />
                     <Button
+                      data-aos="zoom-in-up"
                       style={{
                         marginTop: 16,
                         backgroundColor: "#fff",
@@ -116,8 +121,7 @@ const ChoosePlanSection = () => {
                   </Card>
                 </Col>
 
-              
-                <Col xs={24} sm={8}>
+                <Col data-aos="zoom-out" xs={24} sm={8}>
                   <Card
                     title="Enterprise Plan"
                     bordered

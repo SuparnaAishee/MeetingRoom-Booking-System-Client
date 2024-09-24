@@ -42,7 +42,7 @@ const roomSchema = z.object({
 
 interface AddRoomModalProps {
   visible: boolean;
-  newRoom: Room; // Should contain default values or empty strings for inputs
+  newRoom: Room;
   onAdd: (room: Room) => void;
   onCancel: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>, field: keyof Room) => void;
@@ -63,32 +63,32 @@ const AddRoomModal: React.FC<AddRoomModalProps> = ({
   ) => {
     const { value } = e.target;
 
-    // For numeric fields, convert the value to a number
+
     if (
       field === "roomNo" ||
       field === "floorNo" ||
       field === "capacity" ||
       field === "pricePerSlot"
     ) {
-      const numericValue = value === "" ? "" : Number(value); // Keep empty if blank
-      onChange(e, field); // Update with the converted number
+      const numericValue = value === "" ? "" : Number(value); 
+      onChange(e, field); 
     } else {
-      onChange(e, field); // No conversion needed for other fields
+      onChange(e, field); 
     }
   };
 
   const handleSubmit = async () => {
     try {
-      // Validate the form data using the Zod schema
+   
       await roomSchema.parseAsync(newRoom);
       onAdd(newRoom);
       notification.success({
         message: "Room added successfully!",
       });
-      onCancel(); // Close the modal after adding
+      onCancel(); 
     } catch (error) {
       if (error instanceof z.ZodError) {
-        // Extract validation errors
+    
         const formErrors: { [key: string]: string } = {};
         error.errors.forEach((err) => {
           if (err.path.length) {
@@ -163,7 +163,7 @@ const AddRoomModal: React.FC<AddRoomModalProps> = ({
               type="number"
               placeholder="Room Number"
               value={newRoom.roomNo}
-              onChange={(e) => handleInputChange(e, "roomNo")} // Use the handler for conversion
+              onChange={(e) => handleInputChange(e, "roomNo")} 
               className="border-2 text-gray-400 border-gray-100 focus:ring-green-500"
             />
             {errors.roomNo && (
@@ -177,7 +177,7 @@ const AddRoomModal: React.FC<AddRoomModalProps> = ({
               type="number"
               placeholder="Floor Number"
               value={newRoom.floorNo}
-              onChange={(e) => handleInputChange(e, "floorNo")} // Use the handler for conversion
+              onChange={(e) => handleInputChange(e, "floorNo")} 
               className="border-2 text-gray-400 border-gray-100 focus:ring-green-500"
             />
             {errors.floorNo && (
@@ -192,7 +192,7 @@ const AddRoomModal: React.FC<AddRoomModalProps> = ({
             type="number"
             placeholder="Capacity"
             value={newRoom.capacity}
-            onChange={(e) => handleInputChange(e, "capacity")} // Use the handler for conversion
+            onChange={(e) => handleInputChange(e, "capacity")} 
             className="border-2 text-gray-400 border-gray-100 focus:ring-green-500"
           />
           {errors.capacity && (
@@ -206,7 +206,7 @@ const AddRoomModal: React.FC<AddRoomModalProps> = ({
             type="number"
             placeholder="Price per Slot"
             value={newRoom.pricePerSlot}
-            onChange={(e) => handleInputChange(e, "pricePerSlot")} // Use the handler for conversion
+            onChange={(e) => handleInputChange(e, "pricePerSlot")} 
             className="border-2 text-gray-400 border-gray-100 focus:ring-green-500"
           />
           {errors.pricePerSlot && (

@@ -11,8 +11,8 @@ const BlogSection = () => {
     {
       day: "10",
       month: "MAY",
-      category: "WORKSPACE",
-      title: "Strategies For Maintaining Work-Life",
+      category: "MEETSPACE",
+      title: "Discover Inspiring Stories from Our Meet Space",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
       imgSrc:
         "https://res.cloudinary.com/dwelabpll/image/upload/v1725479365/stock-photo-multiethnic-businesspeople-formal-wear-conference-office_xin8ca.jpg",
@@ -20,8 +20,8 @@ const BlogSection = () => {
     {
       day: "17",
       month: "JULY",
-      category: "WORKSPACE",
-      title: "From Commuting To Community",
+      category: "MEETSPACE",
+      title: "Innovations in Workspace Design and Functionality",
       description: "Ut elit tellus, luctus nec ullamcorper mattis...",
       imgSrc:
         "https://res.cloudinary.com/dwelabpll/image/upload/v1725479050/istockphoto-557608497-612x612_z457lp.webp",
@@ -29,8 +29,8 @@ const BlogSection = () => {
     {
       day: "23",
       month: "AUGUST",
-      category: "WORKSPACE",
-      title: "Navigating The Gig Economy",
+      category: "MEETSPACE",
+      title: "Workspace News: Redefining Productivity and Collaboration",
       description: "Pulvinar dapibus leo lorem ipsum dolor sit amet...",
       imgSrc:
         "https://res.cloudinary.com/dwelabpll/image/upload/v1725478984/istockphoto-1337995272-612x612_fizg4d.jpg",

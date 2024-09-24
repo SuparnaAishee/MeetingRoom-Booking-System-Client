@@ -794,28 +794,52 @@ const RoomTable: React.FC = () => {
       try {
         await updateRoom({ roomId: editedRoom._id, ...editedRoom }).unwrap();
         setIsEditModalVisible(false);
-        Swal.fire("Updated!", "The room has been updated.", "success");
+        Swal.fire({
+          title: "Updated!",
+          text: "The room has been updated.",
+          icon: "success",
+          confirmButtonColor: "#28a745",
+        });
       } catch (error) {
-        Swal.fire("Error!", "There was a problem updating the room.", "error");
+        Swal.fire({
+          title: "Error!",
+          text: "There was a problem updating the room.",
+          icon: "error",
+          confirmButtonColor: "#d33", 
+        });
         console.error("Update operation failed:", error);
       }
     }
   };
 
+
   const handleEditCancel = () => {
     setIsEditModalVisible(false);
   };
+
+
 
   const handleAddOk = async () => {
     try {
       await addRoom(newRoom).unwrap();
       setIsAddModalVisible(false);
-      Swal.fire("Added!", "The room has been added.", "success");
+      Swal.fire({
+        title: "Added!",
+        text: "The room has been added.",
+        icon: "success",
+        confirmButtonColor: "#28a745", 
+      });
     } catch (error) {
-      Swal.fire("Error!", "There was a problem adding the room.", "error");
+      Swal.fire({
+        title: "Error!",
+        text: "There was a problem adding the room.",
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
       console.error("Add operation failed:", error);
     }
   };
+
 
   const handleAddCancel = () => {
     setIsAddModalVisible(false);
@@ -887,21 +911,28 @@ const RoomTable: React.FC = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#28a745", 
+      cancelButtonColor: "#d33", 
       confirmButtonText: "Yes, delete it!",
     });
 
     if (result.isConfirmed) {
+   
       try {
-        await deleteRoom(roomId).unwrap();
-        Swal.fire("Deleted!", "The room has been deleted.", "success");
+        await deleteRoom(roomId); 
+        Swal.fire({
+          title: "Deleted!",
+          text: "The room has been deleted.",
+          icon: "success",
+          confirmButtonColor: "#28a745", 
+        });
       } catch (error) {
-        console.error("Delete operation failed:", error);
         Swal.fire("Error!", "There was a problem deleting the room.", "error");
+        console.error("Delete operation failed:", error);
       }
     }
   };
+
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading rooms.</div>;
@@ -955,16 +986,16 @@ const RoomTable: React.FC = () => {
               <td className="py-2 px-4 border-b">${room.pricePerSlot}</td>
               <td className="py-2 px-4 border-b">
                 <button
-                  className="text-blue-500 hover:text-blue-700 mr-2"
+                  className="text-green-500 hover:text-green-700 mr-2"
                   onClick={() => showEditModal(room)}
                 >
-                  <EditFilled />
+                  <EditFilled className="text-lg" />
                 </button>
                 <button
                   className="text-red-500 hover:text-red-700"
                   onClick={() => handleDelete(room._id)}
                 >
-                  <DeleteFilled />
+                  <DeleteFilled className="text-lg" />
                 </button>
               </td>
             </tr>
@@ -972,7 +1003,7 @@ const RoomTable: React.FC = () => {
         </tbody>
       </table>
 
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-center gap-4 mt-4">
         <button
           className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
           onClick={handlePrevPage}
@@ -981,7 +1012,7 @@ const RoomTable: React.FC = () => {
           Previous
         </button>
         <button
-          className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+          className="bg-gray-300  px-4 py-2 rounded hover:bg-gray-400"
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
@@ -990,53 +1021,77 @@ const RoomTable: React.FC = () => {
       </div>
 
       <Modal
-        title="Edit Room"
         visible={isEditModalVisible}
         onOk={handleEditOk}
         onCancel={handleEditCancel}
+        okButtonProps={{
+          style: {
+            backgroundColor: "#4CAF50",
+            borderColor: "#4CAF50",
+            color: "#fff",
+          },
+        }}
+        cancelButtonProps={{
+          style: {
+            borderColor: "#4CAF50",
+            color: "#000000",
+          },
+        }}
       >
-        <Form>
-          <Form.Item label="Room Name">
+        <h1 className="text-xl font-bold text-green-500 text-center pb-4">
+          Update Room
+        </h1>
+        <Form className="pl-4 pr-4">
+          <Form.Item>
+            <label className="text-green-600">Room No</label>
             <Input
               value={editedRoom?.name}
               onChange={(e) => handleEditInputChange(e, "name")}
             />
           </Form.Item>
-          <Form.Item label="Floor No">
+          <Form.Item>
+            <label className="text-green-600">Floor No</label>
             <Input
               type="number"
               value={editedRoom?.floorNo}
               onChange={(e) => handleEditInputChange(e, "floorNo")}
             />
           </Form.Item>
-          <Form.Item label="Room No">
+          <Form.Item>
+            <label className="text-green-600">Room No</label>
             <Input
               type="number"
               value={editedRoom?.roomNo}
               onChange={(e) => handleEditInputChange(e, "roomNo")}
             />
           </Form.Item>
-          <Form.Item label="Capacity">
+          <Form.Item>
+            <label className="text-green-600">Capacity</label>
             <Input
               type="number"
               value={editedRoom?.capacity}
               onChange={(e) => handleEditInputChange(e, "capacity")}
             />
           </Form.Item>
-          <Form.Item label="Price Per Slot">
+          <Form.Item>
+            <label className="text-green-600">Price Per Slot</label>
             <Input
               type="number"
               value={editedRoom?.pricePerSlot}
               onChange={(e) => handleEditInputChange(e, "pricePerSlot")}
             />
           </Form.Item>
-          <Form.Item label="Image URLs (comma-separated)">
+          <Form.Item>
+            <label className="text-green-600">
+              Image URLs (comma-separated)
+            </label>
             <Input
               value={editedRoom?.image.join(", ")}
               onChange={(e) => handleEditInputChange(e, "image")}
             />
           </Form.Item>
-          <Form.Item label="Amenities (comma-separated)">
+          <Form.Item>
+            <label className="text-green-600">Amenities</label>
             <Input
               value={editedRoom?.amenities.join(", ")}
               onChange={(e) => handleEditInputChange(e, "amenities")}
@@ -1046,53 +1101,77 @@ const RoomTable: React.FC = () => {
       </Modal>
 
       <Modal
-        title="Add Room"
         visible={isAddModalVisible}
         onOk={handleAddOk}
         onCancel={handleAddCancel}
+        okButtonProps={{
+          style: {
+            backgroundColor: "#4CAF50",
+            borderColor: "#4CAF50",
+            color: "#fff",
+          },
+        }}
+        cancelButtonProps={{
+          style: {
+            borderColor: "#4CAF50",
+            color: "#000000",
+          },
+        }}
       >
+        <h1 className="text-center font-bold text-green-500 text-xl pb-4">
+          Add Room
+        </h1>
         <Form>
-          <Form.Item label="Room Name">
+          <Form.Item>
+            <label className="text-green-600">Room Name</label>
             <Input
               value={newRoom.name}
               onChange={(e) => handleAddInputChange(e, "name")}
             />
           </Form.Item>
-          <Form.Item label="Floor No">
+          <Form.Item>
+            <label className="text-green-600">Floor No</label>
             <Input
               type="number"
               value={newRoom.floorNo}
               onChange={(e) => handleAddInputChange(e, "floorNo")}
             />
           </Form.Item>
-          <Form.Item label="Room No">
+          <Form.Item>
+            <label className="text-green-600">Room No</label>
             <Input
               type="number"
               value={newRoom.roomNo}
               onChange={(e) => handleAddInputChange(e, "roomNo")}
             />
           </Form.Item>
-          <Form.Item label="Capacity">
+          <Form.Item>
+            <label className="text-green-600">Capacity</label>
             <Input
               type="number"
               value={newRoom.capacity}
               onChange={(e) => handleAddInputChange(e, "capacity")}
             />
           </Form.Item>
-          <Form.Item label="Price Per Slot">
+          <Form.Item>
+            <label className="text-green-600">Price</label>
             <Input
               type="number"
               value={newRoom.pricePerSlot}
               onChange={(e) => handleAddInputChange(e, "pricePerSlot")}
             />
           </Form.Item>
-          <Form.Item label="Image URLs (comma-separated)">
+          <Form.Item>
+            <label className="text-green-600">
+              Image URLs (comma-separated)
+            </label>
             <Input
               value={newRoom.image.join(", ")}
               onChange={(e) => handleAddInputChange(e, "image")}
             />
           </Form.Item>
-          <Form.Item label="Amenities (comma-separated)">
+          <Form.Item>
+            <label className="text-green-600">Amenities</label>
             <Input
               value={newRoom.amenities.join(", ")}
               onChange={(e) => handleAddInputChange(e, "amenities")}

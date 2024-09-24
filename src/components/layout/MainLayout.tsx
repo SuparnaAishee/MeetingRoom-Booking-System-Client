@@ -309,6 +309,7 @@ const MainLayout: React.FC = () => {
               to="/"
               className="bg-green-500 text-white px-4 py-2 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition duration-300"
               onClick={handleLogout}
+             
             >
               Logout
             </Link>

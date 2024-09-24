@@ -28,26 +28,25 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
   onChange,
 }) => {
   const [errors, setErrors] = useState<{ [key in keyof Room]?: string }>({});
-  const [updateRoom, { isLoading }] = useUpdateRoomMutation(); // Use the mutation
+  const [updateRoom, { isLoading }] = useUpdateRoomMutation(); 
 
   const handleUpdate = async () => {
     if (!room) return;
 
     try {
-      roomSchema.parse(room); // Validate data against the schema
-      await updateRoom(room).unwrap(); // Proceed to update room and wait for the promise to resolve
-      setErrors({}); // Clear errors if validation passes
+      roomSchema.parse(room); 
+      await updateRoom(room).unwrap();
+      setErrors({});
       message.success("Room updated successfully!");
-      onCancel(); // Close the modal after successful update
+      onCancel(); 
     } catch (error) {
       if (error instanceof z.ZodError) {
         const validationErrors: { [key in keyof Room]?: string } = {};
         error.errors.forEach((err) => {
           validationErrors[err.path[0] as keyof Room] = err.message;
         });
-        setErrors(validationErrors); // Set errors if validation fails
-      } else {
-        message.error("Failed to update room. Please try again."); // Handle other errors
+        setErrors(validationErrors); 
+        message.error("Failed to update room. Please try again."); 
       }
     }
   };
@@ -75,7 +74,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
             key="submit"
             onClick={handleUpdate}
             className="bg-green-500 hover:bg-green-600 text-white"
-            loading={isLoading} // Show loading spinner while the update is in progress
+            loading={isLoading} 
           >
             Update Room
           </Button>

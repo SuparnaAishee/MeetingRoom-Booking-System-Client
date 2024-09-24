@@ -1,30 +1,53 @@
 # React + TypeScript + Vite
+# Meeting Room Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+⚠️ **Read the entire requirement thoroughly. Every detail must be carefully reviewed from start to finish.**
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Objective
+The Meeting Room Booking System provides a seamless experience for users to book meeting rooms in co-working spaces. It is designed with user-friendly interfaces, secure processes, and robust management tools for both users and administrators.
 
-## Expanding the ESLint configuration
+## Technologies Used
+- **Frontend**: React, TypeScript, Vite, React Router,React-redux-Toolkit
+- **Backend**: Node.js, Express.js, Mongooes,TypeScript
+- **Authentication**: JWT (JSON Web Tokens)
+- **Payment Integration**: AmarPay 
+- **Styling**: Tailwind CSS ,Ant Design
+- **Linting**: ESLint, Prettier
+-**Validation**: Zod
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+## Live Url
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Admin Credentials
+- **Email**:suparna@gmail.com
+- **Password**: admin123
+
+
+## Features
+- **User Authentication**: Secure sign-up and login functionality.
+- **Room Booking**: Users can view available rooms, book them, and manage their bookings.
+- **Admin Dashboard**: Administrators can manage real-time[Add,Update,Delete] rooms, slots, and bookings efficiently.
+- **Responsive Design**: Accessible on Mobile devices and dekstop screen sizes.
+- **Search and Filter**: Quickly find meeting rooms based on capacity, price, and room names.
+**Slots Managemnt**: User can click a date and find available slots for the date.
+
+
+## Installation
+To set up the project locally, follow these steps:
+
+
+### Steps
+1. **Clone the serve repository**:
+   
+   git clone https://github.com/SuparnaAishee/A3-Meeting-Booking-System.git
+
+2. **Clone the client respository**
+
+  git clone https://github.com/SuparnaAishee/A3-Meeting-Booking-System.git
+
+2. **Navigate to the Project Directory**
+3. **Set Up Environment Variables**
+4. **Run project**

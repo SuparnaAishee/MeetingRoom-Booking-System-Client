@@ -134,28 +134,28 @@ const testimonials = [
     role: "CLIENT",
     testimonial: " Clean, well-equipped, and provided a great environment",
     imgSrc:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
+      "https://res.cloudinary.com/dwelabpll/image/upload/v1727161931/Testimonial-Videos-1_di6gde.png",
   },
   {
     name: "Mr. Michael Lee",
     role: "CLIENT",
     testimonial: "Our experience was fantastic! Staff were incredibly helpful",
     imgSrc:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
+      "https://res.cloudinary.com/dwelabpll/image/upload/v1727162014/images_5_oyzjjc.jpg",
   },
   {
     name: "Mrs. Emma Watson",
     role: "CLIENT",
     testimonial: "The meeting room was spacious and comfortable",
     imgSrc:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
+      "https://res.cloudinary.com/dwelabpll/image/upload/v1727161859/positive-mindset-positive-life-portrait-happy-young-woman-home_590464-22422_pxuwht.avif",
   },
   {
     name: "Jessica Anne M",
     role: "CLIENT",
     testimonial: "The booking process was simple and efficient.Impressive!",
     imgSrc:
-      "https://res.cloudinary.com/dwelabpll/image/upload/v1725476958/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo_ztom4p.jpg",
+      "https://res.cloudinary.com/dwelabpll/image/upload/v1727161761/portrait-young-indian-woman-happy-with-internship-human-resources-opportunity-mission-vision-company-values-goals-face-headshot-gen-z-pe_lsoixl.avif",
   },
 ];
 

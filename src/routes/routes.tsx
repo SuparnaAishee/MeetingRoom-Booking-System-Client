@@ -87,7 +87,6 @@ import BookNowPage from "../pages/user/BookingProcess";
 import RegisterForm from "../pages/Register";
 import MyBookings from "../pages/user/MyBookings";
 
-import CreateRoom from "../pages/admin/RoomManagement/CreateRoom";
 import RoomList from "../pages/admin/RoomManagement/RoomList";
 import CreateSlot from "../pages/admin/SlotManagement/CreateSlot";
 import SlotList from "../pages/admin/SlotManagement/SlotList";
@@ -97,6 +96,7 @@ import Login from "../pages/Login";
 import ProtectedRoute from "../components/ProtectedRoute";
 import CheckoutPage from "../pages/user/Checkout";
 import BookingList from "../pages/admin/BookingManagement/BookingList";
+import NotFoundPage from "../pages/notFound";
 
 // Define your router configuration
 const router = createBrowserRouter([
@@ -110,6 +110,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "rooms", element: <Rooms /> },
       { path: "rooms/:roomId", element: <RoomDetails /> },
+      { path: "*", element: <NotFoundPage/> },
       {
         path: "book-now/:roomId",
         element: (
@@ -144,10 +145,7 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        path: "create-room",
-        element: <CreateRoom />,
-      },
+     
       {
         path: "all-room",
         element: <RoomList />,
