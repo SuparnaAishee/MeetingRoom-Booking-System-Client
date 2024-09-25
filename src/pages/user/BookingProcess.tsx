@@ -408,11 +408,11 @@ const BookingPage: React.FC = () => {
     { skip: !selectedDate || !roomId }
   );
 
-  const slots: Slot[] = (data as AvailableSlotsResponse)?.data || [];
+  const slots: Slot[] = (data as unknown as AvailableSlotsResponse)?.data || [];
 
   const handleDayClick = (date: Date) => {
     setSelectedDate(moment(date).format("YYYY-MM-DD"));
-    setSelectedSlots([]); // Reset selected slots on date change
+    setSelectedSlots([]); 
   };
 
   const handleSlotSelect = (slot: Slot) => {
@@ -469,9 +469,27 @@ const BookingPage: React.FC = () => {
           </div>
         </div>
 
-        {isLoading && <p>Loading available slots...</p>}
+        {/* {isLoading && <p>Loading available slots...</p>}
         {error && (
           <p>Error loading slots: {error.message || "Unknown error"}</p>
+        )} */}
+        {isLoading && <p>Loading available slots...</p>}
+        {error && (
+          <>
+            {error && "status" in error && error.status === 404 ? (
+              <p>Error loading slots: Resource not found (404)</p>
+            ) : error && "data" in error ? (
+              // If 'data' exists in FetchBaseQueryError, check if there's a message
+              <p>
+                Error loading slots:{" "}
+                {(error.data as { message?: string })?.message ||
+                  "Unknown error"}
+              </p>
+            ) : (
+              // Handle SerializedError or other error types
+              <p>Error loading slots: An unknown error occurred</p>
+            )}
+          </>
         )}
 
         {slots.length > 0 ? (

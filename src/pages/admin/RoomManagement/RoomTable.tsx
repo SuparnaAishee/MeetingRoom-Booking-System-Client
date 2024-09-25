@@ -723,7 +723,7 @@
 
 // export default RoomTable;
 import React, { useState } from "react";
-import { Modal, Input, Form } from "antd";
+import { Modal, Input, Form, Spin } from "antd";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import {
@@ -749,6 +749,9 @@ export interface Room {
 const RoomTable: React.FC = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [editedRoom, setEditedRoom] = useState<Partial<Room> | null>(null);
   const [newRoom, setNewRoom] = useState<Partial<Room>>({
@@ -805,19 +808,16 @@ const RoomTable: React.FC = () => {
           title: "Error!",
           text: "There was a problem updating the room.",
           icon: "error",
-          confirmButtonColor: "#d33", 
+          confirmButtonColor: "#d33",
         });
         console.error("Update operation failed:", error);
       }
     }
   };
 
-
   const handleEditCancel = () => {
     setIsEditModalVisible(false);
   };
-
-
 
   const handleAddOk = async () => {
     try {
@@ -827,7 +827,7 @@ const RoomTable: React.FC = () => {
         title: "Added!",
         text: "The room has been added.",
         icon: "success",
-        confirmButtonColor: "#28a745", 
+        confirmButtonColor: "#28a745",
       });
     } catch (error) {
       Swal.fire({
@@ -839,7 +839,6 @@ const RoomTable: React.FC = () => {
       console.error("Add operation failed:", error);
     }
   };
-
 
   const handleAddCancel = () => {
     setIsAddModalVisible(false);
@@ -911,20 +910,19 @@ const RoomTable: React.FC = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#28a745", 
-      cancelButtonColor: "#d33", 
+      confirmButtonColor: "#28a745",
+      cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     });
 
     if (result.isConfirmed) {
-   
       try {
-        await deleteRoom(roomId); 
+        await deleteRoom(roomId);
         Swal.fire({
           title: "Deleted!",
           text: "The room has been deleted.",
           icon: "success",
-          confirmButtonColor: "#28a745", 
+          confirmButtonColor: "#28a745",
         });
       } catch (error) {
         Swal.fire("Error!", "There was a problem deleting the room.", "error");
@@ -933,8 +931,12 @@ const RoomTable: React.FC = () => {
     }
   };
 
-
-  if (isLoading) return <div>Loading...</div>;
+   if (isLoading)
+     return (
+       <div className="flex justify-center items-center h-screen ">
+         <Spin className="dot-spinner" size="large" />
+       </div>
+     );
   if (isError) return <div>Error loading rooms.</div>;
 
   return (
@@ -1081,7 +1083,7 @@ const RoomTable: React.FC = () => {
               onChange={(e) => handleEditInputChange(e, "pricePerSlot")}
             />
           </Form.Item>
-          <Form.Item>
+          {/* <Form.Item>
             <label className="text-green-600">
               Image URLs (comma-separated)
             </label>
@@ -1094,6 +1096,22 @@ const RoomTable: React.FC = () => {
             <label className="text-green-600">Amenities</label>
             <Input
               value={editedRoom?.amenities.join(", ")}
+              onChange={(e) => handleEditInputChange(e, "amenities")}
+            />
+          </Form.Item> */}
+          <Form.Item>
+            <label className="text-green-600">
+              Image URLs (comma-separated)
+            </label>
+            <Input
+              value={editedRoom?.image?.join(", ") ?? ""} // Add fallback for undefined
+              onChange={(e) => handleEditInputChange(e, "image")}
+            />
+          </Form.Item>
+          <Form.Item>
+            <label className="text-green-600">Amenities</label>
+            <Input
+              value={editedRoom?.amenities?.join(", ") ?? ""} // Add fallback for undefined
               onChange={(e) => handleEditInputChange(e, "amenities")}
             />
           </Form.Item>
@@ -1161,7 +1179,7 @@ const RoomTable: React.FC = () => {
               onChange={(e) => handleAddInputChange(e, "pricePerSlot")}
             />
           </Form.Item>
-          <Form.Item>
+          {/* <Form.Item>
             <label className="text-green-600">
               Image URLs (comma-separated)
             </label>
@@ -1174,6 +1192,22 @@ const RoomTable: React.FC = () => {
             <label className="text-green-600">Amenities</label>
             <Input
               value={newRoom.amenities.join(", ")}
+              onChange={(e) => handleAddInputChange(e, "amenities")}
+            />
+          </Form.Item> */}
+          <Form.Item>
+            <label className="text-green-600">
+              Image URLs (comma-separated)
+            </label>
+            <Input
+              value={newRoom.image?.join(", ") ?? ""} // Handle undefined case
+              onChange={(e) => handleAddInputChange(e, "image")}
+            />
+          </Form.Item>
+          <Form.Item>
+            <label className="text-green-600">Amenities</label>
+            <Input
+              value={newRoom.amenities?.join(", ") ?? ""} // Handle undefined case
               onChange={(e) => handleAddInputChange(e, "amenities")}
             />
           </Form.Item>

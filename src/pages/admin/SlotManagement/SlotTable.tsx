@@ -4,7 +4,7 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
-import { Modal, Input, DatePicker, TimePicker, Select, Button } from "antd";
+import { Modal, Input, DatePicker, TimePicker, Select, Spin} from "antd";
 import { MdEditSquare } from "react-icons/md";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import dayjs from "dayjs";
@@ -26,11 +26,14 @@ interface Slot {
   isBooked?: boolean;
 }
 
+
 const ITEMS_PER_PAGE = 9;
 
 const SlotTable: React.FC = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
   const [editedSlot, setEditedSlot] = useState<Slot | null>(null);
   const [newSlot, setNewSlot] = useState<Slot>({
@@ -43,18 +46,23 @@ const SlotTable: React.FC = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading, isError, refetch } = useGetAllSlotsQuery();
+  const { data, isLoading, isError, refetch } = useGetAllSlotsQuery({});
   const [deleteSlot] = useDeleteSlotMutation();
   const [updateSlot] = useUpdateSlotMutation();
-   const [addSlot] = useAddSlotMutation();
+  const [addSlot] = useAddSlotMutation();
 
-  const slots = Array.isArray(data) ? data : [];
+  // const slots = Array.isArray(data)? data : [];
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const slots = data?.data || [];
+
   const totalPages = Math.ceil(slots.length / ITEMS_PER_PAGE);
 
   const paginatedSlots = slots.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+  console.log(paginatedSlots);
 
   const showEditModal = (slot: Slot) => {
     setSelectedSlot(slot);
@@ -77,17 +85,16 @@ const SlotTable: React.FC = () => {
   // const handleEditOk = async () => {
   //   if (editedSlot && editedSlot._id) {
   //     try {
-       
+
   //       const response = await updateSlot({
-  //         id: editedSlot._id, 
-  //         slot: editedSlot, 
+  //         id: editedSlot._id,
+  //         slot: editedSlot,
   //       });
 
-        
   //       if ("error" in response) {
   //         Swal.fire("Error!", "Failed to update slot.", "error");
   //       } else {
-         
+
   //         refetch();
   //         Swal.fire("Updated!", "The slot has been updated.", "success");
   //         setIsEditModalVisible(false);
@@ -100,33 +107,90 @@ const SlotTable: React.FC = () => {
   //     Swal.fire("Error!", "Invalid slot ID.", "error");
   //   }
   // };
-const handleEditOk = async () => {
-  if (editedSlot && editedSlot._id) {
-    try {
-      const response = await updateSlot({
-        id: editedSlot._id,
-        slot: editedSlot,
-      });
+  const handleEditOk = async () => {
+    if (editedSlot && editedSlot._id) {
+      try {
+        const response = await updateSlot({
+          id: editedSlot._id,
+          slot: editedSlot,
+        });
 
+        if ("error" in response) {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to update slot.",
+            icon: "error",
+            confirmButtonColor: "#d33", // Red color for error modal
+          });
+        } else {
+          refetch(); // Refresh data
+          Swal.fire({
+            title: "Updated!",
+            text: "The slot has been updated.",
+            icon: "success",
+            confirmButtonColor: "#22C55E", // Green color for success modal
+          });
+          setIsEditModalVisible(false);
+        }
+      } catch (error) {
+        console.error("Update error:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong.",
+          icon: "error",
+          confirmButtonColor: "#d33", // Red color for error modal
+        });
+      }
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Invalid slot ID.",
+        icon: "error",
+        confirmButtonColor: "#d33", // Red color for error modal
+      });
+    }
+  };
+
+  const handleEditCancel = () => {
+    setIsEditModalVisible(false);
+  };
+  // const handleAddOk = async () => {
+  //   try {
+  //     const response = await addSlot(newSlot); // Call to addSlot mutation
+  //     if ("error" in response) {
+  //       Swal.fire("Error!", "Failed to add slot.", "error");
+  //     } else {
+  //       refetch(); // Refresh data
+  //       Swal.fire("Added!", "The slot has been added.", "success");
+  //       setIsAddModalVisible(false);
+  //     }
+  //   } catch (error) {
+  //     console.error("Add error:", error);
+  //     Swal.fire("Error!", "Something went wrong.", "error");
+  //   }
+  // };
+  const handleAddOk = async () => {
+    try {
+      const response = await addSlot(newSlot); // Call to addSlot mutation
       if ("error" in response) {
         Swal.fire({
           title: "Error!",
-          text: "Failed to update slot.",
+          text: "Failed to add slot.",
           icon: "error",
           confirmButtonColor: "#d33", // Red color for error modal
         });
       } else {
         refetch(); // Refresh data
         Swal.fire({
-          title: "Updated!",
-          text: "The slot has been updated.",
+          title: "Added!",
+          text: "The slot has been added.",
           icon: "success",
           confirmButtonColor: "#22C55E", // Green color for success modal
         });
-        setIsEditModalVisible(false);
+        setIsAddModalVisible(false);
       }
     } catch (error) {
-      console.error("Update error:", error);
+      console.error("Add error:", error);
       Swal.fire({
         title: "Error!",
         text: "Something went wrong.",
@@ -134,64 +198,7 @@ const handleEditOk = async () => {
         confirmButtonColor: "#d33", // Red color for error modal
       });
     }
-  } else {
-    Swal.fire({
-      title: "Error!",
-      text: "Invalid slot ID.",
-      icon: "error",
-      confirmButtonColor: "#d33", // Red color for error modal
-    });
-  }
-};
-
-  const handleEditCancel = () => {
-    setIsEditModalVisible(false);
   };
-// const handleAddOk = async () => {
-//   try {
-//     const response = await addSlot(newSlot); // Call to addSlot mutation
-//     if ("error" in response) {
-//       Swal.fire("Error!", "Failed to add slot.", "error");
-//     } else {
-//       refetch(); // Refresh data
-//       Swal.fire("Added!", "The slot has been added.", "success");
-//       setIsAddModalVisible(false);
-//     }
-//   } catch (error) {
-//     console.error("Add error:", error);
-//     Swal.fire("Error!", "Something went wrong.", "error");
-//   }
-// };
-const handleAddOk = async () => {
-  try {
-    const response = await addSlot(newSlot); // Call to addSlot mutation
-    if ("error" in response) {
-      Swal.fire({
-        title: "Error!",
-        text: "Failed to add slot.",
-        icon: "error",
-        confirmButtonColor: "#d33", // Red color for error modal
-      });
-    } else {
-      refetch(); // Refresh data
-      Swal.fire({
-        title: "Added!",
-        text: "The slot has been added.",
-        icon: "success",
-        confirmButtonColor: "#22C55E", // Green color for success modal
-      });
-      setIsAddModalVisible(false);
-    }
-  } catch (error) {
-    console.error("Add error:", error);
-    Swal.fire({
-      title: "Error!",
-      text: "Something went wrong.",
-      icon: "error",
-      confirmButtonColor: "#d33", // Red color for error modal
-    });
-  }
-};
 
   const handleAddCancel = () => {
     setIsAddModalVisible(false);
@@ -228,31 +235,25 @@ const handleAddOk = async () => {
       [field]: e.target.value,
     } as Slot);
   };
-    const handleDateChange = (date: dayjs.Dayjs | null, field: string) => {
-      if (date) {
-        const dateString = date.format("YYYY-MM-DD");
-        setEditedSlot((prev) =>
-          prev ? { ...prev, [field]: dateString } : prev
-        );
-        setNewSlot((prev) => ({ ...prev, [field]: dateString }));
-      }
-    };
-   
-const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
-  if (time) {
-    const timeString = time.format("HH:mm");
-    setEditedSlot((prev) =>
-      prev ? { ...prev, [field]: timeString } : prev
-    );
-    setNewSlot((prev) => ({ ...prev, [field]: timeString }));
-  } else {
-    // Handle case where time is null (if you want to clear the time)
-    setEditedSlot((prev) => (prev ? { ...prev, [field]: "" } : prev));
-    setNewSlot((prev) => ({ ...prev, [field]: "" }));
-  }
-};
+  const handleDateChange = (date: dayjs.Dayjs | null, field: string) => {
+    if (date) {
+      const dateString = date.format("YYYY-MM-DD");
+      setEditedSlot((prev) => (prev ? { ...prev, [field]: dateString } : prev));
+      setNewSlot((prev) => ({ ...prev, [field]: dateString }));
+    }
+  };
 
-
+  const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
+    if (time) {
+      const timeString = time.format("HH:mm");
+      setEditedSlot((prev) => (prev ? { ...prev, [field]: timeString } : prev));
+      setNewSlot((prev) => ({ ...prev, [field]: timeString }));
+    } else {
+      // Handle case where time is null (if you want to clear the time)
+      setEditedSlot((prev) => (prev ? { ...prev, [field]: "" } : prev));
+      setNewSlot((prev) => ({ ...prev, [field]: "" }));
+    }
+  };
 
   // const handleDateChange = (
   //   date: dayjs.Dayjs | null,
@@ -341,8 +342,12 @@ const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
     });
   };
 
-
-  if (isLoading) return <div>Loading...</div>;
+   if (isLoading)
+     return (
+       <div className="flex justify-center items-center h-screen ">
+         <Spin className="dot-spinner" size="large" />
+       </div>
+     );
   if (isError) return <div>Error loading slots.</div>;
 
   return (
@@ -369,7 +374,7 @@ const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((slot: Slot, index: number) => (
+          {slots.map((slot: Slot, index: number) => (
             <tr key={index}>
               <td className="py-2 px-4 border-b">{slot?.room?.name}</td>
               <td className="py-2 px-4 border-b">
@@ -452,8 +457,8 @@ const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
               <DatePicker
                 value={dayjs(editedSlot.date)}
                 format="YYYY-MM-DD"
-                onChange={(date, dateString) =>
-                  handleDateChange(date, dateString, "date")
+                onChange={
+                  (date) => handleDateChange(date, "date") //dateString,
                 }
               />
             </div>
@@ -462,8 +467,8 @@ const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
               <TimePicker
                 value={dayjs(editedSlot.startTime, "HH:mm")}
                 format="HH:mm"
-                onChange={(time, timeString) =>
-                  handleDateChange(time, timeString, "startTime")
+                onChange={
+                  (time) => handleDateChange(time, "startTime") //, timeString
                 }
               />
             </div>
@@ -472,9 +477,7 @@ const handleTimeChange = (time: dayjs.Dayjs | null, field: string) => {
               <TimePicker
                 value={dayjs(editedSlot.endTime, "HH:mm")}
                 format="HH:mm"
-                onChange={(time, timeString) =>
-                  handleDateChange(time, timeString, "endTime")
-                }
+                onChange={(time) => handleDateChange(time, "endTime")}
               />
             </div>
             <div className="mb-4">

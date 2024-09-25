@@ -235,7 +235,7 @@
 // export default BookingTable;
 import React, { Key, useState } from "react";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
-import { Modal, Form, Input, Button, message, Select } from "antd";
+import { Modal, Form, Input, Button,  Select, Spin } from "antd";
 import Swal from "sweetalert2";
 import {
   useGetAllBookingsQuery,
@@ -255,6 +255,7 @@ export interface Room {
   name: string;
 }
 
+
 export interface Booking {
   isConfirmed: boolean;
   totalAmount: number;
@@ -268,6 +269,7 @@ export interface Booking {
   price: number;
   status: string;
 }
+
 
 const BookingTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -386,36 +388,37 @@ const BookingTable: React.FC = () => {
     setSelectedBooking(booking);
     form.setFieldsValue({
       customerName: booking.user.name,
-      status: booking.isConfirmed ? "Confirmed" : "Canceled", // Adjust case for "Canceled"
+      status: booking.isConfirmed ? "Confirmed" : "Canceled", 
     });
     setIsModalVisible(true); // Open the modal for editing
   };
 
   const handleUpdate = async () => {
     try {
-      setIsUpdating(true); // Start loading state for the update process
-      const values = await form.validateFields(); // Validate form fields
-
+      setIsUpdating(true); 
+      const values = await form.validateFields(); 
+      console.log("Selected status:", values.status);
       const updatedBooking = {
-        ...selectedBooking, // Spread the selected booking
-        isConfirmed: values.status === "Confirmed", // Update the confirmation status
+        ...selectedBooking,
+        isConfirmed: values.status === "Confirmed",
+       
       };
 
       if (selectedBooking) {
         // Ensure selectedBooking is not null
         await updateBooking({
-          bookingId: selectedBooking._id, // Send booking ID
-          updatedBooking, // Send updated booking data
+          bookingId: selectedBooking._id,
+          updatedBooking, 
         }).unwrap();
 
-        setIsModalVisible(false); // Close modal after success
+        setIsModalVisible(false);
 
         // Show success message using Swal
         Swal.fire({
           title: "Success!",
           text: "Booking updated successfully.",
           icon: "success",
-          confirmButtonColor: "#22C55E", // Green color for the confirm button
+          confirmButtonColor: "#22C55E", 
         });
       }
     } catch (error) {
@@ -427,7 +430,7 @@ const BookingTable: React.FC = () => {
         confirmButtonColor: "#d33", // Red color for error
       });
     } finally {
-      setIsUpdating(false); // Reset loading state after completion
+      setIsUpdating(false); 
     }
   };
 
@@ -443,7 +446,12 @@ const BookingTable: React.FC = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+   if (isLoading)
+     return (
+       <div className="flex justify-center items-center h-screen ">
+         <Spin className="dot-spinner" size="large" />
+       </div>
+     );
   if (isError) return <div>Error loading bookings.</div>;
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { Layout, Row, Col, Typography, Card} from "antd";
 import "../styles/custom.css";
 import Aos from "aos";

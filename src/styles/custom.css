@@ -39,7 +39,7 @@
 /* Blurred Menu State */
 .menu-blur .custom-menu-item,
 .menu-blur .ant-menu-submenu-title {
-  color: white !important;
+  color: black !important;
   font-size: 15px; 
   font-weight: bold;
 }

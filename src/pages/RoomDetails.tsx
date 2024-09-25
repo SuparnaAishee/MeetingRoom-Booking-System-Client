@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { useGetRoomByIdQuery } from "../redux/features/roomsApi";
 
 const RoomDetails: React.FC = () => {
@@ -18,7 +18,12 @@ const RoomDetails: React.FC = () => {
     }
   }, [room]);
 
-  if (isLoading) return <div className="text-center py-8">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen ">
+        <Spin className="dot-spinner" size="large" />
+      </div>
+    );
   if (error || !room)
     return (
       <div className="text-center text-red-500 py-8">

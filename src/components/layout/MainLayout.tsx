@@ -184,6 +184,7 @@ import { logout } from "../../redux/auth/authSlice";
 import { toast } from "sonner";
 import "../../styles/custom.css";
 import ScrollToTop from "../ui/ScrollTop";
+import { RootState } from "../../hooks/store";
 
 const { Header, Content } = Layout;
 
@@ -192,7 +193,10 @@ const MainLayout: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  // const { isAuthenticated, user } = useSelector((state) => state.auth);
+   const { isAuthenticated, user } = useSelector(
+     (state: RootState) => state.auth
+   );
 
   useEffect(() => {
     const handleScroll = () => {

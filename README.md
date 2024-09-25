@@ -14,7 +14,8 @@ The Meeting Room Booking System provides a seamless experience for users to book
 - **Payment Integration**: AmarPay 
 - **Styling**: Tailwind CSS ,Ant Design
 - **Linting**: ESLint, Prettier
--**Validation**: Zod
+- **Validation**: Zod
+- **Image Hosting**: Cloudinary
 
 
 ## Live Url

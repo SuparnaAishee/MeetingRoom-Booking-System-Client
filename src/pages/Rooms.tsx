@@ -131,7 +131,7 @@
 // };
 // export default Rooms;
 import React, { useState, useEffect } from "react";
-import { Row, Col, Card, Button, Input, Select } from "antd";
+import { Row, Col, Card, Button, Input, Select, Spin } from "antd";
 import { useGetRoomsQuery } from "../redux/features/roomsApi";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -147,6 +147,7 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { UserOutlined } from "@ant-design/icons";
 import CustomFooter from "../components/layout/Footer";
+
 
 const { Option } = Select;
 
@@ -220,7 +221,14 @@ const Rooms: React.FC<RoomsProps> = ({ limit }) => {
   }, [data, search, capacity, priceRange, sort]);
 
   const errorMessage = getErrorMessage(error);
-  if (isLoading) return <div>Loading...</div>;
+  // 
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen ">
+        <Spin className="dot-spinner" size="large" />
+    
+      </div>
+    );
   if (errorMessage) return <div>{errorMessage}</div>;
 
   const roomsToDisplay = limit

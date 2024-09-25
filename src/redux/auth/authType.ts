@@ -2,6 +2,7 @@
 
 // Define the structure of a user object
 export interface TUser {
+  refreshToken: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bookings: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

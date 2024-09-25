@@ -100,7 +100,7 @@
 // } = bookingApi;
 
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQueryWithRefreshToken } from "../api/baseApi"; // Adjust the import path
+import { baseQueryWithRefreshToken } from "../api/baseApi"; 
 
 export const bookingApi = createApi({
   reducerPath: "bookingApi",

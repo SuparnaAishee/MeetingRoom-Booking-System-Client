@@ -46,7 +46,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const availabilityApi = createApi({
   reducerPath: "availabilityApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://meeting-room-booking-server.vercel.app/api/",
+  }),
   endpoints: (builder) => ({
     // Query to get available slots for a specific date and room
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

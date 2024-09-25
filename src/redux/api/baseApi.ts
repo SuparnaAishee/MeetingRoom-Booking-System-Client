@@ -210,7 +210,8 @@ import { setCredentials, logout } from "../../redux/auth/authSlice";
 
 // Base query definition
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000/api",
+  baseUrl: "https://meeting-room-booking-server.vercel.app/api",
+  // baseUrl: "http://localhost:3000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -225,6 +226,7 @@ const baseQuery = fetchBaseQuery({
 export const baseQueryWithRefreshToken = async (
   args: string | FetchArgs,
   api: BaseQueryApi,
+  // eslint-disable-next-line @typescript-eslint/ban-types
   extraOptions: {}
 ) => {
   let result = await baseQuery(args, api, extraOptions);
@@ -234,7 +236,7 @@ export const baseQueryWithRefreshToken = async (
     const refreshToken = (api.getState() as RootState).auth.refreshToken;
 
     const refreshResult = await fetch(
-      "http://localhost:3000/api/auth/refresh",
+      "https://meeting-room-booking-server.vercel.app/api/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -251,11 +253,15 @@ export const baseQueryWithRefreshToken = async (
       const user = (api.getState() as RootState).auth.user;
 
       // Dispatch action to store the new tokens
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       api.dispatch(setCredentials({ user, token: newToken }));
 
       // Retry original request with the new token
       result = await baseQuery(
         {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           ...args,
           headers: {
             ...(args as FetchArgs).headers,

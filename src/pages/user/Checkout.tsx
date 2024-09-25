@@ -286,7 +286,8 @@ import { useLocation } from "react-router-dom";
 import { useCreateBookingMutation } from "../../redux/booking/bookingApi";
 import { useGetRoomByIdQuery } from "../../redux/features/roomsApi";
 import { useAppSelector } from "../../hooks/hooks";
-import Swal from "sweetalert2"; // Import SweetAlert2 for success messages
+import Swal from "sweetalert2"; 
+import { Spin } from "antd";
 
 const CheckoutPage: React.FC = () => {
   const location = useLocation();
@@ -344,48 +345,68 @@ const CheckoutPage: React.FC = () => {
       slots: selectedSlotIds,
       room: roomId,
       user: userData?._id,
-      paymentMethod, // Include the selected payment method
+      paymentMethod,
     };
 
     try {
-      // Create booking and unwrap the response
       const response = await createBooking(bookingPayload).unwrap();
-      console.log("Booking Response:", response); // Log the entire response for debugging
+      console.log("Booking Response:", response);
 
       // Access payment URL from the response
       const paymentUrl = response?.data?.booking?.paymentSession?.payment_url;
 
       // Check payment method
       if (paymentMethod === "COD") {
-        // Show success message for cash on delivery
         Swal.fire({
           title: "Booking Successful!",
           text: "Your booking has been confirmed. You will pay cash on delivery.",
           icon: "success",
           confirmButtonText: "OK",
           customClass: {
-            title: "text-green-600", // Customizing title color
-            icon: "text-green-500", // Customizing icon color
+            title: "text-green-600",
+            icon: "text-green-500",
           },
         });
       } else if (paymentMethod === "amrpay" && paymentUrl) {
         // Redirect to payment URL
-        window.location.href = paymentUrl; // Redirect to payment URL
+        window.location.href = paymentUrl;
       } else {
         alert("Payment URL not found.");
       }
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
       alert(`Booking error: ${err.message || "Unknown error"}`);
     }
   };
 
   // Error handling for room details
+  // if (roomError) {
+  //   return <p>Error fetching room details: {roomError.message}</p>;
+  // }
+
+  // if (roomLoading) {
+  //   return <p>Loading room details...</p>;
+  // }
+
+  /////
+
   if (roomError) {
-    return <p>Error fetching room details: {roomError.message}</p>;
+  
+    const errorMessage =
+      "status" in roomError
+        ? `Error fetching room details: ${roomError.data}` // For FetchBaseQueryError
+        : roomError.message || "An unknown error occurred."; // For SerializedError
+
+    return <p className="text-red-500">{errorMessage}</p>;
   }
 
   if (roomLoading) {
-    return <p>Loading room details...</p>;
+     
+       return (
+         <div className="flex justify-center items-center h-screen ">
+           <Spin className="dot-spinner" size="large" />
+         </div>
+       );
   }
 
   return (
@@ -523,8 +544,17 @@ const CheckoutPage: React.FC = () => {
         {bookingLoading ? "Processing..." : "Confirm Booking"}
       </button>
 
-      {bookingError && (
+      {/* {bookingError && (
         <p className="text-red-500 mt-4 text-center">{bookingError.message}</p>
+      )} */}
+      {bookingError && (
+        <p className="text-red-500 mt-4 text-center">
+          {
+            "status" in bookingError
+              ? `Booking error: ${JSON.stringify(bookingError.data)}` 
+              : bookingError.message || "An unknown error occurred." 
+          }
+        </p>
       )}
     </div>
   );
