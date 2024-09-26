@@ -109,9 +109,16 @@ const router = createBrowserRouter([
       { path: "service", element: <Service /> },
       { path: "contact", element: <Contact /> },
       { path: "rooms", element: <Rooms /> },
-      
-      { path: "rooms/:roomId", element: <RoomDetails /> },
-      { path: "*", element: <NotFoundPage/> },
+
+      {
+        path: "rooms/:roomId",
+        element: (
+          <ProtectedRoute role="user">
+            <RoomDetails />
+          </ProtectedRoute>
+        ),
+      },
+      { path: "*", element: <NotFoundPage /> },
       {
         path: "book-now/:roomId",
         element: (
@@ -146,7 +153,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-     
       {
         path: "all-room",
         element: <RoomList />,

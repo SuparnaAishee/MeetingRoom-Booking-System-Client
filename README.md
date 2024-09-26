@@ -52,3 +52,5 @@ To set up the project locally, follow these steps:
 2. **Navigate to the Project Directory**
 3. **Set Up Environment Variables**
 4. **Run project**
+
+**Happy Coding!😊**
