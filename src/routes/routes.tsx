@@ -109,6 +109,7 @@ const router = createBrowserRouter([
       { path: "service", element: <Service /> },
       { path: "contact", element: <Contact /> },
       { path: "rooms", element: <Rooms /> },
+      
       { path: "rooms/:roomId", element: <RoomDetails /> },
       { path: "*", element: <NotFoundPage/> },
       {
