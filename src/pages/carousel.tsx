@@ -220,7 +220,7 @@ const Carousel: React.FC = () => {
       </div>
 
       {/* Social Media Icons */}
-      <div className="absolute top-1/4 right-4 flex flex-col space-y-4 lg:space-y-6 pr-8 lg:pr-16">
+      <div className="absolute top-1/4 right-4 flex flex-col space-y-4 lg:space-y-6 pr-8 lg:pr-24">
         <a
           href="https://facebook.com"
           target="_blank"

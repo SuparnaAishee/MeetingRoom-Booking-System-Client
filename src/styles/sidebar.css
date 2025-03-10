@@ -1,12 +1,13 @@
 /* Sidebar styles */
 .sidebar {
   position: fixed;
+  height: 40rem;
   width: 16rem; /* 64 = 16rem in Tailwind CSS */
   background-color: #dcf5e4; /* Sidebar background */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  top: 5.5rem; /* Adjusted to provide more gap from the navbar */
-  height: calc(100% - 5rem); /* Sidebar height minus the navbar height */
+  
+  /* Adjusted to provide more gap from the navbar */
+  
   color: #ffffff; /* Default text color */
 }
 

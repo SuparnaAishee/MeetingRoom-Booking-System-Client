@@ -455,7 +455,7 @@ const BookingTable: React.FC = () => {
   if (isError) return <div>Error loading bookings.</div>;
 
   return (
-    <div className="p-4">
+    <div className="p-4 lg:pl-8 lg:pr-24">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl text-green-600 font-bold">Bookings List</h2>
       </div>

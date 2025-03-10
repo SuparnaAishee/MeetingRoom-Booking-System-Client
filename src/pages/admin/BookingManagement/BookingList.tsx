@@ -6,11 +6,14 @@ import BookingTable from "./BookingTable";
 const BookingList: React.FC = () => {
   return (
     <div className="flex bg-gray-100">
-      <Sidebar /> 
+      <div className="">
+        {" "}
+        <Sidebar />
+      </div>
+
       <div className="flex-1 p-4 roomtable">
         {" "}
-       
-        <BookingTable/>
+        <BookingTable />
       </div>
     </div>
   );

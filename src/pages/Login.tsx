@@ -196,6 +196,51 @@ const LoginForm: React.FC = () => {
     localStorage.removeItem("refreshToken"); // Clear refresh token on logout
     toast.success("Logout successful!");
   };
+const handleAutoLogin = async (role: "admin" | "user") => {
+  const credentials =
+    role === "admin"
+      ? { email: "suparna@gmail.com", password: "admin123" }
+      : { email: "userdemo@gmail.com", password: "userdemo" };
+
+  setEmail(credentials.email);
+  setPassword(credentials.password);
+
+  try {
+    const {
+      token,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      refreshToken,
+      data: userData,
+    } = await loginUser(credentials).unwrap();
+    
+   
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, 
+    const decodedToken = verifyToken(token);
+    const user: TUser = {
+      email: userData.email,
+      role: userData.role,
+      name: userData.name || "",
+      address: userData.address || "",
+      phone: userData.phone || "",
+      _id: userData._id,
+      bookings: undefined,
+      data: undefined,
+      refreshToken: "",
+    };
+
+    dispatch(setCredentials({ user, token, refreshToken }));
+    localStorage.setItem("token", token);
+    localStorage.setItem("refreshToken", refreshToken);
+
+    toast.success(`Logged in as ${role === "admin" ? "Admin" : "User"}!`);
+    navigate("/");
+  } catch (err) {
+    toast.error(`${role === "admin" ? "Admin" : "User"} login failed!`);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 sm:p-6">
@@ -211,6 +256,22 @@ const LoginForm: React.FC = () => {
           <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800">
             {isAuthenticated ? "Welcome Back" : "Login"}
           </h2>
+          {/* ✅ Two Side-by-Side Auto-Login Buttons at the Top */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button
+              className="px-4 py-2 bg-gray-200 text-black text-sm sm:text-lg rounded-lg  focus:outline-none"
+              onClick={() => handleAutoLogin("admin")}
+            >
+              Login as Admin
+            </button>
+            <button
+              className="px-4 py-2 bg-gray-200 text-black text-sm sm:text-lg rounded-lg  focus:outline-none"
+              onClick={() => handleAutoLogin("user")}
+            >
+              Login as User
+            </button>
+          </div>
+
           {isAuthenticated ? (
             <div className="mt-6">
               <button

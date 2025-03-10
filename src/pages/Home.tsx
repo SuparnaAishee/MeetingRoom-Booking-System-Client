@@ -27,41 +27,36 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative h-screen">
-     
       <Carousel />
 
-    
-      <div className="flex flex-col md:flex-row items-center justify-between p-4 md:p-8 bg-white layout-padding space-y-6 md:space-y-0 md:space-x-6">
-        
+      {/* Who We Are Section */}
+      <div className="flex flex-col md:flex-row items-center justify-between p-4 sm:p-6 md:p-8 bg-white layout-padding space-y-6 md:space-y-0 md:space-x-6">
         <div
           data-aos="fade-up"
-          className="flex-1 space-y-4 md:space-y-6 text-center md:text-left "
+          className="flex-1 space-y-4 md:space-y-6 text-center md:text-left"
         >
-          <p className="text-green-600 font-semibold text-lg md:text-base">
-            WHO WE ARE
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold">
+          <p className="text-green-600 font-semibold text-base">WHO WE ARE</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
             Effortless Planning for Uninterrupted Progress.
           </h2>
-          <p className="text-gray-600 text-sm md:text-base w-4/5">
+          <p className="text-gray-600 text-sm sm:text-base mx-auto md:mx-0 w-full sm:w-4/5">
             We are dedicated to making your scheduling process as seamless as
             possible. Our meeting booking system is designed to simplify the way
             you connect, collaborate, and communicate.
           </p>
-          <p className="text-gray-600 text-sm md:text-base pb-8 w-4/5">
+          <p className="text-gray-600 text-sm sm:text-base pb-4 sm:pb-8 mx-auto md:mx-0 w-full sm:w-4/5">
             By eliminating the hassle of back-and-forth scheduling, we help you
             focus on what truly matters—productive meetings and meaningful
             connections.
           </p>
           <Link to="/about">
-            <button className="text-white bg-green-500 hover:bg-green-600 px-4 md:px-6 py-2 md:py-3 rounded-lg">
+            <button className="text-white bg-green-500 hover:bg-green-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition duration-300">
               Read more →
             </button>
           </Link>
         </div>
 
-        
-        <div className="flex-1 relative">
+        <div className="flex-1 relative mt-6 md:mt-0">
           <img
             src="https://res.cloudinary.com/dwelabpll/image/upload/v1725375841/meetingRoom_mc6iii.webp"
             alt="Meeting"
@@ -69,20 +64,20 @@ const HomePage: React.FC = () => {
             data-aos="fade-left"
           />
           <div
-            className="absolute bottom-4 right-4 bg-white bg-opacity-80 p-4 rounded-lg shadow-md"
+            className="absolute bottom-4 right-4 bg-white bg-opacity-80 p-3 sm:p-4 rounded-lg shadow-md"
             data-aos="zoom-in"
+            data-aos-delay="300"
           >
-            <h3 className="text-green-600 text-3xl md:text-6xl font-bold">
+            <h3 className="text-green-600 text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold">
               150+
             </h3>
-            <p className="text-gray-700 text-xs md:text-base">
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base">
               Companies Joined
             </p>
           </div>
         </div>
       </div>
 
-     
       <div>
         <div className="pb-20 bg-gray-200 layout-padding ">
           <h2 className="text-4xl font-bold text-center text-green-600 mb-8">
@@ -151,7 +146,7 @@ const HomePage: React.FC = () => {
             </Col>
           </Row>
         </div>
-        <section  className="bg-gray-200 pb-12">
+        <section className="bg-gray-200 pb-12">
           <div className="container mx-auto px-6">
             <Row gutter={32} justify="center">
               {/* Member Active */}
@@ -189,11 +184,10 @@ const HomePage: React.FC = () => {
           </div>
         </section>
       </div>
-      <div >
+      <div>
         <FeaturedRooms />
       </div>
 
-      
       <div className="pt-12 pb-20">
         <WhyChooseUs />
       </div>

@@ -176,15 +176,19 @@
 // };
 
 // export default MainLayout;
-import React, { useState, useEffect } from "react";
-import { Image, Layout, Menu, Drawer } from "antd";
+
+
+import type React from "react";
+import { useState, useEffect } from "react";
+import { Image, Layout, Menu, Drawer, Button } from "antd";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/authSlice";
 import { toast } from "sonner";
 import "../../styles/custom.css";
 import ScrollToTop from "../ui/ScrollTop";
-import { RootState } from "../../hooks/store";
+import type { RootState } from "../../hooks/store";
+import { MenuOutlined } from "@ant-design/icons";
 
 const { Header, Content } = Layout;
 
@@ -192,11 +196,11 @@ const MainLayout: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dispatch = useDispatch();
-  // const { isAuthenticated, user } = useSelector((state) => state.auth);
-   const { isAuthenticated, user } = useSelector(
-     (state: RootState) => state.auth
-   );
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -214,6 +218,11 @@ const MainLayout: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Close mobile menu when route changes
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const handleLogout = () => {
     dispatch(logout());
     toast.success("Logout successful!");
@@ -227,10 +236,14 @@ const MainLayout: React.FC = () => {
     setIsDrawerVisible(false);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <Layout className="h-screen">
       <Header
-        className={`sticky top-0 z-10 w-full h-16 flex items-center transition-all duration-300 ${
+        className={`sticky top-0 z-10 w-full flex items-center transition-all duration-300 px-4 md:px-8 lg:pl-24 lg:pr-28 ${
           isScrolled
             ? "bg-white bg-opacity-30 backdrop-blur-lg"
             : "bg-white bg-opacity-100"
@@ -239,15 +252,28 @@ const MainLayout: React.FC = () => {
       >
         <div className="h-full flex items-center">
           <Image
-            width={120}
+            width={100}
+            className="md:w-[120px]"
             src="https://res.cloudinary.com/dwelabpll/image/upload/v1725429787/logo_agfhqe.png"
             alt="MeetSpace Logo"
+            preview={false}
           />
         </div>
+
+        {/* Mobile Menu Button */}
+        <Button
+          type="text"
+          icon={<MenuOutlined />}
+          onClick={toggleMobileMenu}
+          className="ml-auto md:hidden"
+          size="large"
+        />
+
+        {/* Desktop Menu */}
         <Menu
           mode="horizontal"
           selectedKeys={[location.pathname]}
-          className={`flex-grow min-w-0 bg-transparent custom-menu ${
+          className={`hidden md:flex flex-grow min-w-0 bg-transparent custom-menu ${
             isScrolled ? "menu-blur" : "menu-normal"
           }`}
           style={{
@@ -307,26 +333,105 @@ const MainLayout: React.FC = () => {
           )}
         </Menu>
 
-        <div className="ml-auto flex items-center">
+        <div className="hidden md:flex ml-auto items-center">
           {isAuthenticated ? (
             <Link
               to="/"
-              className="bg-green-500 text-white px-4 py-2 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition duration-300"
+              className="bg-green-500 text-white px-4 py-1 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition duration-300"
               onClick={handleLogout}
-             
             >
               Logout
             </Link>
           ) : (
             <Link
               to="/login"
-              className="bg-green-500 text-white px-4 py-2 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition duration-300"
+              className="bg-green-500 text-white px-4 py-1 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition duration-300"
             >
               Login
             </Link>
           )}
         </div>
       </Header>
+
+      {/* Mobile Menu Drawer */}
+      <Drawer
+        title="Menu"
+        placement="right"
+        onClose={() => setIsMobileMenuOpen(false)}
+        open={isMobileMenuOpen}
+        bodyStyle={{ padding: 0 }}
+        width={280}
+      >
+        <Menu
+          mode="vertical"
+          selectedKeys={[location.pathname]}
+          style={{ borderRight: 0 }}
+        >
+          <Menu.Item key="/">
+            <Link to="/">Home</Link>
+          </Menu.Item>
+          <Menu.Item key="/about">
+            <Link to="/about">About Us</Link>
+          </Menu.Item>
+          <Menu.Item key="/service">
+            <Link to="/service">Service</Link>
+          </Menu.Item>
+          <Menu.Item key="/rooms">
+            <Link to="/rooms">Rooms</Link>
+          </Menu.Item>
+          <Menu.SubMenu key="pages" title="Pages">
+            <Menu.Item key="/pricing">
+              <Link to="/pricing">Pricing</Link>
+            </Menu.Item>
+            <Menu.Item key="/team">
+              <Link to="/team">Team</Link>
+            </Menu.Item>
+            <Menu.Item key="/faq">
+              <Link to="/faq">F&Q</Link>
+            </Menu.Item>
+            <Menu.Item key="/gallery">
+              <Link to="/gallery">Gallery</Link>
+            </Menu.Item>
+          </Menu.SubMenu>
+          <Menu.Item key="/contact">
+            <Link to="/contact">Contact Us</Link>
+          </Menu.Item>
+
+          {/* Show My Bookings for all authenticated users */}
+          {isAuthenticated && user?.role === "user" && (
+            <Menu.Item key="/my-bookings">
+              <Link to="/my-bookings">My Bookings</Link>
+            </Menu.Item>
+          )}
+
+          {/* Show Dashboard only for admins */}
+          {isAuthenticated && user?.role === "admin" && (
+            <Menu.Item key="/dashboard" onClick={showDrawer}>
+              Dashboard
+            </Menu.Item>
+          )}
+
+          {/* Login/Logout button in mobile menu */}
+          <Menu.Item key="auth-action" className="mt-4">
+            {isAuthenticated ? (
+              <Link
+                to="/"
+                className="bg-green-500 text-white px-4 py-2 rounded-lg text-base font-semibold hover:bg-green-600 transition duration-300 block text-center"
+                onClick={handleLogout}
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-green-500 text-white px-4 py-2 rounded-lg text-base font-semibold hover:bg-green-600 transition duration-300 block text-center"
+              >
+                Login
+              </Link>
+            )}
+          </Menu.Item>
+        </Menu>
+      </Drawer>
 
       <Content className="bg-transparent bg-white">
         <div className="min-h-[380px] bg-white shadow-none">
@@ -339,12 +444,15 @@ const MainLayout: React.FC = () => {
         title="Dashboard Navigation"
         placement="left"
         onClose={closeDrawer}
-        visible={isDrawerVisible}
+        open={isDrawerVisible}
         bodyStyle={{ backgroundColor: "#f3f4f6" }}
-        width={300} // Responsive width
+        width={300}
         className="custom-drawer"
       >
         <Menu mode="vertical" className="q-custom-menu">
+          <Menu.Item key="/dashboard/dash-board">
+            <Link to="/dashboard/dash-board">Dashboard</Link>
+          </Menu.Item>
           <Menu.Item key="/dashboard/all-room">
             <Link to="/dashboard/all-room">All Room</Link>
           </Menu.Item>
@@ -363,3 +471,4 @@ const MainLayout: React.FC = () => {
 };
 
 export default MainLayout;
+

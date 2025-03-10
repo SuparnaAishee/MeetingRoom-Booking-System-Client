@@ -97,6 +97,8 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import CheckoutPage from "../pages/user/Checkout";
 import BookingList from "../pages/admin/BookingManagement/BookingList";
 import NotFoundPage from "../pages/notFound";
+import Dashboard from "../pages/admin/Dashboard/dashboard";
+
 
 // Define your router configuration
 const router = createBrowserRouter([
@@ -113,9 +115,9 @@ const router = createBrowserRouter([
       {
         path: "rooms/:roomId",
         element: (
-          <ProtectedRoute role="user">
+         
             <RoomDetails />
-          </ProtectedRoute>
+          
         ),
       },
       { path: "*", element: <NotFoundPage /> },
@@ -153,6 +155,10 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      {
+        path: "dash-board",
+        element: <Dashboard />,
+      },
       {
         path: "all-room",
         element: <RoomList />,

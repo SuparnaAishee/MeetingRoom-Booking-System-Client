@@ -351,7 +351,7 @@ const SlotTable: React.FC = () => {
   if (isError) return <div>Error loading slots.</div>;
 
   return (
-    <div className="p-4">
+    <div className="p-4 lg:pl-6 lg:pr-24">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl text-green-600 font-bold">Slots Management</h2>
         <button
